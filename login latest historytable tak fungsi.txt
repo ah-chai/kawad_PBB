@@ -1,0 +1,3405 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base target="_top">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sistem Kawad Kaki 2025</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .sticky-nav {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+      /* NEW: Center navbar like content */
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+      /* Add padding to prevent edge touching */
+      padding: 0 20px;
+    }
+    
+    /* LOGIN STYLES */
+    .login-box {
+      background: white;
+      max-width: 400px;
+      margin: 100px auto;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    
+    .logo {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .logo h1 {
+      font-size: 60px;
+      margin: 0;
+    }
+    
+    .logo h2 {
+      color: #667eea;
+      font-size: 22px;
+      margin: 10px 0;
+    }
+    
+    .logo p {
+      color: #666;
+      font-size: 14px;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: #333;
+      font-weight: 500;
+    }
+    
+    .form-group input, .form-select {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+    
+    .form-group input:focus, .form-select:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+    
+    .btn-primary {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+    }
+    
+    .btn-primary:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    
+    .btn-secondary {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      background: white;
+      color: #667eea;
+      border: 2px solid #667eea;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      text-align: center;
+      text-decoration: none;
+      margin-top: 10px;
+    }
+    
+    .error-message {
+      background: #ffe0e0;
+      color: #d32f2f;
+      padding: 12px;
+      border-radius: 6px;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+    
+    .divider {
+      height: 1px;
+      background: #e0e0e0;
+      margin: 25px 0;
+    }
+
+    .view-container {
+      background: white;
+      border-radius: 10px;
+      padding: 25px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      min-height: 500px;
+    }
+    
+    .hidden {
+      display: none !important;
+    }
+    
+    /* DASHBOARD STYLES */
+    .navbar {
+      background: white;
+      padding: 15px 30px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .nav-left h2 {
+      color: #333;
+      font-size: 20px;
+    }
+    
+    .nav-right {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+    
+    .btn-logout {
+      padding: 8px 20px;
+      background: #ff4757;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+    
+    .info-box {
+      background: #f8f9ff;
+      padding: 15px;
+      border-radius: 8px;
+      border-left: 4px solid #667eea;
+      margin-top: 10px;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+    
+    .button-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+    
+    .btn-form {
+      padding: 20px;
+      background: white;
+      border: 2px solid #e0e0e0;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-align: center;
+      color: #333;
+    }
+    
+    .btn-form:hover:not(:disabled) {
+      border-color: #667eea;
+      background: #f8f9ff;
+      transform: translateY(-2px);
+    }
+    
+    .btn-form:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    
+    h2, h3 {
+      color: #333;
+      margin-bottom: 15px;
+    }
+    
+    p {
+      color: #666;
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+    
+    small {
+      font-size: 12px;
+      color: #999;
+    }
+    
+    /* FORM STYLES */
+    .form-header {
+      background: #667eea;
+      color: white;
+      padding: 20px;
+      border-radius: 10px 10px 0 0;
+      margin: -30px -30px 20px -30px;
+    }
+    
+    .form-info {
+      margin-top: 10px;
+      font-size: 14px;
+    }
+    
+    .form-info p {
+      color: white;
+      margin: 5px 0;
+    }
+    
+    .scoring-section, .penalty-section, .total-section {
+      margin-bottom: 20px;
+    }
+    
+    .items-grid {
+      max-height: 450px;
+      overflow-y: auto;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 15px;
+    }
+    
+    .category-block {
+      margin-bottom: 20px;
+    }
+
+    .category-title {
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #667eea;
+    }
+
+    .subcategory-title {
+      font-weight: 600;
+      margin: 10px 0 5px;
+      color: #333;
+      font-size: 14px;
+    }
+    
+    .item-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 5px;
+      border-bottom: 1px solid #f0f0f0;
+      gap: 10px;
+    }
+    
+    .item-label {
+      flex: 1;
+      font-size: 14px;
+    }
+    
+    .radio-group {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .radio-group label {
+      font-size: 12px;
+      background: #f2f3ff;
+      padding: 3px 6px;
+      border-radius: 5px;
+      cursor: pointer;
+      border: 1px solid #ddd;
+    }
+
+    .radio-group input {
+      margin-right: 2px;
+      cursor: pointer;
+    }
+    
+    .penalty-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+    }
+    
+    .penalty-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px;
+      background: #f8f9ff;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 13px;
+    }
+    
+    .total-section {
+      background: #f8f9ff;
+      padding: 20px;
+      border-radius: 8px;
+    }
+    
+    .total-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      font-size: 16px;
+    }
+    
+    .total-row.grand {
+      border-top: 2px solid #667eea;
+      margin-top: 10px;
+      padding-top: 15px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #667eea;
+    }
+    
+    .form-actions {
+      display: flex;
+      gap: 15px;
+      justify-content: flex-end;
+      margin-top: 20px;
+    }
+    
+    .hidden {
+      display: none !important;
+    }
+
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.5);
+      animation: fadeIn 0.2s;
+    }
+
+    .modal-content {
+      background-color: #fff;
+      margin: 5% auto;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      animation: slideDown 0.3s;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* Table styles - modern and compact */
+    #pasukanTable {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    #pasukanTable thead tr {
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    #pasukanTable tbody tr {
+      border-bottom: 1px solid #f3f4f6;
+    }
+
+    #pasukanTable tbody td {
+      padding: 8px 12px;
+      line-height: 1.4;
+    }
+
+    /* Responsive table on mobile */
+    @media (max-width: 768px) {
+      #pasukanTable {
+        font-size: 11px;
+      }
+      #pasukanTable th, #pasukanTable td {
+        padding: 6px 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ============================================ -->
+  <!-- LOGIN VIEW -->
+  <!-- ============================================ -->
+  <div id="loginView">
+    <div class="login-box">
+      <div class="logo">
+        <h1>🏆</h1>
+        <h2>SISTEM PENILAIAN KAWAD KAKI PBB</h2>
+        <p>DAERAH HULU LANGAT 2025</p>
+      </div>
+      
+      <div class="form-group">
+        <label>👤 Username<span id="Username"></span></label>
+        <input type="text" id="username" value="admin">
+      </div>
+      
+      <div class="form-group">
+        <label>🔒 Password</label>
+        <input type="password" id="password" value="Admin@123">
+      </div>
+      
+      <button onclick="handleLogin()" class="btn-primary" id="loginBtn">LOGIN</button>
+      
+      <div id="error-message" class="error-message" style="display:none;"></div>
+      
+      <div class="divider"></div>
+      
+      <button onclick="showLeaderboardView()" class="btn btn-primary" 
+              style="width:100%;padding:15px;font-size:18px;margin-top:10px;">
+        🏆 LEADERBOARD
+      </button>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- ADMIN VIEW -->
+  <!-- ============================================ -->
+  <div id="adminView" class="hidden">
+    <div class="navbar sticky-nav">
+      <div class="nav-left">
+        <h2>🏠 ADMIN DASHBOARD</h2>
+      </div>
+      <div class="nav-right">
+        <span id="adminUserDisplay"></span>
+        <button onclick="logout()" class="btn-logout">Logout</button>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="card">
+        <h2>ADMIN CONTROLS</h2>
+        <p>Selamat datang! Login berjaya.</p>
+        <p>System berfungsi dengan baik.</p>
+        
+        <div style="margin-top: 20px;">
+          <button onclick="openGoogleSheets()" class="btn-primary" style="width: auto; display: inline-block; margin-right: 10px;">
+            📊 Open Google Sheets
+          </button>
+          
+          <button onclick="switchToStatistik()" class="btn-primary" style="width: auto; display: inline-block;">
+            📋 Go to Statistik Dashboard
+          </button>
+
+          <button onclick="triggerRecalculateAll()" id="recalcBtn"
+            style="width:auto; display:inline-block; margin-left:10px;
+                   background:linear-gradient(135deg,#f59e0b 0%,#d97706 100%);
+                   color:#fff; border:none; padding:12px 22px; border-radius:8px;
+                   font-size:14px; font-weight:600; cursor:pointer;">
+            🔄 Recalculate Semua Markah
+          </button>
+
+        <!-- NEW: Daftar Pasukan + Tambah User buttons -->
+        <div style="margin-top: 15px;">
+          <button onclick="showDaftarPasukanView()" class="btn-primary" 
+            style="width: auto; display: inline-block; margin-right: 10px;
+                   background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);">
+            👥 Daftar Pasukan
+          </button>
+          
+          <button onclick="showUserModal()" class="btn-primary" 
+            style="width: auto; display: inline-block;
+                   background:linear-gradient(135deg,#10b981 0%,#059669 100%);">
+            👤 Tambah User
+          </button>
+          
+          <button onclick="showDaftarHakimView()" class="btn-primary" 
+            style="width: auto; display: inline-block; margin-right: 10px;
+                   background:linear-gradient(135deg,#f59e0b 0%,#d97706 100%);">
+            👨‍⚖️ Daftar Hakim
+          </button>
+        </div>
+        </div>
+
+        <!-- Recalculate status box -->
+        <div id="recalcStatus" style="display:none; margin-top:16px; padding:14px 18px;
+             border-radius:8px; font-size:14px; font-weight:600;"></div>
+      </div>
+      
+      <div class="card">
+        <h2>DEBUG INFO</h2>
+        <div id="adminDebugInfo" style="font-family: monospace; font-size: 12px; background: #f0f0f0; padding: 15px; border-radius: 5px;">
+          Loading...
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>📊 HISTORY SUBMISSIONS</h3>
+        
+        <div class="form-group" style="margin-bottom: 15px;">
+          <label>Pilih Tarikh:</label>
+          <input type="date" id="adminHistoryDate" class="form-select" style="max-width: 200px; display: inline-block;">
+          <button onclick="loadAdminHistory()" class="btn-primary" style="margin-left: 10px; padding: 8px 15px;">
+            🔍 Papar
+          </button>
+          <span style="margin-left: 15px; color: #7f8c8d; font-size: 0.9em;">
+            (Admin view - semua submissions)
+          </span>
+        </div>
+        
+        <div id="adminHistoryTable">
+          <p style="color: #999;">Tiada rekod lagi...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- STATISTIK VIEW -->
+  <!-- ============================================ -->
+  <div id="statistikView" class="hidden">
+    <div class="navbar sticky-nav">
+      <div class="nav-left">
+        <h2>📋 DASHBOARD STATISTIK</h2>
+      </div>
+      <div class="nav-right">
+        <span id="statistikUserDisplay"></span>
+        <button onclick="logout()" class="btn-logout">Logout</button>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="card">
+        <h3>📝 KEYIN MARKAH KAWAD KAKI</h3>
+        
+        <div class="form-group">
+          <label>STEP 1: PILIH PASUKAN</label>
+          <select id="teamSelect" class="form-select"
+            style="width:350px; padding:10px 14px; border:1px solid #ddd; border-radius:6px; font-size:14px;">
+            <option value="">-- Pilih Pasukan --</option>
+          </select>
+          <div id="teamInfo" class="info-box" style="display:none;"></div>
+        </div>
+        
+        <div class="form-group">
+          <label>STEP 2: PILIH HAKIM</label>
+          <select id="judgeSelect" class="form-select"
+            style="width:350px; padding:10px 14px; border:1px solid #ddd; border-radius:6px; font-size:14px;">
+            <option value="">-- Pilih Hakim --</option>
+          </select>
+          <div id="judgeInfo" class="info-box" style="display:none;"></div>
+        </div>
+        
+        <div class="form-group">
+          <label>STEP 3: PILIH JENIS BORANG</label>
+          <div class="button-grid">
+            <button class="btn-form" data-form="pakaian_kp" disabled>
+              📋 PAKAIAN KETUA PLATUN<br>
+              <small>(32 markah)</small>
+            </button>
+            <button class="btn-form" data-form="pakaian_platun" disabled>
+              📋 PAKAIAN PLATUN<br>
+              <small>(288 markah)</small>
+            </button>
+            <button class="btn-form" data-form="kawad_kp" disabled>
+              📋 KAWAD KETUA PLATUN<br>
+              <small>(270 markah)</small>
+            </button>
+            <button class="btn-form" data-form="kawad_platun" disabled>
+              📋 KAWAD PLATUN<br>
+              <small>(190 markah)</small>
+            </button>
+            <button class="btn-form" data-form="formasi" disabled id="formasiBtn">
+              📋 FORMASI<br>
+              <small>(90 markah - ELIT sahaja)</small>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="card">
+        <h3>📊 HISTORY KEYIN</h3>
+        
+        <div class="form-group" style="margin-bottom: 15px;">
+          <label>Pilih Tarikh:</label>
+          <input type="date" id="historyDate" class="form-select" style="max-width: 200px;">
+          <button onclick="loadHistory()" class="btn-primary"
+            style="width:200px; height:44.73px; margin-left:10px; padding:8px 15px;">
+            🔍 Papar
+          </button>
+        </div>
+        
+        <div id="historyTable">
+          <p style="color: #999;">Tiada rekod lagi...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- FORM VIEW -->
+  <!-- ============================================ -->
+  <div id="formView" class="hidden">
+    <div class="navbar sticky-nav">
+      <div class="nav-left">
+        <h2>📝 <span id="formTitle">BORANG</span></h2>
+      </div>
+      <div class="nav-right">
+        <span id="formUserDisplay"></span>
+        <button onclick="cancelForm()" class="btn-secondary" style="margin-left: 10px;">Kembali</button>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="card" id="formContainer">
+        <!-- Form will be injected here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- JAVASCRIPT -->
+  <!-- ============================================ -->
+  <script>
+    let teams = [];
+    let judges = [];
+    let selectedTeam = null;
+    let selectedJudge = null;
+    let currentSession = null;
+    let currentUser = null;
+    
+    console.log('App loaded - Single Page Application');
+    
+    // ============================================
+    // INITIALIZE
+    // ============================================
+    window.onload = function() {
+      console.log('Checking session...');
+      
+      const sessionStr = localStorage.getItem('kawad_session');
+      
+      if (sessionStr) {
+        try {
+          currentSession = JSON.parse(sessionStr);
+          if (currentSession.username && currentSession.role) {
+            console.log('Existing session found:', currentSession.role);
+            currentUser = currentSession;
+            showDashboard(currentSession.role);
+            return;
+          }
+        } catch (e) {
+          console.error('Invalid session:', e);
+        }
+      }
+      
+      // No valid session - show login
+      showLogin();
+    };
+    
+    // ============================================
+    // SHOW/HIDE VIEWS
+    // ============================================
+    function showLogin() {
+      document.getElementById('loginView').classList.remove('hidden');
+      document.getElementById('adminView').classList.add('hidden');
+      document.getElementById('statistikView').classList.add('hidden');
+      document.getElementById('daftarPasukanView').classList.add('hidden');
+    }
+    
+    function showDashboard(role) {
+      document.getElementById('loginView').classList.add('hidden');
+      
+      if (role === 'ADMIN') {
+        showAdminView();
+      } else if (role === 'STATISTIK') {
+        showStatistikView();
+      }
+    }
+    
+    function showAdminView() {
+      console.log('Showing admin view');
+      document.getElementById('adminView').classList.remove('hidden');
+      document.getElementById('statistikView').classList.add('hidden');
+      
+      document.getElementById('adminUserDisplay').textContent = '👤 ' + currentSession.full_name;
+      document.getElementById('adminDebugInfo').innerHTML = 
+        'User ID: ' + currentSession.user_id + '<br>' +
+        'Username: ' + currentSession.username + '<br>' +
+        'Role: ' + currentSession.role + '<br>' +
+        'Full Name: ' + currentSession.full_name + '<br>' +
+        'Session Time: ' + new Date(currentSession.timestamp).toLocaleString();
+      
+      // Initialize admin history table
+      initializeAdminHistoryDate();
+    }
+    
+    function showStatistikView() {
+      console.log('=== SHOWING STATISTIK VIEW ===');
+      console.log('Current state:', {
+        selectedTeam: selectedTeam,
+        selectedJudge: selectedJudge,
+        currentSession: currentSession
+      });
+      
+      // CRITICAL: Hide all other views first
+      document.getElementById('loginView').classList.add('hidden');
+      document.getElementById('adminView').classList.add('hidden');
+      document.getElementById('formView').classList.add('hidden');
+      
+      // CRITICAL: Force remove inline styles that might be blocking
+      document.getElementById('formView').style.display = '';
+      
+      // Show statistik view
+      document.getElementById('statistikView').classList.remove('hidden');
+      
+      // Update user display
+      if (currentSession && currentSession.full_name) {
+        document.getElementById('statistikUserDisplay').textContent = '👤 ' + currentSession.full_name;
+      }
+      
+      // Reload dropdowns
+      loadTeams();
+      loadJudges();
+      updateFormButtons();
+      
+      // Initialize history table with today's date
+      initializeHistoryDate();
+      
+      console.log('✅ Statistik view should be visible now');
+    }
+
+
+    // ============================================
+    // LEADERBOARD — FULL-SCREEN COMPETITION VIEW
+    // ============================================
+    let _lbRefresh = null;
+    let _lbClock   = null;
+
+    function showLeaderboardView() {
+      // hide everything else
+      ['loginView','adminView','statistikView','formView'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.classList.add('hidden');
+      });
+
+      // create or reuse the fullscreen overlay
+      let lb = document.getElementById('leaderboardView');
+      if (!lb) {
+        lb = document.createElement('div');
+        lb.id = 'leaderboardView';
+        document.body.appendChild(lb);
+      }
+      lb.className = '';
+      lb.style.cssText =
+        'position:fixed;top:0;left:0;width:100%;height:100%;z-index:9999;' +
+        'background:#0d1117;overflow:hidden;';
+      lb.classList.remove('hidden');
+
+      // first load
+      loadLeaderboardData();
+
+      // auto-refresh every 30 s
+      if (_lbRefresh) clearInterval(_lbRefresh);
+      _lbRefresh = setInterval(loadLeaderboardData, 30000);
+    }
+
+    function loadLeaderboardData() {
+      google.script.run
+        .withSuccessHandler(renderLeaderboard)
+        .withFailureHandler(function(err) {
+          console.error('LB load fail', err);
+        })
+        .getLeaderboardData();
+    }
+
+    // ============================================
+    // MAIN RENDER
+    // ============================================
+    function renderLeaderboard(data) {
+      if (!data) data = [];
+
+      const container = document.getElementById('leaderboardView');
+      if (!container) return;
+
+      // split & sort descending by grand_total
+      const L = data.filter(t => String(t.gender||'').toUpperCase().includes('LELAKI'))
+                    .sort((a,b) => (b.grand_total||0) - (a.grand_total||0));
+      const P = data.filter(t => String(t.gender||'').toUpperCase().includes('PEREMPUAN'))
+                    .sort((a,b) => (b.grand_total||0) - (a.grand_total||0));
+
+      container.innerHTML =
+        '<div id="lbRoot" style="' +
+          'position:absolute;top:0;left:0;width:100%;height:100%;' +
+          'display:flex;flex-direction:column;' +
+          'font-family:Segoe UI,Tahoma,Geneva,Verdana,sans-serif;' +
+          'color:#c9d1d9;' +
+        '">' +
+
+        // ─── TOP BAR ─────────────────────────────────────
+        '<div style="' +
+          'display:flex;align-items:center;justify-content:space-between;' +
+          'padding:10px 24px;flex-shrink:0;' +
+          'background:linear-gradient(90deg,#161b22 0%,#1c2333 50%,#161b22 100%);' +
+          'border-bottom:1px solid #21262d;' +
+        '">' +
+          // back btn
+          '<button onclick="handleBackFromLeaderboard()" style="' +
+            'background:#21262d;color:#8b949e;border:1px solid #30363d;' +
+            'padding:6px 18px;border-radius:6px;font-size:13px;cursor:pointer;' +
+          '">← Kembali</button>' +
+
+          // centre title
+          '<div style="position:absolute;left:50%;transform:translateX(-50%);text-align:center;">' +
+            '<div style="color:#f0f6fc;font-size:20px;font-weight:700;letter-spacing:2px;">' +
+              '🏆&nbsp;PAPAN KEDUDUKAN KAWAD KAKI PBB</div>' +
+            '<div style="color:#484f58;font-size:11px;letter-spacing:1.5px;margin-top:1px;">' +
+              'DAERAH HULU LANGAT 2025</div>' +
+          '</div>' +
+
+          // clock
+          '<div id="lbClock" style="' +
+            'font-family:Courier New,monospace;font-size:20px;font-weight:700;' +
+            'color:#58a6ff;background:#161b22;padding:5px 14px;border-radius:6px;' +
+            'border:1px solid #21262d;letter-spacing:1px;' +
+          '">--:--:--</div>' +
+        '</div>' +
+
+        // ─── TWO-COLUMN BODY ─────────────────────────────
+        '<div style="' +
+          'flex:1;display:flex;gap:12px;padding:10px 16px;min-height:0;overflow:hidden;' +
+        '">' +
+          // LEFT — Lelaki
+          lbPanel('👨 KATEGORI LELAKI', L, '#3b82f6', '#1d28e8', '#1e293b') +
+          // RIGHT — Perempuan
+          lbPanel('👩 KATEGORI PEREMPUAN', P, '#ec4899', '#db2777', '#1e1b2e') +
+        '</div>' +
+
+        // ─── BOTTOM BAR ──────────────────────────────────
+        '<div style="' +
+          'flex-shrink:0;text-align:center;padding:5px;' +
+          'background:#161b22;border-top:1px solid #21262d;' +
+        '">' +
+          '<span style="color:#484f58;font-size:10px;letter-spacing:1px;">' +
+            '🔄 AUTO REFRESH SETIAP 30 SAAT</span>' +
+        '</div>' +
+
+        '</div>';   // close #lbRoot
+
+      // tick clock
+      if (_lbClock) clearInterval(_lbClock);
+      (function tick(){
+        const el = document.getElementById('lbClock');
+        if (el) el.textContent = new Date().toLocaleTimeString('ms-MY',{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:true});
+      })();
+      _lbClock = setInterval(function(){
+        const el = document.getElementById('lbClock');
+        if (el) el.textContent = new Date().toLocaleTimeString('ms-MY',{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:true});
+      }, 1000);
+    }
+
+    // ============================================
+    // BUILD ONE SIDE-PANEL (Lelaki or Perempuan)
+    // ============================================
+    function lbPanel(title, teams, accent, headerGrad, panelBg) {
+      // column layout (px)
+      //  Rk | Medal | Kod | PKP | PPlt | KKP | KPlt | Fms | P10 | K10 | K50 | F30 | Jumlah
+      var cols = '34px 30px 1fr 48px 52px 52px 52px 48px 48px 48px 52px 48px 62px';
+
+      var headerStyle =
+        'display:grid;grid-template-columns:' + cols + ';' +
+        'background:#1c2333;border-bottom:1px solid #30363d;flex-shrink:0;';
+
+      var hdrLabels = ['#','','Pasukan','PKP','PPlt','KKP','KPlt','Fms','Pak%','KKP%','KPlt%','Fms%','Jumlah'];
+
+      var headerCells = hdrLabels.map(function(h, i){
+        return '<div style="padding:5px 2px;text-align:center;font-size:9px;font-weight:700;' +
+               'color:' + accent + ';text-transform:uppercase;letter-spacing:0.5px;' +
+               (i === 2 ? 'text-align:left;padding-left:8px;' : '') +
+               '">' + h + '</div>';
+      }).join('');
+
+      var rows = '';
+      if (teams.length === 0) {
+        rows = '<div style="flex:1;display:flex;align-items:center;justify-content:center;color:#484f58;font-size:15px;">📭 Tiada data</div>';
+      } else {
+        teams.forEach(function(t, i){
+          rows += lbRow(t, i + 1, accent, cols);
+        });
+      }
+
+      return (
+        '<div style="flex:1;display:flex;flex-direction:column;min-width:0;overflow:hidden;border-radius:8px;border:1px solid #30363d;">' +
+          // title bar
+          '<div style="' +
+            'background:linear-gradient(135deg,' + headerGrad + ',' + accent + ');' +
+            'padding:8px 14px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0;' +
+          '">' +
+            '<span style="color:#fff;font-size:15px;font-weight:700;letter-spacing:1.5px;">' + title + '</span>' +
+            '<span style="color:rgba(255,255,255,0.7);font-size:12px;">' + teams.length + ' Pasukan</span>' +
+          '</div>' +
+          // column headers
+          '<div style="' + headerStyle + '">' + headerCells + '</div>' +
+          // scrollable rows container — uses flex to fill remaining height
+          '<div style="flex:1;display:flex;flex-direction:column;overflow:hidden;background:' + panelBg + ';">' +
+            rows +
+          '</div>' +
+        '</div>'
+      );
+    }
+
+    // ============================================
+    // BUILD ONE TEAM ROW
+    // ============================================
+    function lbRow(t, rank, accent, cols) {
+      var medal = rank===1?'🥇':rank===2?'🥈':rank===3?'🥉':'';
+
+      // row background — subtle gold/silver/bronze tint for top 3
+      var bg = rank===1 ? 'rgba(180,144,32,0.12)'
+             : rank===2 ? 'rgba(140,140,150,0.10)'
+             : rank===3 ? 'rgba(170,100,40,0.12)'
+             : (rank%2===0 ? '#161b22' : '#1c2333');
+
+      // left accent stripe color
+      var stripe = rank===1?'#d4af37':rank===2?'#a8b2bd':rank===3?'#cd7f32':'transparent';
+
+      // weighted percentages – colour-code by completion
+      function wc(val, max) {
+        var pct = max > 0 ? val/max*100 : 0;
+        var c = pct >= 90 ? '#3fb950' : pct >= 60 ? '#58a6ff' : '#f78166';
+        return '<span style="color:' + c + ';font-weight:700;">' + val.toFixed(2) + '</span>';
+      }
+
+      // grand total big highlight
+      var gtColor = (t.grand_total||0) >= 80 ? '#fbbf24' : accent;
+
+      return (
+        '<div style="' +
+          'display:grid;grid-template-columns:' + cols + ';' +
+          'background:' + bg + ';' +
+          'border-left:3px solid ' + stripe + ';' +
+          'border-bottom:1px solid #21262d;' +
+          'align-items:center;' +
+          'flex-shrink:0;' +
+        '">' +
+          // rank #
+          '<div style="text-align:center;color:#8b949e;font-size:12px;font-weight:600;">' + rank + '</div>' +
+          // medal
+          '<div style="text-align:center;font-size:15px;">' + (medal||'') + '</div>' +
+          // team_code
+          '<div style="padding-left:8px;color:#f0f6fc;font-size:14px;font-weight:700;">' + t.team_code + '</div>' +
+          // PKP
+          '<div style="text-align:center;color:#7dd3fc;font-size:12px;font-weight:600;">' + (t.pakaian_kp_total||0) + '</div>' +
+          // PPlt
+          '<div style="text-align:center;color:#7dd3fc;font-size:12px;font-weight:600;">' + (t.pakaian_platun_total||0) + '</div>' +
+          // KKP
+          '<div style="text-align:center;color:#86efac;font-size:12px;font-weight:600;">' + (t.kawad_kp_total||0) + '</div>' +
+          // KPlt
+          '<div style="text-align:center;color:#86efac;font-size:12px;font-weight:600;">' + (t.kawad_platun_total||0) + '</div>' +
+          // Fms
+          '<div style="text-align:center;color:#fcd34d;font-size:12px;font-weight:600;">' + (t.formasi_total||0) + '</div>' +
+          // Pak%
+          '<div style="text-align:center;">' + wc(t.pakaian_weighted||0, 10) + '</div>' +
+          // KKP%
+          '<div style="text-align:center;">' + wc(t.kawad_kp_weighted||0, 10) + '</div>' +
+          // KPlt%
+          '<div style="text-align:center;">' + wc(t.kawad_platun_weighted||0, 50) + '</div>' +
+          // Fms%
+          '<div style="text-align:center;">' + wc(t.formasi_weighted||0, 30) + '</div>' +
+          // grand_total
+          '<div style="text-align:center;background:rgba(0,0,0,0.25);margin:2px;border-radius:4px;padding:2px 0;">' +
+            '<span style="color:' + gtColor + ';font-size:14px;font-weight:800;">' + (t.grand_total||0).toFixed(2) + '%</span>' +
+          '</div>' +
+        '</div>'
+      );
+    }
+
+    // ============================================
+    // BACK + CLEANUP
+    // ============================================
+    function handleBackFromLeaderboard() {
+      if (_lbRefresh) { clearInterval(_lbRefresh); _lbRefresh = null; }
+      if (_lbClock)   { clearInterval(_lbClock);   _lbClock   = null; }
+
+      const lb = document.getElementById('leaderboardView');
+      if (lb) lb.classList.add('hidden');
+
+      if (typeof currentSession !== 'undefined' && currentSession && currentSession.role) {
+        showDashboard(currentSession.role);
+      } else {
+        showLogin();
+      }
+    }
+
+
+    // ============================================
+    // RECALCULATE ALL SCORES (ADMIN ONLY)
+    // ============================================
+    function triggerRecalculateAll() {
+      // Guard: admin only
+      if (!currentSession || currentSession.role !== 'ADMIN') {
+        alert('Fungsi ini hanya boleh diakses oleh Admin.');
+        return;
+      }
+
+      var btn    = document.getElementById('recalcBtn');
+      var status = document.getElementById('recalcStatus');
+
+      // Disable button + show loading
+      btn.disabled = true;
+      btn.style.opacity = '0.6';
+      btn.textContent = '⏳ Sedang mengira...';
+
+      status.style.display = 'block';
+      status.style.background = '#fef3c7';
+      status.style.color = '#92400e';
+      status.style.border = '1px solid #f59e0b';
+      status.textContent = '⏳ Sedang mengira semula markah semua pasukan. Sila tunggu...';
+
+      // Call backend
+      google.script.run
+        .withSuccessHandler(function(result) {
+          btn.disabled = false;
+          btn.style.opacity = '1';
+          btn.textContent = '🔄 Recalculate Semua Markah';
+
+          if (result.success) {
+            status.style.background = '#d1fae5';
+            status.style.color   = '#065f46';
+            status.style.border  = '1px solid #10b981';
+            status.innerHTML =
+              '✅ <strong>Recalculate berjaya!</strong> ' +
+              result.teamsProcessed + ' pasukan dikira semula. ' +
+              'Masa: ' + result.duration + ' saat. ' +
+              '<span style="color:#6b7280; font-weight:400;">' +
+                '(Kemaskini: ' + new Date().toLocaleString('ms-MY') + ')</span>';
+          } else {
+            status.style.background = '#fee2e2';
+            status.style.color   = '#991b1b';
+            status.style.border  = '1px solid #ef4444';
+            status.textContent   = '❌ ' + (result.message || 'Ralat tidak diketahui.');
+          }
+
+          // Auto-hide after 12 seconds
+          setTimeout(function(){ status.style.display = 'none'; }, 12000);
+        })
+        .withFailureHandler(function(err) {
+          btn.disabled = false;
+          btn.style.opacity = '1';
+          btn.textContent = '🔄 Recalculate Semua Markah';
+
+          status.style.background = '#fee2e2';
+          status.style.color   = '#991b1b';
+          status.style.border  = '1px solid #ef4444';
+          status.textContent   = '❌ Error: ' + (err.message || err);
+
+          setTimeout(function(){ status.style.display = 'none'; }, 12000);
+        })
+        .recalculateAllTeams();
+    }
+
+    
+    // ============================================
+    // LOGIN
+    // ============================================
+    function handleLogin() {
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const errorDiv = document.getElementById('error-message');
+      const loginBtn = document.getElementById('loginBtn');
+      
+      if (!username || !password) {
+        errorDiv.textContent = 'Sila isi username dan password';
+        errorDiv.style.display = 'block';
+        return;
+      }
+      
+      loginBtn.textContent = 'Logging in...';
+      loginBtn.disabled = true;
+      errorDiv.style.display = 'none';
+      
+      console.log('Attempting login:', username);
+      
+      google.script.run
+        .withSuccessHandler(function(result) {
+          console.log('Login result:', result);
+          
+          if (result.success) {
+            currentSession = {
+              user_id: result.user_id,
+              username: result.username,
+              role: result.role,
+              full_name: result.full_name,
+              timestamp: new Date().getTime()
+            };
+            
+            localStorage.setItem('kawad_session', JSON.stringify(currentSession));
+            currentUser = currentSession;
+            console.log('Session saved, showing dashboard');
+            
+            // NO REDIRECT - just show dashboard
+            showDashboard(result.role);
+            
+          } else {
+            errorDiv.textContent = result.message;
+            errorDiv.style.display = 'block';
+            loginBtn.textContent = 'LOGIN';
+            loginBtn.disabled = false;
+          }
+        })
+        .withFailureHandler(function(error) {
+          console.error('Login error:', error);
+          errorDiv.textContent = 'Error: ' + error.message;
+          errorDiv.style.display = 'block';
+          loginBtn.textContent = 'LOGIN';
+          loginBtn.disabled = false;
+        })
+        .doLogin(username, password);
+    }
+    
+    // ============================================
+    // NAVIGATION
+    // ============================================
+    function switchToStatistik() {
+      console.log('Switching to statistik view');
+      showStatistikView();
+    }
+    
+    function switchToAdmin() {
+      console.log('Switching back to admin view');
+      document.getElementById('daftarPasukanView').classList.add('hidden');
+      document.getElementById('adminView').classList.remove('hidden');
+      document.getElementById('daftarHakimView').classList.add('hidden');
+    }
+    
+    function openGoogleSheets() {
+      window.open('https://docs.google.com/spreadsheets/d/1Hoa0jEP85ppNYBZhsASDTQI__kDGzyfvbSoXs76b3uY/edit', '_blank');
+    }
+    
+    function logout() {
+      if (confirm('Anda pasti mahu logout?')) {
+        console.log('Logging out');
+        localStorage.removeItem('kawad_session');
+        localStorage.removeItem('kawad_form_data');
+        currentSession = null;
+        currentUser = null;
+        
+        // Reset login form
+        document.getElementById('username').value = '';
+        document.getElementById('password').value = '';
+        document.getElementById('error-message').style.display = 'none';
+        
+        // Reset login button
+        const loginBtn = document.getElementById('loginBtn');
+        loginBtn.textContent = 'LOGIN';
+        loginBtn.disabled = false;
+        
+        // Reset dropdowns
+        document.getElementById('teamSelect').value = '';
+        document.getElementById('judgeSelect').value = '';
+        document.getElementById('teamInfo').style.display = 'none';
+        document.getElementById('judgeInfo').style.display = 'none';
+        selectedTeam = null;
+        selectedJudge = null;
+        // Fix untuk hide formView selepas logout
+        document.getElementById('formView').classList.add('hidden');
+        document.getElementById('formContainer').innerHTML = '';
+        
+        showLogin();
+      }
+    }
+    
+    // ============================================
+    // LOAD DATA
+    // ============================================
+    function loadTeams() {
+      console.log('Loading teams...');
+      
+      google.script.run
+        .withSuccessHandler(function(data) {
+          console.log('Teams loaded:', data.length);
+          teams = data;
+          
+          const select = document.getElementById('teamSelect');
+          while (select.options.length > 1) select.remove(1);
+          
+          if (data.length === 0) {
+            const option = document.createElement('option');
+            option.textContent = '-- Tiada pasukan --';
+            option.disabled = true;
+            select.appendChild(option);
+            return;
+          }
+          
+          data.forEach(team => {
+            const option = document.createElement('option');
+            option.value = team.team_id;
+            option.textContent = team.team_code + ' - ' + team.school_name + ' (' + team.kategori + ' ' + team.gender + ')';
+            select.appendChild(option);
+          });
+        })
+        .withFailureHandler(function(error) {
+          console.error('Error loading teams:', error);
+        })
+        .getTeams();
+    }
+    
+    function loadJudges() {
+      console.log('Loading judges...');
+      
+      google.script.run
+        .withSuccessHandler(function(data) {
+          console.log('Judges loaded:', data.length);
+          judges = data;
+          
+          const select = document.getElementById('judgeSelect');
+          while (select.options.length > 1) select.remove(1);
+          
+          if (data.length === 0) {
+            const option = document.createElement('option');
+            option.textContent = '-- Tiada hakim --';
+            option.disabled = true;
+            select.appendChild(option);
+            return;
+          }
+          
+          data.forEach(judge => {
+            const option = document.createElement('option');
+            option.value = judge.judge_id;
+            option.textContent = judge.judge_number + ' (' + judge.judge_role + ')';
+            select.appendChild(option);
+          });
+        })
+        .withFailureHandler(function(error) {
+          console.error('Error loading judges:', error);
+        })
+        .getJudges();
+    }
+    
+    // ============================================
+    // TEAM/JUDGE SELECTION
+    // ============================================
+    document.getElementById('teamSelect').addEventListener('change', function() {
+      const teamId = this.value;
+      if (teamId) {
+        selectedTeam = teams.find(t => t.team_id === teamId);
+        
+        document.getElementById('teamInfo').innerHTML = 
+          '<strong>Kod Pasukan:</strong> ' + selectedTeam.team_code + '<br>' +
+          '<strong>Sekolah:</strong> ' + selectedTeam.school_name + '<br>' +
+          '<strong>Kategori:</strong> ' + selectedTeam.kategori + ' ' + selectedTeam.gender + '<br>' +
+          '<strong>Tingkat:</strong> ' + selectedTeam.school_level + '<br>' +
+          '<strong>Ketua Platun:</strong> ' + (selectedTeam.ketua_platun_name || '-');
+        document.getElementById('teamInfo').style.display = 'block';
+        
+        const formasiBtn = document.getElementById('formasiBtn');
+        formasiBtn.style.display = selectedTeam.kategori === 'AMATUR' ? 'none' : 'block';
+        
+        updateFormButtons();
+      } else {
+        document.getElementById('teamInfo').style.display = 'none';
+        selectedTeam = null;
+        updateFormButtons();
+      }
+    });
+    
+    document.getElementById('judgeSelect').addEventListener('change', function() {
+      const judgeId = this.value;
+      if (judgeId) {
+        selectedJudge = judges.find(j => j.judge_id === judgeId);
+        
+        document.getElementById('judgeInfo').innerHTML = 
+          '<strong>Hakim:</strong> ' + selectedJudge.judge_number + '<br>' +
+          '<strong>Peranan:</strong> ' + selectedJudge.judge_role;
+        document.getElementById('judgeInfo').style.display = 'block';
+        
+        updateFormButtons();
+      } else {
+        document.getElementById('judgeInfo').style.display = 'none';
+        selectedJudge = null;
+        updateFormButtons();
+      }
+    });
+    
+    
+    // ============================================
+    // FORM BUTTONS
+    // ============================================
+    document.querySelectorAll('.btn-form').forEach(btn => {
+      btn.addEventListener('click', function() {
+        console.log('Button borang ditekan:', this.dataset.form);
+
+        const formType = this.dataset.form;
+
+        if (!selectedTeam || !selectedJudge) {
+          alert('Sila pilih pasukan dan hakim dulu.');
+          return;
+        }
+
+        const formData = {
+          team: selectedTeam,
+          judge: selectedJudge,
+          formType: formType,
+          keyinUser: currentSession
+        };
+        localStorage.setItem('kawad_form_data', JSON.stringify(formData));
+
+        showFormView(formType);
+      });
+    });
+    
+    // ============================================
+    // FORM VIEW FUNCTIONS
+    // ============================================
+    function showFormView(formType) {
+      console.log('=== SHOW FORM VIEW TRIGGERED ===');
+      
+      if (!selectedTeam) {
+        alert('❌ Data pasukan tidak dijumpai. Sila pilih pasukan di dashboard.');
+        showStatistikView();
+        return;
+      }
+      
+      if (!selectedJudge) {
+        alert('❌ Data hakim tidak dijumpai. Sila pilih hakim di dashboard.');
+        showStatistikView();
+        return;
+      }
+      
+      if (!currentSession) {
+        alert('❌ Session telah tamat. Sila login semula.');
+        showLogin();
+        return;
+      }
+      
+      // Hide other views
+      document.getElementById('loginView').classList.add('hidden');
+      document.getElementById('adminView').classList.add('hidden');
+      document.getElementById('statistikView').classList.add('hidden');
+      
+      // Show form view
+      const formView = document.getElementById('formView');
+      formView.classList.remove('hidden');
+      formView.style.display = '';
+      
+      // Update title
+      const titles = {
+        'pakaian_kp': 'PAKAIAN KETUA PLATUN',
+        'pakaian_platun': 'PAKAIAN PLATUN',
+        'kawad_kp': 'KAWAD KETUA PLATUN',
+        'kawad_platun': 'KAWAD PLATUN',
+        'formasi': 'FORMASI'
+      };
+      document.getElementById('formTitle').textContent = titles[formType] || 'BORANG';
+      document.getElementById('formUserDisplay').textContent = '👤 ' + currentSession.full_name;
+      
+      // Generate form HTML
+      const formHTML = generateFormHTML(formType, selectedTeam, selectedJudge, currentSession);
+      document.getElementById('formContainer').innerHTML = formHTML;
+      
+      // Attach listeners
+      document.querySelectorAll('.score-radio, .penalty-check').forEach(el => {
+        el.addEventListener('change', calculateTotals);
+      });
+      
+      // Initial calculation
+      calculateTotals();
+    }
+    
+    function cancelForm() {
+  if (confirm('Batalkan keyin markah? Data yang diisi akan hilang.')) {
+    localStorage.removeItem('kawad_form_data');
+    document.getElementById('formContainer').innerHTML = '';
+
+    const formView = document.getElementById('formView');
+    formView.classList.add('hidden');
+    formView.style.display = 'none';
+
+    // ❌ JANGAN reset selectedTeam & selectedJudge
+    // ❌ JANGAN clear dropdown value
+
+    // Clear info boxes sahaja
+    document.getElementById('teamInfo').style.display = 'none';
+    document.getElementById('judgeInfo').style.display = 'none';
+
+    // Force re-enable buttons based on dropdown state
+    updateFormButtons();
+
+    showStatistikView();
+  }
+}
+    
+    function updateFormButtons() {
+      const teamSelected = document.getElementById('teamSelect').value !== '';
+      const judgeSelected = document.getElementById('judgeSelect').value !== '';
+
+      document.querySelectorAll('.btn-form').forEach(btn => {
+        if (teamSelected && judgeSelected) {
+          btn.disabled = false;
+          btn.style.opacity = '1';
+          btn.style.cursor = 'pointer';
+        } else {
+          btn.disabled = true;
+          btn.style.opacity = '0.5';
+          btn.style.cursor = 'not-allowed';
+        }
+      });
+    }
+    
+    // ============================================
+    // SUBMIT FORM (UPDATED FOR RADIO)
+    // ============================================
+    function submitForm(event) {
+      if (!confirm('Hantar markah ini? Pastikan semua data betul.')) {
+        return;
+      }
+      
+      console.log('=== SUBMIT FORM START ===');
+      
+      // Get formType from container (most reliable source)
+      const formContainer = document.getElementById('formContainer');
+      const formType = formContainer ? formContainer.dataset.formType : null;
+      
+      console.log('Form Type:', formType);
+      console.log('Selected Team:', selectedTeam);
+      console.log('Selected Judge:', selectedJudge);
+      
+      // Validation
+      if (!formType) {
+        alert('❌ Error: Form type tidak dijumpai. Sila pilih borang semula.');
+        return;
+      }
+      
+      if (!selectedTeam) {
+        alert('❌ Error: Sila pilih pasukan dahulu.');
+        return;
+      }
+      
+      if (!selectedJudge) {
+        alert('❌ Error: Sila pilih hakim dahulu.');
+        return;
+      }
+      
+      if (!currentSession || !currentSession.user_id) {
+        alert('❌ Error: Sesi login tidak sah. Sila login semula.');
+        return;
+      }
+      
+      // Collect scores based on form type
+      const scores = [];
+      const items = getItemsByFormType(formType);
+      
+      console.log('Total items for ' + formType + ':', items.length);
+      
+      if (formType === 'kawad_kp') {
+        // KAWAD KP: Dual columns (Pergerakan & Bahasa Hukuman)
+        items.forEach(item => {
+          const scoreObj = { code: item.code };
+          
+          if (item.cols && item.cols.includes('pergerakan')) {
+            const pergerakanValue = getRadioValue(item.code + '_pergerakan');
+            scoreObj.score_pergerakan = pergerakanValue;
+          }
+          
+          if (item.cols && item.cols.includes('bahasa')) {
+            const bahasaValue = getRadioValue(item.code + '_bahasa');
+            scoreObj.score_bahasa = bahasaValue;
+          }
+          
+          scores.push(scoreObj);
+        });
+        
+      } else if (formType === 'formasi') {
+        // FORMASI: Multiple formasi columns
+        items.forEach(item => {
+          const scoreObj = {
+            code: item.code,
+            score_formasi1: 0,
+            score_formasi2: 0,
+            score_formasi3: 0,
+            score_formasi4: 0
+          };
+          
+          if (item.formasi_cols) {
+            item.formasi_cols.forEach(fNum => {
+              const score = getRadioValue(item.code + '_formasi' + fNum);
+              scoreObj['score_formasi' + fNum] = score;
+            });
+          }
+          
+          scores.push(scoreObj);
+        });
+        
+      } else {
+        // PAKAIAN KP, PAKAIAN PLATUN, KAWAD PLATUN: Single score column
+        items.forEach(item => {
+          const score = getRadioValue(item.code);
+          scores.push({
+            code: item.code,
+            score: score
+          });
+        });
+      }
+      
+      console.log('Scores collected:', scores.length, scores);
+      
+      // Collect penalties
+      const penalties = [];
+      const penaltyCheckboxes = document.querySelectorAll('input[name^="penalty_"]:checked');
+      
+      console.log('Penalty checkboxes found:', penaltyCheckboxes.length);
+      
+      penaltyCheckboxes.forEach(checkbox => {
+        const value = parseInt(checkbox.value) || 0;
+        if (value > 0) {
+          // Extract penalty code from name (e.g., "penalty_P1_1" -> "P1")
+          const nameParts = checkbox.name.split('_');
+          const code = nameParts[1];
+          
+          penalties.push({
+            code: code,
+            value: value
+          });
+        }
+      });
+      
+      console.log('Penalties collected:', penalties.length, penalties);
+      
+      // Build submission object
+      const submission = {
+        formType: formType,           // ✅ MATCHES backend now (was form_type)
+        team_id: selectedTeam.team_code,  // Use team_code for display (L1, P1, etc)
+        judge_id: selectedJudge.judge_id,
+        scores: scores,
+        penalties: penalties,
+        keyed_by: currentSession.user_id,
+        timestamp: new Date().toISOString()
+      };
+      
+      console.log('Final submission object:', submission);
+      
+      // Disable submit button with animated spinner
+      const submitBtn = event ? event.target : null;
+      if (submitBtn) {
+        const spinnerFrames = ['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏'];
+        let frameIndex = 0;
+        let message = 'Menghantar';
+        
+        submitBtn.disabled = true;
+        
+        // Animate spinner
+        const spinnerInterval = setInterval(() => {
+          submitBtn.textContent = `${spinnerFrames[frameIndex]} ${message}...`;
+          frameIndex = (frameIndex + 1) % spinnerFrames.length;
+        }, 80);
+        
+        // Change messages
+        setTimeout(() => { message = 'Menyimpan markah'; }, 1000);
+        setTimeout(() => { message = 'Mengira kedudukan'; }, 2500);
+        setTimeout(() => { message = 'Hampir selesai'; }, 4000);
+        
+        // Store interval ID to clear later
+        submitBtn.dataset.spinnerInterval = spinnerInterval;
+      }
+      
+      // Send to backend
+      google.script.run
+        .withSuccessHandler(function(result) {
+          console.log('=== SUBMIT SUCCESS ===');
+          console.log('Result:', result);
+
+          // Clear spinner if exists
+          if (submitBtn && submitBtn.dataset.spinnerInterval) {
+          clearInterval(submitBtn.dataset.spinnerInterval);
+          }
+          
+          if (result.success) {
+            alert('✅ Markah berjaya dihantar!\n\n' +
+                  'Entry ID: ' + result.entry_id + '\n' +
+                  'Markah Kasar: ' + result.raw_score + '\n' +
+                  'Penalti: -' + result.penalties + '\n' +
+                  'Jumlah Akhir: ' + result.total_score);
+            
+            // Clear selections
+            selectedTeam = null;
+            selectedJudge = null;
+            
+            // Reset dropdowns
+            document.getElementById('teamSelect').value = '';
+            document.getElementById('judgeSelect').value = '';
+            
+            // Update button states
+            updateFormButtons();
+            
+            // Return to dashboard
+            showStatistikView();
+            
+          } else {
+            alert('❌ Gagal hantar: ' + result.message);
+            if (submitBtn) {
+              submitBtn.textContent = '💾 Hantar Markah';
+              submitBtn.disabled = false;
+            }
+          }
+        })
+        .withFailureHandler(function(error) {
+          console.error('=== SUBMIT FAILED ===');
+          console.error('Error:', error);
+          alert('❌ Error: ' + error.message);
+          if (submitBtn) {
+            submitBtn.textContent = '💾 Hantar Markah';
+            submitBtn.disabled = false;
+          }
+        })
+        .saveScores(submission);
+    }
+    
+    // ============================================
+    // HELPER FUNCTION: Get Radio Button Value
+    // ============================================
+    function getRadioValue(fieldName) {
+      const radio = document.querySelector('input[name="' + fieldName + '"]:checked');
+      return radio ? parseInt(radio.value) || 0 : 0;
+    }
+    
+    // Enter key support
+    document.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter' && !document.getElementById('loginView').classList.contains('hidden')) {
+        handleLogin();
+      }
+    });
+    
+    // ============================================
+    // KAWAD KAKI FORMS DATA - COMPLETE FROM EXCEL
+    // ============================================
+
+    // ============================================
+    // 1. PAKAIAN KETUA PLATUN (32 markah)
+    // ============================================
+    const PAKAIAN_KP_ITEMS = [
+      {no:1, label:"a", code:"A1a", category:"A. PERSEDIAAN", subcategory:"1. Pakaian Asas - 7 markah", desc:"Beret/Cap/Tudung", max:1},
+      {no:2, label:"b", code:"A1b", category:"A. PERSEDIAAN", subcategory:"1. Pakaian Asas - 7 markah", desc:"Lencana Beret/Lencana Pasukan", max:1},
+      {no:3, label:"c", code:"A1c", category:"A. PERSEDIAAN", subcategory:"1. Pakaian Asas - 7 markah", desc:"Baju dan Seluar", max:1},
+      {no:4, label:"d", code:"A1d", category:"A. PERSEDIAAN", subcategory:"1. Pakaian Asas - 7 markah", desc:"Tali Pinggang", max:1},
+      {no:5, label:"e", code:"A1e", category:"A. PERSEDIAAN", subcategory:"1. Pakaian Asas - 7 markah", desc:"Tanda Nama", max:1},
+      {no:6, label:"f", code:"A1f", category:"A. PERSEDIAAN", subcategory:"1. Pakaian Asas - 7 markah", desc:"Kasut", max:1},
+      {no:7, label:"g", code:"A1g", category:"A. PERSEDIAAN", subcategory:"1. Pakaian Asas - 7 markah", desc:"Lencana Sulam/Lencana Bahu", max:1},
+      {no:8, label:"a", code:"A2a", category:"A. PERSEDIAAN", subcategory:"2. Aksesori - 1 markah", desc:"Sarung Tangan Putih", max:1},
+      {no:9, label:"a", code:"A3a", category:"A. PERSEDIAAN", subcategory:"3. Kekemasan Diri dan Pakaian - 15 markah", desc:"Rambut/Tudung/Dsb", max:3},
+      {no:10, label:"b", code:"A3b", category:"A. PERSEDIAAN", subcategory:"3. Kekemasan Diri dan Pakaian - 15 markah", desc:"Kasut Hitam/Berkilat/Ikatan Tali Kemas", max:3},
+      {no:11, label:"c", code:"A3c", category:"A. PERSEDIAAN", subcategory:"3. Kekemasan Diri dan Pakaian - 15 markah", desc:"Baju", max:3},
+      {no:12, label:"d", code:"A3d", category:"A. PERSEDIAAN", subcategory:"3. Kekemasan Diri dan Pakaian - 15 markah", desc:"Seluar", max:3},
+      {no:13, label:"e", code:"A3e", category:"A. PERSEDIAAN", subcategory:"3. Kekemasan Diri dan Pakaian - 15 markah", desc:"Pakaian Asas/Peralatan/Kedudukannya", max:3},
+      {no:14, label:"a", code:"A4a", category:"A. PERSEDIAAN", subcategory:"4. Keseragaman Warna/Bentuk/Jenis - 9 markah", desc:"Beret/Cap/Tudung", max:3},
+      {no:15, label:"b", code:"A4b", category:"A. PERSEDIAAN", subcategory:"4. Keseragaman Warna/Bentuk/Jenis - 9 markah", desc:"Baju dan Seluar", max:3},
+      {no:16, label:"c", code:"A4c", category:"A. PERSEDIAAN", subcategory:"4. Keseragaman Warna/Bentuk/Jenis - 9 markah", desc:"Kasut", max:3}
+    ];
+
+    const PAKAIAN_KP_NOTA = [
+      "i. Item 1(d) - semua pasukan perempuan diberi markah penuh.",
+      "ii. Item 1(g) - Pergerakan Puteri Islam Malaysia diberi markah penuh.",
+      "iii. Item 1(f), 3(b) dan 4(c) - diberi markah 0 kepada pasukan yang melanggar peraturan pemakaian kasut."
+    ];
+
+    // ============================================
+    // 2. PAKAIAN PLATUN (288 markah)
+    // ============================================
+    const PAKAIAN_PLATUN_ITEMS = [
+      {no:1, label:"a", code:"A1a", category:"A. PERSEDIAAN", subcategory:"1. Pakaian Asas - 18 markah", desc:"Beret/Cap/Tudung", max:18},
+      {no:2, label:"b", code:"A1b", category:"A. PERSEDIAAN", subcategory:"1. Pakaian Asas - 18 markah", desc:"Lencana Beret/Pasukan", max:18},
+      {no:3, label:"c", code:"A1c", category:"A. PERSEDIAAN", subcategory:"1. Pakaian Asas - 18 markah", desc:"Baju dan Seluar", max:18},
+      {no:4, label:"d", code:"A1d", category:"A. PERSEDIAAN", subcategory:"1. Pakaian Asas - 18 markah", desc:"Tali Pinggang", max:18},
+      {no:5, label:"e", code:"A1e", category:"A. PERSEDIAAN", subcategory:"1. Pakaian Asas - 18 markah", desc:"Tanda Nama", max:18},
+      {no:6, label:"f", code:"A1f", category:"A. PERSEDIAAN", subcategory:"1. Pakaian Asas - 18 markah", desc:"Kasut", max:18},
+      {no:7, label:"g", code:"A1g", category:"A. PERSEDIAAN", subcategory:"1. Pakaian Asas - 18 markah", desc:"Lencana Sulam/Lencana Bahu", max:18},
+      {no:8, label:"a", code:"A2a", category:"A. PERSEDIAAN", subcategory:"2. Aksesori", desc:"Sarung Tangan Putih", max:18},
+      {no:9, label:"a", code:"A3a", category:"A. PERSEDIAAN", subcategory:"3. Kekemasan Diri dan Pakaian - 90 markah", desc:"Rambut/Tudung/Dsb", max:18},
+      {no:10, label:"b", code:"A3b", category:"A. PERSEDIAAN", subcategory:"3. Kekemasan Diri dan Pakaian - 90 markah", desc:"Kasut Hitam/Berkilat/Ikatan Kemas", max:18},
+      {no:11, label:"c", code:"A3c", category:"A. PERSEDIAAN", subcategory:"3. Kekemasan Diri dan Pakaian - 90 markah", desc:"Baju", max:18},
+      {no:12, label:"d", code:"A3d", category:"A. PERSEDIAAN", subcategory:"3. Kekemasan Diri dan Pakaian - 90 markah", desc:"Seluar", max:18},
+      {no:13, label:"e", code:"A3e", category:"A. PERSEDIAAN", subcategory:"3. Kekemasan Diri dan Pakaian - 90 markah", desc:"Pakaian Asas/Peralatan/Kedudukannya", max:18},
+      {no:14, label:"a", code:"A4a", category:"A. PERSEDIAAN", subcategory:"4. Keseragaman Warna/Bentuk/Jenis - 54 markah", desc:"Beret/Cap/Tudung", max:18},
+      {no:15, label:"b", code:"A4b", category:"A. PERSEDIAAN", subcategory:"4. Keseragaman Warna/Bentuk/Jenis - 54 markah", desc:"Baju dan Seluar", max:18},
+      {no:16, label:"c", code:"A4c", category:"A. PERSEDIAAN", subcategory:"4. Keseragaman Warna/Bentuk/Jenis - 54 markah", desc:"Kasut", max:18}
+    ];
+
+    const PAKAIAN_PLATUN_NOTA = [
+      "i. Item 1(d) - semua pasukan perempuan diberi markah penuh.",
+      "ii. Item 1(g) - Pergerakan Puteri Islam Malaysia diberi markah penuh.",
+      "iii. Item 1(f), 3(b) dan 4(c) - diberi markah 0 kepada pasukan yang melanggar peraturan pemakaian kasut."
+    ];
+
+    // ============================================
+    // 3. KAWAD KETUA PLATUN (with dual columns)
+    // cols: ["pergerakan","bahasa"] or ["pergerakan"] or ["bahasa"]
+    // ============================================
+    const KAWAD_KP_ITEMS = [
+      {no:1, label:"a", code:"B1a", category:"B. PERGERAKAN KAWAD", subcategory:"1. Kawad Asas - Masuk Padang - 40 markah", desc:"Pergerakan Masuk Padang", max:5, cols:["pergerakan","bahasa"]},
+      {no:2, label:"b", code:"B1b", category:"B. PERGERAKAN KAWAD", subcategory:"1. Kawad Asas - Masuk Padang - 40 markah", desc:"Berhenti", max:5, cols:["pergerakan","bahasa"]},
+      {no:3, label:"c", code:"B1c", category:"B. PERGERAKAN KAWAD", subcategory:"1. Kawad Asas - Masuk Padang - 40 markah", desc:"Menghadap Ke Hadapan", max:5, cols:["pergerakan","bahasa"]},
+      {no:4, label:"d", code:"B1d", category:"B. PERGERAKAN KAWAD", subcategory:"1. Kawad Asas - Masuk Padang - 40 markah", desc:"Buka Barisan", max:5, cols:["bahasa"]},
+      {no:5, label:"e", code:"B1e", category:"B. PERGERAKAN KAWAD", subcategory:"1. Kawad Asas - Masuk Padang - 40 markah", desc:"Ke Kanan Lurus dan Pandang Depan", max:5, cols:["bahasa"]},
+      {no:6, label:"a", code:"B2a", category:"B. PERGERAKAN KAWAD", subcategory:"2. Melapor - 30 markah", desc:"Berjalan", max:5, cols:["pergerakan"]},
+      {no:7, label:"b", code:"B2b", category:"B. PERGERAKAN KAWAD", subcategory:"2. Melapor - 30 markah", desc:"Berhenti", max:5, cols:["pergerakan"]},
+      {no:8, label:"c", code:"B2c", category:"B. PERGERAKAN KAWAD", subcategory:"2. Melapor - 30 markah", desc:"Hormat", max:5, cols:["pergerakan"]},
+      {no:9, label:"d", code:"B2d", category:"B. PERGERAKAN KAWAD", subcategory:"2. Melapor - 30 markah", desc:"Bahasa Melapor", max:5, cols:["bahasa"]},
+      {no:10, label:"e", code:"B2e", category:"B. PERGERAKAN KAWAD", subcategory:"2. Melapor - 30 markah", desc:"Berpusing", max:5, cols:["pergerakan"]},
+      {no:11, label:"f", code:"B2f", category:"B. PERGERAKAN KAWAD", subcategory:"2. Melapor - 30 markah", desc:"Berjalan dan Berhenti", max:5, cols:["pergerakan"]},
+      {no:12, label:"a", code:"B3a", category:"B. PERGERAKAN KAWAD", subcategory:"3. Kawad Statik - 30 markah", desc:"Bergerak Ke Kiri, Ke Kiri Pusing", max:5, cols:["bahasa"]},
+      {no:13, label:"b", code:"B3b", category:"B. PERGERAKAN KAWAD", subcategory:"3. Kawad Statik - 30 markah", desc:"Bergerak Ke Kanan, Ke Belakang Pusing", max:5, cols:["bahasa"]},
+      {no:14, label:"c", code:"B3c", category:"B. PERGERAKAN KAWAD", subcategory:"3. Kawad Statik - 30 markah", desc:"Menghadap Ke Belakang, Ke Kanan Pusing", max:5, cols:["bahasa"]},
+      {no:15, label:"d", code:"B3d", category:"B. PERGERAKAN KAWAD", subcategory:"3. Kawad Statik - 30 markah", desc:"Menghadap Ke Hadapan, Ke Belakang Pusing", max:5, cols:["bahasa"]},
+      {no:16, label:"e", code:"B3e", category:"B. PERGERAKAN KAWAD", subcategory:"3. Kawad Statik - 30 markah", desc:"Tutup Barisan", max:5, cols:["bahasa"]},
+      {no:17, label:"f", code:"B3f", category:"B. PERGERAKAN KAWAD", subcategory:"3. Kawad Statik - 30 markah", desc:"Ke Kanan Lurus dan Pandang Depan", max:5, cols:["bahasa"]},
+      {no:18, label:"a", code:"B4a", category:"B. PERGERAKAN KAWAD", subcategory:"4. Kawad Dinamik - 110 markah", desc:"Bergerak Ke Kiri", max:5, cols:["bahasa"]},
+      {no:19, label:"b", code:"B4b", category:"B. PERGERAKAN KAWAD", subcategory:"4. Kawad Dinamik - 110 markah", desc:"Cepat Jalan", max:5, cols:["bahasa"]},
+      {no:20, label:"c", code:"B4c", category:"B. PERGERAKAN KAWAD", subcategory:"4. Kawad Dinamik - 110 markah", desc:"Tukar Langkah Perlahan", max:5, cols:["bahasa"]},
+      {no:21, label:"d", code:"B4d", category:"B. PERGERAKAN KAWAD", subcategory:"4. Kawad Dinamik - 110 markah", desc:"Menghadap Ke Hadapan, Ke Kanan Pusing", max:5, cols:["bahasa"]},
+      {no:22, label:"e", code:"B4e", category:"B. PERGERAKAN KAWAD", subcategory:"4. Kawad Dinamik - 110 markah", desc:"Bergerak Ke Kiri, Ke Kiri Pusing", max:5, cols:["bahasa"]},
+      {no:23, label:"f", code:"B4f", category:"B. PERGERAKAN KAWAD", subcategory:"4. Kawad Dinamik - 110 markah", desc:"Tukar Langkah Cepat", max:5, cols:["bahasa"]},
+      {no:24, label:"g", code:"B4g", category:"B. PERGERAKAN KAWAD", subcategory:"4. Kawad Dinamik - 110 markah", desc:"Hormat Ke Kanan", max:5, cols:["bahasa"]},
+      {no:25, label:"h", code:"B4h", category:"B. PERGERAKAN KAWAD", subcategory:"4. Kawad Dinamik - 110 markah", desc:"Hormat Ke Hadapan Hormat", max:5, cols:["bahasa"]},
+      {no:26, label:"i", code:"B4i", category:"B. PERGERAKAN KAWAD", subcategory:"4. Kawad Dinamik - 110 markah", desc:"Tukar Langkah Semasa Berjalan", max:5, cols:["bahasa"]},
+      {no:27, label:"j", code:"B4j", category:"B. PERGERAKAN KAWAD", subcategory:"4. Kawad Dinamik - 110 markah", desc:"Hormat Selaku Terima Sijil", max:5, cols:["bahasa"]},
+      {no:28, label:"k", code:"B4k", category:"B. PERGERAKAN KAWAD", subcategory:"4. Kawad Dinamik - 110 markah", desc:"Tukar Langkah Perlahan, Perlahan Jalan", max:5, cols:["bahasa"]},
+      {no:29, label:"l", code:"B4l", category:"B. PERGERAKAN KAWAD", subcategory:"4. Kawad Dinamik - 110 markah", desc:"Bergerak Ke Kanan, Ke Belakang Pusing", max:5, cols:["bahasa"]},
+      {no:30, label:"m", code:"B4m", category:"B. PERGERAKAN KAWAD", subcategory:"4. Kawad Dinamik - 110 markah", desc:"Tukar Langkah Cepat, Cepat Jalan", max:5, cols:["bahasa"]},
+      {no:31, label:"n", code:"B4n", category:"B. PERGERAKAN KAWAD", subcategory:"4. Kawad Dinamik - 110 markah", desc:"Bergerak Ke Kiri, Ke Belakang Pusing", max:5, cols:["bahasa"]},
+      {no:32, label:"o", code:"B4o", category:"B. PERGERAKAN KAWAD", subcategory:"4. Kawad Dinamik - 110 markah", desc:"Menghadap Ke Belakang, Ke Kiri Pusing", max:5, cols:["bahasa"]},
+      {no:33, label:"p", code:"B4p", category:"B. PERGERAKAN KAWAD", subcategory:"4. Kawad Dinamik - 110 markah", desc:"Menghadap Ke Hadapan, Ke Belakang Pusing", max:5, cols:["bahasa"]},
+      {no:34, label:"q", code:"B4q", category:"B. PERGERAKAN KAWAD", subcategory:"4. Kawad Dinamik - 110 markah", desc:"Hentak Kaki", max:5, cols:["bahasa"]},
+      {no:35, label:"r", code:"B4r", category:"B. PERGERAKAN KAWAD", subcategory:"4. Kawad Dinamik - 110 markah", desc:"Henti", max:5, cols:["bahasa"]},
+      {no:36, label:"s", code:"B4s", category:"B. PERGERAKAN KAWAD", subcategory:"4. Kawad Dinamik - 110 markah", desc:"Mara Menghadap (10-14 Langkah)", max:5, cols:["pergerakan","bahasa"]},
+      {no:37, label:"t", code:"B4t", category:"B. PERGERAKAN KAWAD", subcategory:"4. Kawad Dinamik - 110 markah", desc:"Kiri Belok Keseluruhan", max:5, cols:["bahasa"]},
+      {no:38, label:"u", code:"B4u", category:"B. PERGERAKAN KAWAD", subcategory:"4. Kawad Dinamik - 110 markah", desc:"Kawad Individu", max:5, cols:["pergerakan"]},
+      {no:39, label:"a", code:"B5a", category:"B. PERGERAKAN KAWAD", subcategory:"5. Kawalan - 10 markah", desc:"Mengikut Urutan", max:5, cols:["bahasa"]},
+      {no:40, label:"c", code:"B5c", category:"B. PERGERAKAN KAWAD", subcategory:"5. Kawalan - 10 markah", desc:"Kawalan Skuad", max:5, cols:["bahasa"]},
+      {no:41, label:"a", code:"B6a", category:"B. PERGERAKAN KAWAD", subcategory:"6. Melapor Keluar - 50 markah", desc:"Berjalan", max:5, cols:["pergerakan"]},
+      {no:42, label:"b", code:"B6b", category:"B. PERGERAKAN KAWAD", subcategory:"6. Melapor Keluar - 50 markah", desc:"Berhenti", max:5, cols:["pergerakan"]},
+      {no:43, label:"c", code:"B6c", category:"B. PERGERAKAN KAWAD", subcategory:"6. Melapor Keluar - 50 markah", desc:"Hormat", max:5, cols:["pergerakan"]},
+      {no:44, label:"d", code:"B6d", category:"B. PERGERAKAN KAWAD", subcategory:"6. Melapor Keluar - 50 markah", desc:"Bahasa Melapor Keluar", max:5, cols:["bahasa"]},
+      {no:45, label:"e", code:"B6e", category:"B. PERGERAKAN KAWAD", subcategory:"6. Melapor Keluar - 50 markah", desc:"Berpusing", max:5, cols:["pergerakan"]},
+      {no:46, label:"f", code:"B6f", category:"B. PERGERAKAN KAWAD", subcategory:"6. Melapor Keluar - 50 markah", desc:"Berjalan dan Berhenti", max:5, cols:["pergerakan"]},
+      {no:47, label:"g", code:"B6g", category:"B. PERGERAKAN KAWAD", subcategory:"6. Melapor Keluar - 50 markah", desc:"Bergerak Ke Kiri/Ke Kanan", max:5, cols:["pergerakan","bahasa"]},
+      {no:48, label:"h", code:"B6h", category:"B. PERGERAKAN KAWAD", subcategory:"6. Melapor Keluar - 50 markah", desc:"Berjalan Keluar", max:5, cols:["pergerakan","bahasa"]}
+    ];
+
+    // ============================================
+    // 4. KAWAD PLATUN (with new categories)
+    // ============================================
+    const KAWAD_PLATUN_ITEMS = [
+      {no:1, label:"a", code:"B1a", category:"B. PERGERAKAN KAWAD", subcategory:"1. Kawad Asas - Masuk Padang - 30 markah", desc:"Pergerakan Masuk Padang", max:5},
+      {no:2, label:"b", code:"B1b", category:"B. PERGERAKAN KAWAD", subcategory:"1. Kawad Asas - Masuk Padang - 30 markah", desc:"Berhenti", max:5},
+      {no:3, label:"c", code:"B1c", category:"B. PERGERAKAN KAWAD", subcategory:"1. Kawad Asas - Masuk Padang - 30 markah", desc:"Menghadap Ke Hadapan", max:5},
+      {no:4, label:"d", code:"B1d", category:"B. PERGERAKAN KAWAD", subcategory:"1. Kawad Asas - Masuk Padang - 30 markah", desc:"Buka Barisan", max:5},
+      {no:5, label:"e", code:"B1e", category:"B. PERGERAKAN KAWAD", subcategory:"1. Kawad Asas - Masuk Padang - 30 markah", desc:"Ke Kanan Lurus dan Pandang Depan", max:5},
+      {no:6, label:"f", code:"B1f", category:"B. PERGERAKAN KAWAD", subcategory:"1. Kawad Asas - Masuk Padang - 30 markah", desc:"Cara dan Kedudukan Semasa Melapor", max:5},
+      {no:7, label:"a", code:"B2a", category:"B. PERGERAKAN KAWAD", subcategory:"2. Kawad Statik - 30 markah", desc:"Bergerak Ke Kiri, Ke Kiri Pusing", max:5},
+      {no:8, label:"b", code:"B2b", category:"B. PERGERAKAN KAWAD", subcategory:"2. Kawad Statik - 30 markah", desc:"Bergerak Ke Kanan, Ke Belakang Pusing", max:5},
+      {no:9, label:"c", code:"B2c", category:"B. PERGERAKAN KAWAD", subcategory:"2. Kawad Statik - 30 markah", desc:"Menghadap Ke Belakang, Ke Kanan Pusing", max:5},
+      {no:10, label:"d", code:"B2d", category:"B. PERGERAKAN KAWAD", subcategory:"2. Kawad Statik - 30 markah", desc:"Menghadap Ke Hadapan, Ke Belakang Pusing", max:5},
+      {no:11, label:"e", code:"B2e", category:"B. PERGERAKAN KAWAD", subcategory:"2. Kawad Statik - 30 markah", desc:"Tutup Barisan", max:5},
+      {no:12, label:"f", code:"B2f", category:"B. PERGERAKAN KAWAD", subcategory:"2. Kawad Statik - 30 markah", desc:"Ke Kanan Lurus dan Pandang Depan", max:5},
+      {no:13, label:"a", code:"B3a", category:"B. PERGERAKAN KAWAD", subcategory:"3. Kawad Dinamik - 110 markah", desc:"Bergerak Ke Kiri", max:5},
+      {no:14, label:"b", code:"B3b", category:"B. PERGERAKAN KAWAD", subcategory:"3. Kawad Dinamik - 110 markah", desc:"Cepat Jalan", max:5},
+      {no:15, label:"c", code:"B3c", category:"B. PERGERAKAN KAWAD", subcategory:"3. Kawad Dinamik - 110 markah", desc:"Tukar Langkah Perlahan", max:5},
+      {no:16, label:"d", code:"B3d", category:"B. PERGERAKAN KAWAD", subcategory:"3. Kawad Dinamik - 110 markah", desc:"Menghadap ke Hadapan, Ke Kanan Pusing", max:5},
+      {no:17, label:"e", code:"B3e", category:"B. PERGERAKAN KAWAD", subcategory:"3. Kawad Dinamik - 110 markah", desc:"Kedudukan Berjalan Barisan Melintang", max:5},
+      {no:18, label:"f", code:"B3f", category:"B. PERGERAKAN KAWAD", subcategory:"3. Kawad Dinamik - 110 markah", desc:"Bergerak Ke Kiri, Ke Kiri Pusing", max:5},
+      {no:19, label:"g", code:"B3g", category:"B. PERGERAKAN KAWAD", subcategory:"3. Kawad Dinamik - 110 markah", desc:"Pergerakan Perlahan Jalan", max:5},
+      {no:20, label:"h", code:"B3h", category:"B. PERGERAKAN KAWAD", subcategory:"3. Kawad Dinamik - 110 markah", desc:"Tukar Langkah Cepat", max:5},
+      {no:21, label:"i", code:"B3i", category:"B. PERGERAKAN KAWAD", subcategory:"3. Kawad Dinamik - 110 markah", desc:"Hormat Ke Kanan", max:5},
+      {no:22, label:"j", code:"B3j", category:"B. PERGERAKAN KAWAD", subcategory:"3. Kawad Dinamik - 110 markah", desc:"Hormat Ke Hadapan, Hormat", max:5},
+      {no:23, label:"k", code:"B3k", category:"B. PERGERAKAN KAWAD", subcategory:"3. Kawad Dinamik - 110 markah", desc:"Tukar Langkah Semasa Berjalan", max:5},
+      {no:24, label:"l", code:"B3l", category:"B. PERGERAKAN KAWAD", subcategory:"3. Kawad Dinamik - 110 markah", desc:"Hormat Selaku Terima Sijil", max:5},
+      {no:25, label:"m", code:"B3m", category:"B. PERGERAKAN KAWAD", subcategory:"3. Kawad Dinamik - 110 markah", desc:"Tukar Langkah Perlahan, Perlahan Jalan", max:5},
+      {no:26, label:"n", code:"B3n", category:"B. PERGERAKAN KAWAD", subcategory:"3. Kawad Dinamik - 110 markah", desc:"Bergerak Ke Kanan, Ke Belakang Pusing", max:5},
+      {no:27, label:"o", code:"B3o", category:"B. PERGERAKAN KAWAD", subcategory:"3. Kawad Dinamik - 110 markah", desc:"Pergerakan Perlahan Jalan", max:5},
+      {no:28, label:"p", code:"B3p", category:"B. PERGERAKAN KAWAD", subcategory:"3. Kawad Dinamik - 110 markah", desc:"Tukar Langkah Cepat, Cepat Jalan", max:5},
+      {no:29, label:"q", code:"B3q", category:"B. PERGERAKAN KAWAD", subcategory:"3. Kawad Dinamik - 110 markah", desc:"Bergerak Ke Kiri, Ke Belakang Pusing", max:5},
+      {no:30, label:"r", code:"B3r", category:"B. PERGERAKAN KAWAD", subcategory:"3. Kawad Dinamik - 110 markah", desc:"Menghadap Ke Belakang, Ke Kiri Pusing", max:5},
+      {no:31, label:"s", code:"B3s", category:"B. PERGERAKAN KAWAD", subcategory:"3. Kawad Dinamik - 110 markah", desc:"Menghadap Ke Hadapan, Ke Belakang Pusing", max:5},
+      {no:32, label:"t", code:"B3t", category:"B. PERGERAKAN KAWAD", subcategory:"3. Kawad Dinamik - 110 markah", desc:"Hentak Kaki", max:5},
+      {no:33, label:"u", code:"B3u", category:"B. PERGERAKAN KAWAD", subcategory:"3. Kawad Dinamik - 110 markah", desc:"Henti", max:5},
+      {no:34, label:"v", code:"B3v", category:"B. PERGERAKAN KAWAD", subcategory:"3. Kawad Dinamik - 110 markah", desc:"Mara Menghadap (10-14 Langkah)", max:5},
+      {no:35, label:"a", code:"B4a", category:"B. PERGERAKAN KAWAD", subcategory:"4. Keseluruhan - 10 markah", desc:"Kiri Belok", max:5},
+      {no:36, label:"b", code:"B4b", category:"B. PERGERAKAN KAWAD", subcategory:"4. Keseluruhan - 10 markah", desc:"Berjalan Dalam Masa Cepat", max:5},
+      {no:37, label:"a", code:"B5a", category:"B. PERGERAKAN KAWAD", subcategory:"5. Pergerakan Keluar Padang - 10 markah", desc:"Bergerak Ke Kanan/Kiri", max:5},
+      {no:38, label:"b", code:"B5b", category:"B. PERGERAKAN KAWAD", subcategory:"5. Pergerakan Keluar Padang - 10 markah", desc:"Berjalan Keluar", max:5}
+    ];
+
+    // ============================================
+    // 5. FORMASI (Multi-formasi support)
+    // formasi_cols: which formasi columns this item uses
+    // ============================================
+    const FORMASI_ITEMS = [
+      {no:1, label:"a", code:"C1a", category:"C. PEMARKAHAN FORMASI", maincategory:"1. Unsur Gerak - 55 markah", subcategory:"1.1. Keindahan Gerak - 45 markah", desc:"Gerakan Dalam Unsur Kawad", max:5, formasi_cols:[1,2]},
+      {no:2, label:"b", code:"C1b", category:"C. PEMARKAHAN FORMASI", maincategory:"1. Unsur Gerak - 55 markah", subcategory:"1.1. Keindahan Gerak - 45 markah", desc:"Gerakan dalam Konsisten (Berturutan)", max:5, formasi_cols:[1,2]},
+      {no:3, label:"c", code:"C1c", category:"C. PEMARKAHAN FORMASI", maincategory:"1. Unsur Gerak - 55 markah", subcategory:"1.1. Keindahan Gerak - 45 markah", desc:"Kepelbagaian Gerak Kawad", max:5, formasi_cols:[1,2]},
+      {no:4, label:"d", code:"C1d", category:"C. PEMARKAHAN FORMASI", maincategory:"1. Unsur Gerak - 55 markah", subcategory:"1.1. Keindahan Gerak - 45 markah", desc:"Keseimbangan Penggunaan Ruang", max:5, formasi_cols:[1,2]},
+      {no:5, label:"e", code:"C1e", category:"C. PEMARKAHAN FORMASI", maincategory:"1. Unsur Gerak - 55 markah", subcategory:"1.1. Keindahan Gerak - 45 markah", desc:"Kesatuan Gerak", max:5, formasi_cols:[2]},
+      {no:6, label:"a", code:"C2a", category:"C. PEMARKAHAN FORMASI", maincategory:"1. Unsur Gerak - 55 markah", subcategory:"1.2. Kekayaan Gerak Formasi - 10 markah", desc:"Pecahan dan Cantuman Formasi", max:5, formasi_cols:[1,2]},
+      {no:7, label:"a", code:"C3a", category:"C. PEMARKAHAN FORMASI", maincategory:"2. Unsur Penghayatan - 30 markah", subcategory:"Kreativiti", desc:"Keunikan", max:5, formasi_cols:[1,2]},
+      {no:8, label:"b", code:"C3b", category:"C. PEMARKAHAN FORMASI", maincategory:"2. Unsur Penghayatan - 30 markah", subcategory:"Kreativiti", desc:"Keserasian", max:5, formasi_cols:[1,2]},
+      {no:9, label:"c", code:"C3c", category:"C. PEMARKAHAN FORMASI", maincategory:"2. Unsur Penghayatan - 30 markah", subcategory:"Kreativiti", desc:"Kemantapan Hentakan", max:5, formasi_cols:[1,2]},
+      {no:10, label:"a", code:"C4a", category:"C. PEMARKAHAN FORMASI", maincategory:"3. Gerak Penutup - 5 markah", subcategory:"Penutup", desc:"Diakhiri Dengan Gerakan Kawad", max:5, formasi_cols:[1]}
+    ];
+
+    // ============================================
+    // PENALTIES
+    // ============================================
+    const PENALTIES = {
+      'kawad_kp': [
+        {label:"a", code:"P1", desc:"Ketua Platun bergerak bersama pasukan", count:1, val:5},
+        {label:"b", code:"P2", desc:"Memberi hukuman kawad di luar kawasan", count:1, val:5},
+        {label:"c", code:"P3", desc:"Gagal meneruskan kawad", count:1, val:5},
+        {label:"d", code:"P4", desc:"Melapor di luar kawasan kawad", count:2, val:5},
+        {label:"e", code:"P5", desc:"Pakaian asas terlucut/tertanggal/terjatuh", count:5, val:3},
+        {label:"f", code:"P6", desc:"Aksesori terlucut/terjatuh", count:5, val:3},
+        {label:"g", code:"P7", desc:"Tidak mengikut urutan", count:5, val:5},
+        {label:"h", code:"P8", desc:"Bukan bahasa hukuman yang ditetapkan", count:5, val:5}
+      ],
+      'kawad_platun': [
+        {label:"a", code:"P1", desc:"Pergerakan cepat jalan kurang 120-135 seminit/minit", count:1, val:5},
+        {label:"b", code:"P2", desc:"Anggota gagal meneruskan kawad", count:3, val:5},
+        {label:"c", code:"P3", desc:"Pakaian asas terlucut/tertanggal/terjatuh", count:5, val:3},
+        {label:"d", code:"P4", desc:"Aksesori terlucut/terjatuh", count:5, val:1},
+        {label:"e", code:"P5", desc:"Keluar kawasan kawad", count:5, val:5},
+        {label:"f", code:"P6", desc:"Terlanggar kon", count:5, val:3},
+        {label:"g", code:"P7", desc:"Tidak mengikut urutan", count:5, val:5},
+        {label:"h", code:"P8", desc:"Pergerakan yang bukan ditetapkan", count:5, val:5}
+      ],
+      'formasi': [
+        {label:"a", code:"P1", desc:"Gerakan bukan kawad", val:2, count:3},
+        {label:"b", code:"P2", desc:"Keluar kawasan kawad", val:2, count:3},
+        {label:"c", code:"P3", desc:"Mengeluarkan arahan/isyarat", val:5, count:3},
+        {label:"d", code:"P4", desc:"Mempunyai unsur suara", val:2, count:3},
+        {label:"e", code:"P5", desc:"Perlakuan/aksi kurang sopan", val:2, count:3},
+        {label:"f", code:"P6", desc:"Pakaian asas terlucut/tidak di tempatnya", val:1, count:3},
+        {label:"g", code:"P7", desc:"Aksesori terlucut/tidak di tempatnya", val:1, count:3},
+        {label:"h", code:"P8", desc:"Menggunakan peralatan/bahan", val:2, count:3}
+      ]
+    };
+
+    // ============================================
+    // RENDERING FUNCTIONS (NEW)
+    // ============================================
+    function getItemsByFormType(formType) {
+      const map = {
+        pakaian_kp: PAKAIAN_KP_ITEMS,
+        pakaian_platun: PAKAIAN_PLATUN_ITEMS,
+        kawad_kp: KAWAD_KP_ITEMS,
+        kawad_platun: KAWAD_PLATUN_ITEMS,
+        formasi: FORMASI_ITEMS
+      };
+      return map[formType] || [];
+    }
+
+    function groupByCategoryAndSubcategory(items) {
+      const grouped = {};
+      items.forEach(item => {
+        if (!grouped[item.category]) grouped[item.category] = {};
+        if (!grouped[item.category][item.subcategory]) grouped[item.category][item.subcategory] = [];
+        grouped[item.category][item.subcategory].push(item);
+      });
+      return grouped;
+    }
+
+    function renderRadioOptions(item, columnType) {
+      // columnType can be: undefined (normal), "pergerakan", "bahasa", or formasi number (1,2,3,4)
+      const suffix = columnType ? `_${columnType}` : '';
+      const fieldName = `${item.code}${suffix}`;
+      
+      let html = '';
+      for (let i = 0; i <= item.max; i++) {
+        const id = `${fieldName}_${i}`;
+        html += `
+          <label for="${id}" style="margin-right:8px;">
+            <input type="radio" class="score-radio" name="${fieldName}" id="${id}" value="${i}" data-item-code="${item.code}" data-column="${columnType || 'default'}">
+            ${i}
+          </label>
+        `;
+      }
+      return html;
+    }
+
+    function renderScoringSection(formType) {
+      const items = getItemsByFormType(formType);
+      const grouped = groupByCategoryAndSubcategory(items);
+      let html = '';
+      
+      // Special header for FORMASI
+      if (formType === 'formasi') {
+        html += '<div style="background:#667eea;color:white;padding:15px;margin-bottom:20px;border-radius:8px;text-align:center;">';
+        html += '<h2 style="margin:0;font-size:24px;">📋 PEMARKAHAN FORMASI</h2>';
+        html += '</div>';
+      }
+      
+      for (const [category, subcategories] of Object.entries(grouped)) {
+        html += `<div class="category-section" style="margin-bottom:25px;">`;
+        html += `<h3 style="background:#667eea;color:white;padding:12px;border-radius:6px;margin-bottom:15px;">${category}</h3>`;
+        
+        // For FORMASI - add maincategory layer
+        if (formType === 'formasi') {
+          // Group by maincategory first
+          const mainCategoryMap = {};
+          Object.entries(subcategories).forEach(([subcat, items]) => {
+            items.forEach(item => {
+              const mainCat = item.maincategory || subcat;
+              if (!mainCategoryMap[mainCat]) mainCategoryMap[mainCat] = {};
+              if (!mainCategoryMap[mainCat][subcat]) mainCategoryMap[mainCat][subcat] = [];
+              mainCategoryMap[mainCat][subcat].push(item);
+            });
+          });
+          
+          // Render with maincategory
+          for (const [mainCategory, mainSubcats] of Object.entries(mainCategoryMap)) {
+            html += `<div style="margin-left:10px;margin-bottom:20px;">`;
+            html += `<h4 style="background:#ddd6fe;padding:10px;border-radius:4px;margin-bottom:12px;font-size:16px;">${mainCategory}</h4>`;
+            
+            for (const [subcategory, subItems] of Object.entries(mainSubcats)) {
+              html += `<div class="subcategory-section" style="margin-left:20px;margin-bottom:15px;">`;
+              html += `<h5 style="background:#e0e7ff;padding:8px;border-radius:4px;margin-bottom:10px;font-size:14px;">${subcategory}</h5>`;
+              
+              subItems.forEach(item => {
+                html += renderFormItem(item, formType);
+              });
+              
+              html += `</div>`;
+            }
+            html += `</div>`;
+          }
+        } else {
+          // Normal rendering for non-FORMASI
+          for (const [subcategory, subItems] of Object.entries(subcategories)) {
+            html += `<div class="subcategory-section" style="margin-left:15px;margin-bottom:20px;">`;
+            html += `<h4 style="background:#e0e7ff;padding:10px;border-radius:4px;margin-bottom:12px;">${subcategory}</h4>`;
+            
+            subItems.forEach(item => {
+              html += renderFormItem(item, formType);
+            });
+            
+            html += `</div>`;
+          }
+        }
+        
+        html += `</div>`;
+      }
+      
+      return html;
+    }
+
+    // Helper function to render individual item
+    function renderFormItem(item, formType) {
+  let html = `<div class="score-item" style="padding:12px;border-bottom:1px solid #ddd;display:flex;align-items:center;gap:15px;">`;
+
+  // 1. Label
+  if (item.label) {
+    html += `<span style="font-weight:bold;min-width:25px;color:#667eea;">${item.label}.</span>`;
+  }
+
+  // 2. Description
+  html += `<span style="flex:1;">${item.desc}</span>`;
+
+  // 3. Scoring Container
+  html += `<div style="display:flex;gap:10px;align-items:center;">`;
+
+  if (formType === 'kawad_kp') {
+    const hasPergerakan = item.cols && item.cols.includes('pergerakan');
+    const hasBahasa = item.cols && item.cols.includes('bahasa');
+
+    // --- SLOT 1: PERGERAKAN (Dilebarkan ke 260px & No-Wrap) ---
+    html += `<div style="text-align:center;padding:8px;background:${hasPergerakan ? '#f0f4ff' : 'transparent'};border-radius:4px;width:260px;min-width:260px;">`;
+    if (hasPergerakan) {
+      html += `<div style="font-size:11px;font-weight:bold;margin-bottom:5px;color:#667eea;text-transform:uppercase;">Pergerakan</div>`;
+      // Kita bungkus renderRadioOptions dengan div nowrap
+      html += `<div style="white-space:nowrap;">${renderRadioOptions(item, 'pergerakan')}</div>`;
+    }
+    html += `</div>`;
+
+    // --- VISUAL SEPARATOR ---
+    html += `<div style="width:2px;height:45px;background:${(hasPergerakan && hasBahasa) ? 'linear-gradient(to bottom, #667eea, #764ba2)' : 'transparent'};border-radius:2px;"></div>`;
+
+    // --- SLOT 2: BAHASA HUKUMAN (Dilebarkan ke 260px & No-Wrap) ---
+    html += `<div style="text-align:center;padding:8px;background:${hasBahasa ? '#faf5ff' : 'transparent'};border-radius:4px;width:260px;min-width:260px;">`;
+    if (hasBahasa) {
+      html += `<div style="font-size:11px;font-weight:bold;margin-bottom:5px;color:#764ba2;text-transform:uppercase;">Bahasa Hukuman</div>`;
+      html += `<div style="white-space:nowrap;">${renderRadioOptions(item, 'bahasa')}</div>`;
+    }
+    html += `</div>`;
+  } else if (formType === 'formasi' && item.formasi_cols) {
+    // FORMASI — 2 slots dengan label jelas dan radio button kemas
+    for (let slotNum = 1; slotNum <= 2; slotNum++) {
+      const hasData = item.formasi_cols.includes(slotNum);
+      
+      // SLOT: Width ditingkatkan, label lebih jelas, border untuk emphasis
+      html += `<div style="text-align:center;padding:10px 8px;background:${hasData ? '#f0f4ff' : 'transparent'};border-radius:4px;width:200px;min-width:220px;border:${hasData ? '1px solid #c7d2fe' : '1px solid transparent'};">`;
+      if (hasData) {
+        // Label yang lebih tebal dan jelas
+        html += `<div style="font-size:11px;font-weight:700;margin-bottom:6px;color:#667eea;letter-spacing:0.5px;">FORMASI ${slotNum}</div>`;
+        // Radio buttons dalam flexbox untuk alignment sempurna
+        html += `<div style="white-space:nowrap;display:inline-flex;gap:1px;justify-content:center;">${renderRadioOptions(item, `formasi${slotNum}`)}</div>`;
+      }
+      html += `</div>`;
+      
+      // VISUAL SEPARATOR between slot 1 & 2
+      if (slotNum === 1) {
+        const leftHasData = hasData;
+        const rightHasData = item.formasi_cols.includes(2);
+        const showLine = leftHasData || rightHasData;
+        html += `<div style="width:2px;height:50px;background:${showLine ? 'linear-gradient(to bottom, #667eea, #764ba2)' : 'transparent'};border-radius:2px;"></div>`;
+      }
+    }
+  } else if (formType === 'kawad_platun') {
+    // KAWAD_PLATUN — colored container (sky blue)
+    html += `<div style="background:#e8f4f8;padding:10px 14px;border-radius:6px;border:1px solid #b3e0f2;">`;
+    html += renderRadioOptions(item);
+    html += `</div>`;
+  } else if (formType === 'pakaian_kp') {
+    // ISU 2: PAKAIAN_KP — colored container (green theme)
+    html += `<div style="background:#f0fdf4;padding:10px 14px;border-radius:6px;border:1px solid #bbf7d0;">`;
+    html += renderRadioOptions(item);
+    html += `</div>`;
+  } else if (formType === 'pakaian_platun') {
+    // ISU 3: PAKAIAN_PLATUN — colored container (yellow) + fixed width untuk alignment
+    html += `<div style="background:#fef3c7;padding:10px 14px;border-radius:6px;border:1px solid #fde68a;min-width:680px;display:inline-block;">`;
+    html += renderRadioOptions(item);
+    html += `</div>`;
+  } else {
+    html += renderRadioOptions(item);
+  }
+
+  html += `</div>`; 
+  html += `</div>`; 
+
+  return html;
+}
+
+    function renderPenaltiesSection(formType) {
+      let html = '<div class="penalties-section" style="margin-top:30px;padding:20px;background:#fff3cd;border-radius:8px;">';
+      
+      // Check if PAKAIAN - show NOTA instead of penalties
+      if (formType === 'pakaian_kp' || formType === 'pakaian_platun') {
+        const notaArray = formType === 'pakaian_kp' ? PAKAIAN_KP_NOTA : PAKAIAN_PLATUN_NOTA;
+        html += '<h3 style="color:#856404;margin-bottom:15px;">📝 NOTA</h3>';
+        html += '<div style="background:white;padding:15px;border-radius:6px;border-left:4px solid #856404;">';
+        notaArray.forEach(nota => {
+          html += `<p style="margin:8px 0;line-height:1.6;">${nota}</p>`;
+        });
+        html += '</div>';
+        html += '</div>';
+        return html;
+      }
+      
+      // For other forms - show penalties
+      html += '<h3 style="color:#856404;margin-bottom:15px;">⚠️ PENALTI</h3>';
+      
+      const penalties = PENALTIES[formType] || [];
+      
+      // FORMASI & KAWAD - unified rendering with counts
+      penalties.forEach(penalty => {
+        html += `<div style="padding:12px;background:white;margin-bottom:10px;border-radius:6px;display:flex;align-items:center;gap:15px;">`;
+        
+        // Use label if available (a, b, c...), otherwise use code
+        const displayLabel = penalty.label || penalty.code;
+        html += `<span style="font-weight:bold;min-width:30px;color:#667eea;">${displayLabel}.</span>`;
+        html += `<span style="flex:1;">${penalty.desc}</span>`;
+        
+        html += `<div style="display:flex;gap:10px;">`;
+        
+        // Render checkboxes based on count
+        for (let i = 1; i <= penalty.count; i++) {
+          html += `<label style="display:flex;align-items:center;gap:5px;">`;
+          html += `<input type="checkbox" name="penalty_${penalty.code}_${i}" value="${penalty.val}">`;
+          html += `<span>${penalty.val}</span>`;
+          html += `</label>`;
+        }
+        
+        html += `</div></div>`;
+      });
+      
+      html += '</div>';
+      return html;
+    }
+
+    function renderPenaltySection(formType) {
+      const penalties = PENALTIES[formType] || [];
+      let html = '';
+
+      penalties.forEach(p => {
+        html += `
+          <label class="penalty-item">
+            <input type="checkbox" class="penalty-check" data-code="${p.code}" data-value="${p.val}">
+            ${p.code} - ${p.desc} (-${p.val})
+          </label>
+        `;
+      });
+
+      return html;
+    }
+
+    function generateFormHTML(formType, team, judge, session) {
+      console.log('=== GENERATING FORM HTML ===');
+      console.log('Form type:', formType);
+      
+      // Store formType in container for calculateTotals
+      setTimeout(() => {
+        const container = document.getElementById('formContainer');
+        if (container) container.dataset.formType = formType;
+      }, 100);
+      
+      let html = `
+        <div class="form-content" style="background:white;padding:25px;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,0.1);">
+          <div class="form-header" style="background:linear-gradient(135deg, #667eea 0%, #764ba2 100%);color:white;padding:20px;margin:-25px -25px 25px -25px;border-radius:10px 10px 0 0;box-shadow:0 4px 6px rgba(0,0,0,0.1);">
+            <div style="display:flex;justify-content:space-between;align-items:start;gap:20px;">
+              <div style="flex:1;">
+                <h3 style="margin:0;color:white;font-size:20px;font-weight:bold;text-shadow:1px 1px 2px rgba(0,0,0,0.2);">📋 ${team.team_code}</h3>
+                <p style="margin:5px 0;color:#fff;font-size:13px;opacity:0.9;">${team.kategori} ${team.gender} - ${team.school_level}</p>
+              </div>
+              <div style="text-align:right;background:rgba(255,255,255,0.15);padding:15px;border-radius:8px;backdrop-filter:blur(10px);">
+                <p style="margin:5px 0;color:#fff;font-size:14px;"><strong>Hakim:</strong> ${judge.judge_number}</p>
+                <p style="margin:5px 0;color:#fff;font-size:14px;"><strong>Statistik:</strong> ${session.full_name}</p>
+                <p style="margin:8px 0 0 0;color:#fff;font-size:11px;opacity:0.8;">${new Date().toLocaleString('ms-MY')}</p>
+              </div>
+            </div>
+          </div>
+      `;
+      
+      // Render scoring section
+      html += renderScoringSection(formType);
+      
+      // Render penalties/nota section
+      html += renderPenaltiesSection(formType);
+      
+      // Total section
+      html += `
+          <div class="totals-section" style="margin-top:25px;padding:20px;background:#f8f9fa;border-radius:8px;border:2px solid #667eea;">
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;text-align:center;">
+              <div>
+                <div style="color:#666;font-size:14px;margin-bottom:5px;">Jumlah Markah</div>
+                <div id="totalScore" style="font-size:32px;font-weight:bold;color:#667eea;">0</div>
+              </div>
+              <div>
+                <div style="color:#666;font-size:14px;margin-bottom:5px;">Jumlah Penalti</div>
+                <div id="totalPenalty" style="font-size:32px;font-weight:bold;color:#dc3545;">0</div>
+              </div>
+              <div>
+                <div style="color:#666;font-size:14px;margin-bottom:5px;">JUMLAH AKHIR</div>
+                <div id="grandTotal" style="font-size:36px;font-weight:bold;color:#28a745;">0</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-actions" style="margin-top:25px;display:flex;gap:15px;justify-content:center;">
+            <button onclick="cancelForm()" style="padding:12px 30px;background:#6c757d;color:white;border:none;border-radius:6px;cursor:pointer;font-size:16px;">
+              🔙 Batal/Kembali
+            </button>
+            <button onclick="submitForm()" style="padding:12px 30px;background:#667eea;color:white;border:none;border-radius:6px;cursor:pointer;font-size:16px;">
+              💾 Hantar Markah
+            </button>
+          </div>
+        </div>
+      `;
+      
+      // Attach event listeners after HTML is inserted
+      setTimeout(() => {
+        const radioButtons = document.querySelectorAll('.score-radio');
+        radioButtons.forEach(radio => {
+          radio.addEventListener('change', calculateTotals);
+        });
+        
+        const penaltyInputs = document.querySelectorAll('input[name^="penalty_"]');
+        penaltyInputs.forEach(input => {
+          input.addEventListener('change', calculateTotals);
+        });
+        
+        // Initial calculation
+        calculateTotals();
+      }, 100);
+      
+      return html;
+    }
+
+    // ============================================
+    // CALCULATE TOTALS (UPDATED FOR RADIO)
+    // ============================================
+    function calculateTotals() {
+      let totalScore = 0;
+      let totalPenalty = 0;
+      
+      // Get all score radio buttons that are checked
+      const scoreRadios = document.querySelectorAll('.score-radio:checked');
+      scoreRadios.forEach(radio => {
+        const value = parseInt(radio.value) || 0;
+        totalScore += value;
+      });
+      
+      // Get formType to determine penalty collection method
+      const formContainer = document.getElementById('formContainer');
+      const formType = formContainer ? formContainer.dataset.formType : null;
+      
+      // ALL FORMS now use CHECKBOXES for penalties (changed from radios)
+      const penaltyCheckboxes = document.querySelectorAll('input[type="checkbox"][name^="penalty_"]:checked');
+      penaltyCheckboxes.forEach(checkbox => {
+        const value = parseInt(checkbox.value) || 0;
+        totalPenalty += value;
+      });
+      
+      console.log('Calculate Totals:', {
+        formType: formType,
+        totalScore: totalScore,
+        totalPenalty: totalPenalty,
+        grandTotal: totalScore - totalPenalty
+      });
+      
+      // Update displays
+      const totalScoreDisplay = document.getElementById('totalScore');
+      const totalPenaltyDisplay = document.getElementById('totalPenalty');
+      const grandTotalDisplay = document.getElementById('grandTotal');
+      
+      if (totalScoreDisplay) totalScoreDisplay.textContent = totalScore;
+      if (totalPenaltyDisplay) totalPenaltyDisplay.textContent = totalPenalty;
+      if (grandTotalDisplay) grandTotalDisplay.textContent = totalScore - totalPenalty;
+    }
+
+
+    // ============================================
+    // DAFTAR PASUKAN - VIEW MANAGEMENT
+    // ============================================
+    
+    function showDaftarPasukanView() {
+      console.log('Switching to Daftar Pasukan view');
+      document.getElementById('adminView').classList.add('hidden');
+      document.getElementById('daftarPasukanView').classList.remove('hidden');
+      
+      // Set user display
+      const userDisplay = document.getElementById('daftarUserDisplay');
+      if (currentUser) {
+        userDisplay.textContent = currentUser.full_name + ' (' + currentUser.role + ')';
+      }
+      
+      // Load teams table
+      loadPasukanTable();
+    }
+    
+    function loadPasukanTable() {
+      console.log('Loading pasukan table...');
+      const tbody = document.getElementById('pasukanTableBody');
+      tbody.innerHTML = '<tr><td colspan="8" style="padding:20px; text-align:center; color:#999;">⏳ Loading...</td></tr>';
+      
+      google.script.run
+        .withSuccessHandler(function(data) {
+          console.log('Teams loaded:', data.length);
+          teams = data; // Update global teams variable
+          renderPasukanTable(data);
+        })
+        .withFailureHandler(function(error) {
+          console.error('Error loading teams:', error);
+          tbody.innerHTML = '<tr><td colspan="8" style="padding:20px; text-align:center; color:#dc2626;">❌ Error loading teams: ' + error + '</td></tr>';
+        })
+        .getTeams();
+    }
+    
+    function renderPasukanTable(data) {
+      const tbody = document.getElementById('pasukanTableBody');
+      
+      if (data.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="8" style="padding:20px; text-align:center; color:#999;">Tiada pasukan dijumpai</td></tr>';
+        return;
+      }
+      
+      let html = '';
+      let activeCount = 0;
+      
+      data.forEach((team, index) => {
+        // Skip inactive teams
+        if (team.is_active === false || team.is_active === 'FALSE' || team.is_active === 'false' || team.is_active === 0) return;
+        
+        activeCount++;
+        // Alternate row colors (zebra striping)
+        const rowBg = activeCount % 2 === 0 ? '#f9fafb' : '#ffffff';
+        html += '<tr style="background:' + rowBg + '; transition:background 0.2s;" onmouseover="this.style.background=\'#e0e7ff\'" onmouseout="this.style.background=\'' + rowBg + '\'">';
+        html += '<td style="padding:8px 12px; font-size:13px;">' + activeCount + '</td>';
+        html += '<td style="padding:8px 12px; font-size:13px;"><strong>' + team.team_code + '</strong></td>';
+        html += '<td style="padding:8px 12px; font-size:13px;">' + team.school_name + '</td>';
+        html += '<td style="padding:8px 12px; font-size:13px;">' + team.kategori + '</td>';
+        html += '<td style="padding:8px 12px; font-size:13px;">' + team.gender + '</td>';
+        html += '<td style="padding:8px 12px; font-size:13px;">' + (team.school_level || '-') + '</td>';
+        html += '<td style="padding:8px 12px; font-size:13px;">' + (team.ketua_platun_name || '-') + '</td>';
+        html += '<td style="text-align:center; padding:8px 12px; white-space:nowrap;">';
+        // Butang Edit (biru, compact dengan icon)
+        html += '<button onclick="showTeamModal(\'edit\', \'' + team.team_id + '\')" style="padding:4px 10px; font-size:11px; margin-right:4px; background:#3b82f6; color:#fff; border:none; border-radius:4px; cursor:pointer; display:inline-flex; align-items:center; gap:3px; transition:background 0.2s;" onmouseover="this.style.background=\'#2563eb\'" onmouseout="this.style.background=\'#3b82f6\'">✏️<span style="font-weight:500;">Edit</span></button>';
+        // Butang Padam (merah, compact dengan icon)
+        html += '<button onclick="deleteTeamConfirm(\'' + team.team_id + '\', \'' + team.team_code + '\')" style="padding:4px 10px; font-size:11px; background:#dc2626; color:#fff; border:none; border-radius:4px; cursor:pointer; display:inline-flex; align-items:center; gap:3px; transition:background 0.2s;" onmouseover="this.style.background=\'#b91c1c\'" onmouseout="this.style.background=\'#dc2626\'">🗑️<span style="font-weight:500;">Padam</span></button>';
+        html += '</td>';
+        html += '</tr>';
+      });
+      
+      // If no active teams found, show message
+      if (activeCount === 0) {
+        tbody.innerHTML = '<tr><td colspan="8" style="padding:20px; text-align:center; color:#999;">Tiada pasukan aktif dijumpai</td></tr>';
+      } else {
+        tbody.innerHTML = html;
+      }
+    }
+    
+    function filterPasukanTable() {
+      const searchTerm = document.getElementById('searchPasukan').value.toLowerCase();
+      const kategoriFilter = document.getElementById('filterKategori').value;
+      const genderFilter = document.getElementById('filterGender').value;
+      
+      const filtered = teams.filter(team => {
+        if (team.is_active === false) return false;
+        
+        const matchSearch = !searchTerm || 
+          team.team_code.toLowerCase().includes(searchTerm) ||
+          team.school_name.toLowerCase().includes(searchTerm);
+        
+        const matchKategori = !kategoriFilter || team.kategori === kategoriFilter;
+        const matchGender = !genderFilter || team.gender === genderFilter;
+        
+        return matchSearch && matchKategori && matchGender;
+      });
+      
+      renderPasukanTable(filtered);
+    }
+    
+    
+    // ============================================
+    // TEAM MODAL - ADD/EDIT
+    // ============================================
+    
+    function showTeamModal(mode, teamId) {
+      const modal = document.getElementById('teamModal');
+      const title = document.getElementById('teamModalTitle');
+      const form = document.getElementById('teamForm');
+      const status = document.getElementById('teamModalStatus');
+      
+      // Reset form
+      form.reset();
+      status.style.display = 'none';
+      document.getElementById('teamIdEdit').value = '';
+      
+      if (mode === 'add') {
+        title.textContent = '➕ TAMBAH PASUKAN';
+      } else {
+        title.textContent = '✏️ EDIT PASUKAN';
+        
+        // Find team data
+        const team = teams.find(t => t.team_id === teamId);
+        if (!team) {
+          alert('Pasukan tidak dijumpai!');
+          return;
+        }
+        
+        // Populate form
+        document.getElementById('teamIdEdit').value = team.team_id;
+        document.getElementById('teamCode').value = team.team_code;
+        document.getElementById('teamSchool').value = team.school_name;
+        document.getElementById('teamKategori').value = team.kategori;
+        document.getElementById('teamGender').value = team.gender;
+        document.getElementById('teamLevel').value = team.school_level || '';
+        document.getElementById('teamKetuaPlatun').value = team.ketua_platun_name || '';
+      }
+      
+      modal.style.display = 'block';
+    }
+    
+    function closeTeamModal() {
+      document.getElementById('teamModal').style.display = 'none';
+    }
+    
+    function submitTeam(event) {
+      event.preventDefault();
+      
+      const teamId = document.getElementById('teamIdEdit').value;
+      const mode = teamId ? 'edit' : 'add';
+      
+      const teamData = {
+        team_code: document.getElementById('teamCode').value.trim(),
+        school_name: document.getElementById('teamSchool').value.trim(),
+        kategori: document.getElementById('teamKategori').value,
+        gender: document.getElementById('teamGender').value,
+        school_level: document.getElementById('teamLevel').value.trim(),
+        ketua_platun_name: document.getElementById('teamKetuaPlatun').value.trim()
+      };
+      
+      const status = document.getElementById('teamModalStatus');
+      status.style.display = 'block';
+      status.style.background = '#fef3c7';
+      status.style.color = '#92400e';
+      status.textContent = '⏳ Sedang menyimpan...';
+      
+      if (mode === 'add') {
+        google.script.run
+          .withSuccessHandler(function(result) {
+            handleTeamSubmitResult(result);
+          })
+          .withFailureHandler(function(error) {
+            status.style.background = '#fee2e2';
+            status.style.color = '#991b1b';
+            status.textContent = '❌ Error: ' + error;
+          })
+          .addTeam(teamData);
+      } else {
+        google.script.run
+          .withSuccessHandler(function(result) {
+            handleTeamSubmitResult(result);
+          })
+          .withFailureHandler(function(error) {
+            status.style.background = '#fee2e2';
+            status.style.color = '#991b1b';
+            status.textContent = '❌ Error: ' + error;
+          })
+          .updateTeam(teamId, teamData);
+      }
+    }
+    
+    function handleTeamSubmitResult(result) {
+      const status = document.getElementById('teamModalStatus');
+      
+      if (result.success) {
+        status.style.background = '#d1fae5';
+        status.style.color = '#065f46';
+        status.textContent = '✅ ' + result.message;
+        
+        // Reload table and close modal after 1.5s
+        setTimeout(function() {
+          closeTeamModal();
+          loadPasukanTable();
+        }, 1500);
+      } else {
+        status.style.background = '#fee2e2';
+        status.style.color = '#991b1b';
+        status.textContent = '❌ ' + result.message;
+      }
+    }
+    
+    function deleteTeamConfirm(teamId, teamCode) {
+      if (!confirm('Adakah anda pasti mahu memadam pasukan "' + teamCode + '"?\n\nPasukan ini akan diset sebagai tidak aktif.')) {
+        return;
+      }
+      
+      google.script.run
+        .withSuccessHandler(function(result) {
+          if (result.success) {
+            alert('✅ ' + result.message);
+            loadPasukanTable();
+          } else {
+            alert('❌ ' + result.message);
+          }
+        })
+        .withFailureHandler(function(error) {
+          alert('❌ Error: ' + error);
+        })
+        .deleteTeam(teamId);
+    }
+    
+    
+    // ============================================
+    // USER MODAL - ADD ONLY
+    // ============================================
+    
+    function showUserModal() {
+      const modal = document.getElementById('userModal');
+      const form = document.getElementById('userForm');
+      const status = document.getElementById('userModalStatus');
+      
+      // Reset form
+      form.reset();
+      status.style.display = 'none';
+      
+      modal.style.display = 'block';
+    }
+    
+    function closeUserModal() {
+      document.getElementById('userModal').style.display = 'none';
+    }
+    
+    function submitUser(event) {
+      event.preventDefault();
+      
+      const userData = {
+        username: document.getElementById('userUsername').value.trim(),
+        password: document.getElementById('userPassword').value,
+        role: document.getElementById('userRole').value,
+        full_name: document.getElementById('userFullName').value.trim()
+      };
+      
+      const status = document.getElementById('userModalStatus');
+      status.style.display = 'block';
+      status.style.background = '#fef3c7';
+      status.style.color = '#92400e';
+      status.textContent = '⏳ Sedang menyimpan...';
+      
+      google.script.run
+        .withSuccessHandler(function(result) {
+          if (result.success) {
+            status.style.background = '#d1fae5';
+            status.style.color = '#065f46';
+            status.textContent = '✅ ' + result.message;
+            setTimeout(function() {
+              closeUserModal();
+            }, 1500);
+          } else {
+            status.style.background = '#fee2e2';
+            status.style.color = '#991b1b';
+            status.textContent = '❌ ' + result.message;
+          }
+        })
+        .withFailureHandler(function(err) {
+          status.style.background = '#fee2e2';
+          status.style.color = '#991b1b';
+          status.textContent = '❌ Error: ' + err;
+        })
+        .addUser(userData);
+    }
+    
+
+    // ============================================
+    // DAFTAR HAKIM FUNCTIONS
+    // ============================================
+    
+    function showDaftarHakimView() {
+      console.log('Showing Daftar Hakim view');
+      
+      // Hide all views
+      ['loginView', 'adminView', 'statistikView', 'formView', 'daftarPasukanView', 'daftarHakimView'].forEach(id => {
+        document.getElementById(id).classList.add('hidden');
+      });
+      document.getElementById('daftarHakimView').classList.remove('hidden');
+      
+      // Set user display
+      if (currentUser) {
+        document.getElementById('hakimUserDisplay').textContent = currentUser.full_name + ' (' + currentUser.role + ')';
+      }
+      
+      // Load judges
+      loadHakimTable();
+    }
+    
+    function loadHakimTable() {
+      const tbody = document.getElementById('hakimTableBody');
+      tbody.innerHTML = '<tr><td colspan="6" style="padding:20px; text-align:center; color:#999;">⏳ Loading...</td></tr>';
+      
+      google.script.run
+        .withSuccessHandler(function(data) {
+          console.log('Judges loaded:', data.length);
+          judges = data;
+          renderHakimTable(data);
+        })
+        .withFailureHandler(function(error) {
+          console.error('Error loading judges:', error);
+          tbody.innerHTML = '<tr><td colspan="6" style="padding:20px; text-align:center; color:#dc2626;">❌ Error: ' + error + '</td></tr>';
+        })
+        .getJudges();
+    }
+    
+    function renderHakimTable(data) {
+      const tbody = document.getElementById('hakimTableBody');
+      
+      if (!data || data.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="6" style="padding:20px; text-align:center; color:#999;">Tiada hakim dijumpai</td></tr>';
+        return;
+      }
+      
+      let html = '';
+      let count = 0;
+      
+      data.forEach((judge) => {
+        // Skip inactive judges
+        if (judge.is_active === false || judge.is_active === 'FALSE' || judge.is_active === 0) return;
+        
+        count++;
+        const rowBg = count % 2 === 0 ? '#fef3c7' : '#ffffff';
+        
+        html += '<tr style="background:' + rowBg + '; transition:background 0.2s;" onmouseover="this.style.background=\'#fde68a\'" onmouseout="this.style.background=\'' + rowBg + '\'">';
+        html += '<td style="padding:8px 12px;">' + count + '</td>';
+        html += '<td style="padding:8px 12px;"><strong>' + judge.judge_id + '</strong></td>';
+        html += '<td style="padding:8px 12px;">' + judge.judge_name + '</td>';
+        html += '<td style="padding:8px 12px;"><strong>' + judge.judge_number + '</strong></td>';
+        html += '<td style="padding:8px 12px;">' + judge.judge_role + '</td>';
+        html += '<td style="text-align:center; padding:8px 12px;">';
+        html += '<button onclick="showJudgeModal(\'edit\', \'' + judge.judge_id + '\')" style="padding:4px 10px; font-size:11px; margin-right:4px; background:#f59e0b; color:#fff; border:none; border-radius:4px; cursor:pointer; display:inline-flex; align-items:center; gap:3px;" onmouseover="this.style.background=\'#d97706\'" onmouseout="this.style.background=\'#f59e0b\'">✏️ Edit</button>';
+        html += '<button onclick="confirmDeleteJudge(\'' + judge.judge_id + '\', \'' + judge.judge_name + '\')" style="padding:4px 10px; font-size:11px; background:#dc2626; color:#fff; border:none; border-radius:4px; cursor:pointer; display:inline-flex; align-items:center; gap:3px;" onmouseover="this.style.background=\'#b91c1c\'" onmouseout="this.style.background=\'#dc2626\'">🗑️ Padam</button>';
+        html += '</td>';
+        html += '</tr>';
+      });
+      
+      if (count === 0) {
+        tbody.innerHTML = '<tr><td colspan="6" style="padding:20px; text-align:center; color:#999;">Tiada hakim aktif</td></tr>';
+      } else {
+        tbody.innerHTML = html;
+      }
+    }
+    
+    function filterHakimTable() {
+      const search = document.getElementById('searchHakim').value.toLowerCase();
+      
+      const filtered = judges.filter(judge => {
+        if (judge.is_active === false) return false;
+        
+        return !search || 
+          judge.judge_name.toLowerCase().includes(search) ||
+          judge.judge_number.toLowerCase().includes(search) ||
+          judge.judge_id.toLowerCase().includes(search) ||
+          judge.judge_role.toLowerCase().includes(search);
+      });
+      
+      renderHakimTable(filtered);
+    }
+    
+    // ============================================
+    // JUDGE MODAL FUNCTIONS
+    // ============================================
+    
+    function showJudgeModal(mode, judgeId) {
+      const modal = document.getElementById('judgeModal');
+      const title = document.getElementById('judgeModalTitle');
+      const form = document.getElementById('judgeForm');
+      const status = document.getElementById('judgeModalStatus');
+      
+      // Reset
+      form.reset();
+      status.style.display = 'none';
+      document.getElementById('judgeIdEdit').value = '';
+      
+      if (mode === 'add') {
+        title.textContent = '➕ TAMBAH HAKIM';
+      } else {
+        title.textContent = '✏️ EDIT HAKIM';
+        
+        const judge = judges.find(j => j.judge_id === judgeId);
+        if (!judge) {
+          alert('Hakim tidak dijumpai!');
+          return;
+        }
+        
+        document.getElementById('judgeIdEdit').value = judge.judge_id;
+        document.getElementById('judgeName').value = judge.judge_name;
+        document.getElementById('judgeNumber').value = judge.judge_number;
+        document.getElementById('judgeRole').value = judge.judge_role;
+      }
+      
+      modal.style.display = 'block';
+    }
+    
+    function closeJudgeModal() {
+      document.getElementById('judgeModal').style.display = 'none';
+      document.getElementById('judgeForm').reset();
+      document.getElementById('judgeModalStatus').style.display = 'none';
+      
+      // Reset submit button state
+      const submitBtn = document.querySelector('#judgeForm button[type="submit"]');
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = '💾 Simpan';
+      }
+    }
+    
+    function submitJudge(event) {
+      event.preventDefault();
+      
+      const judgeId = document.getElementById('judgeIdEdit').value;
+      const judgeName = document.getElementById('judgeName').value.trim();
+      const judgeNumber = document.getElementById('judgeNumber').value.trim();
+      const judgeRole = document.getElementById('judgeRole').value;
+      
+      if (!judgeName || !judgeNumber || !judgeRole) {
+        alert('Sila isi semua maklumat');
+        return;
+      }
+      
+      const judgeData = {
+        judge_name: judgeName,
+        judge_number: judgeNumber,
+        judge_role: judgeRole,
+        user_id: currentUser ? currentUser.user_id : 'SYSTEM'
+      };
+      
+      const status = document.getElementById('judgeModalStatus');
+      const submitBtn = event.target.querySelector('button[type="submit"]');
+      
+      submitBtn.disabled = true;
+      submitBtn.textContent = '⏳ Menyimpan...';
+      
+      if (judgeId) {
+        // Update
+        judgeData.judge_id = judgeId;
+        google.script.run
+          .withSuccessHandler(function(result) {
+            handleJudgeSubmitResult(result, submitBtn);
+          })
+          .withFailureHandler(function(error) {
+            status.textContent = '❌ Error: ' + error;
+            status.style.display = 'block';
+            status.style.background = '#fee2e2';
+            status.style.color = '#dc2626';
+            submitBtn.disabled = false;
+            submitBtn.textContent = '💾 Simpan';
+          })
+          .updateJudge(judgeData);
+      } else {
+        // Add
+        google.script.run
+          .withSuccessHandler(function(result) {
+            handleJudgeSubmitResult(result, submitBtn);
+          })
+          .withFailureHandler(function(error) {
+            status.textContent = '❌ Error: ' + error;
+            status.style.display = 'block';
+            status.style.background = '#fee2e2';
+            status.style.color = '#dc2626';
+            submitBtn.disabled = false;
+            submitBtn.textContent = '💾 Simpan';
+          })
+          .addJudge(judgeData);
+      }
+    }
+    
+    function handleJudgeSubmitResult(result, submitBtn) {
+      const status = document.getElementById('judgeModalStatus');
+      
+      if (result.success) {
+        status.textContent = '✅ ' + result.message;
+        status.style.display = 'block';
+        status.style.background = '#d1fae5';
+        status.style.color = '#065f46';
+        
+        setTimeout(function() {
+          closeJudgeModal();
+          loadHakimTable();
+        }, 1000);
+      } else {
+        status.textContent = '❌ ' + result.message;
+        status.style.display = 'block';
+        status.style.background = '#fee2e2';
+        status.style.color = '#dc2626';
+        submitBtn.disabled = false;
+        submitBtn.textContent = '💾 Simpan';
+      }
+    }
+    
+    function confirmDeleteJudge(judgeId, judgeName) {
+      if (!confirm('Padam hakim "' + judgeName + '"?\n\nHakim akan dinyahaktifkan.')) {
+        return;
+      }
+      
+      const userId = currentUser ? currentUser.user_id : 'SYSTEM';
+      google.script.run
+        .withSuccessHandler(function(result) {
+          if (result.success) {
+            alert('✅ ' + result.message);
+            loadHakimTable();
+          } else {
+            alert('❌ ' + result.message);
+          }
+        })
+        .withFailureHandler(function(error) {
+          alert('❌ Error: ' + error);
+        })
+        .deleteJudge(judgeId, userId);
+    }
+    // Close modals when clicking outside
+    window.onclick = function(event) {
+      const teamModal = document.getElementById('teamModal');
+      const userModal = document.getElementById('userModal');
+      
+      if (event.target === teamModal) {
+        closeTeamModal();
+      }
+      if (event.target === userModal) {
+      const judgeModal = document.getElementById('judgeModal');
+      if (event.target === judgeModal) {
+        closeJudgeModal();
+      }
+        closeUserModal();
+      }
+    }
+
+    // ============================================
+    // HISTORY TABLE FUNCTIONS
+    // ============================================
+    function initializeHistoryDate() {
+      // Set today as default date
+      const today = new Date();
+      const dateString = today.toISOString().split('T')[0]; // YYYY-MM-DD format
+      document.getElementById('historyDate').value = dateString;
+      
+      // Load history for today
+      loadHistory();
+    }
+    
+    function loadHistory() {
+      console.log('=== loadHistory CALLED ===');
+      
+      if (!currentSession || !currentSession.user_id) {
+        console.log('ERROR: No active session');
+        const container = document.getElementById('historyTable');
+        container.innerHTML = '<p style="color: red;">❌ Tiada session. Sila login semula.</p>';
+        return;
+      }
+      
+      console.log('Session user_id:', currentSession.user_id);
+      
+      const selectedDate = document.getElementById('historyDate').value;
+      
+      
+      console.log('Selected date:', selectedDate);
+      
+      // Show loading
+      const container = document.getElementById('historyTable');
+      container.innerHTML = '<p style="color: #999;">⏳ Memuat data...</p>';
+      
+      console.log('Calling getSubmissionHistory...');
+      
+      google.script.run
+        .withSuccessHandler(function(result) {
+          console.log('=== SUCCESS HANDLER ===');
+          console.log('Result:', result);
+          displayHistory(result);
+        })
+        .withFailureHandler(function(error) {
+          console.error('=== FAILURE HANDLER ===');
+          console.error('Error:', error);
+          container.innerHTML = '<p style="color: red;">❌ Ralat: ' + (error.message || error) + '</p>';
+        })
+        .getSubmissionHistory(currentSession.user_id);
+      
+      console.log('✅ Request sent');
+    }
+    
+    function displayHistory(result) {
+      console.log("=== displayHistory CALLED ===");
+      console.log("Result:", result);
+      const container = document.getElementById('historyTable');
+      
+      
+      // NULL CHECK
+      if (!result) {
+        console.error("ERROR: Result is null!");
+        container.innerHTML = '<p style="color: red;">❌ Backend tidak memberi respons. Sila cuba lagi.</p>';
+        return;
+      }
+
+      if (!result.success) {
+        container.innerHTML = '<p style="color: red;">❌ ' + result.message + '</p>';
+        return;
+      }
+      
+      const submissions = result.submissions || [];
+      
+      if (submissions.length === 0) {
+        container.innerHTML = '<p style="color: #999;">📭 Tiada rekod untuk tarikh ini.</p>';
+        return;
+      }
+      
+      // Build table
+      let html = '<div style="margin-bottom: 10px; font-weight: bold; color: #2c3e50;">';
+      html += '📊 Jumlah: ' + result.total_count + ' keyin';
+      html += '</div>';
+      
+      html += '<div style="overflow-x: auto;">';
+      html += '<table style="width: 100%; border-collapse: collapse; font-size: 0.9em;">';
+      html += '<thead>';
+      html += '<tr style="background: #3498db; color: white;">';
+      html += '<th style="padding: 8px; text-align: left; border: 1px solid #ddd;">Masa</th>';
+      html += '<th style="padding: 8px; text-align: left; border: 1px solid #ddd;">Pasukan</th>';
+      html += '<th style="padding: 8px; text-align: left; border: 1px solid #ddd;">Borang</th>';
+      html += '<th style="padding: 8px; text-align: center; border: 1px solid #ddd;">No. Hakim</th>';
+      html += '<th style="padding: 8px; text-align: left; border: 1px solid #ddd;">User ID</th>';
+      html += '</tr>';
+      html += '</thead>';
+      html += '<tbody>';
+      
+      submissions.forEach(function(s, index) {
+        const rowBg = index % 2 === 0 ? '#f8f9fa' : 'white';
+        const time = new Date(s.time).toLocaleTimeString('ms-MY', {
+          hour: '2-digit',
+          minute: '2-digit'
+        });
+        
+        // Format form type nicely
+        const formDisplay = s.form_type
+          .replace('PAKAIAN_KP', 'Pakaian KP')
+          .replace('PAKAIAN_PLATUN', 'Pakaian Platun')
+          .replace('KAWAD_KP', 'Kawad KP')
+          .replace('KAWAD_PLATUN', 'Kawad Platun')
+          .replace('FORMASI', 'Formasi');
+        
+        html += '<tr style="background: ' + rowBg + ';">';
+        html += '<td style="padding: 8px; border: 1px solid #ddd;">' + time + '</td>';
+        html += '<td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">' + s.team_code + '</td>';
+        html += '<td style="padding: 8px; border: 1px solid #ddd;">' + formDisplay + '</td>';
+        html += '<td style="padding: 8px; border: 1px solid #ddd; text-align: center;">' + s.judge_number + '</td>';
+        html += '<td style="padding: 8px; border: 1px solid #ddd; font-size: 0.85em; color: #7f8c8d;">' + s.user_id + '</td>';
+        html += '</tr>';
+      });
+      
+      html += '</tbody>';
+      html += '</table>';
+      html += '</div>';
+      
+      container.innerHTML = html;
+    }
+
+    // ============================================
+    // ADMIN HISTORY TABLE FUNCTIONS
+    // ============================================
+    function initializeAdminHistoryDate() {
+      // Set today as default date
+      const today = new Date();
+      const dateString = today.toISOString().split('T')[0]; // YYYY-MM-DD format
+      document.getElementById('adminHistoryDate').value = dateString;
+      
+      // Load history for today
+      loadAdminHistory();
+    }
+    
+    function loadAdminHistory() {
+      console.log('=== loadAdminHistory CALLED ===');
+      
+      
+      console.log('Selected date:', selectedDate);
+      
+      // Show loading
+      const container = document.getElementById('adminHistoryTable');
+      container.innerHTML = '<p style="color: #999;">⏳ Memuat data...</p>';
+      
+      console.log('Calling getAllSubmissions...');
+      
+      google.script.run
+        .withSuccessHandler(function(result) {
+          console.log('=== ADMIN SUCCESS HANDLER ===');
+          console.log('Result:', result);
+          displayAdminHistory(result);
+        })
+        .withFailureHandler(function(error) {
+          console.error('=== ADMIN FAILURE HANDLER ===');
+          console.error('Error:', error);
+          container.innerHTML = '<p style="color: red;">❌ Ralat: ' + (error.message || error) + '</p>';
+        })
+        .getAllSubmissions();
+      
+      console.log('✅ Admin request sent');
+    }
+    
+    function displayAdminHistory(result) {
+      const container = document.getElementById('adminHistoryTable');
+      console.log("=== displayAdminHistory CALLED ===");
+      console.log("Result:", result);
+      
+      
+      // NULL CHECK
+      if (!result) {
+        console.error("ERROR: Admin result is null!");
+        container.innerHTML = '<p style="color: red;">❌ Backend tidak memberi respons. Sila cuba lagi.</p>';
+        return;
+      }
+
+      if (!result.success) {
+        container.innerHTML = '<p style="color: red;">❌ ' + result.message + '</p>';
+        return;
+      }
+      
+      const submissions = result.submissions || [];
+      
+      if (submissions.length === 0) {
+        container.innerHTML = '<p style="color: #999;">📭 Tiada rekod untuk tarikh ini.</p>';
+        return;
+      }
+      
+      // Build table
+      let html = '<div style="margin-bottom: 10px; font-weight: bold; color: #2c3e50;">';
+      html += '📊 Jumlah: ' + result.total_count + ' submissions (semua users)';
+      html += '</div>';
+      
+      html += '<div style="overflow-x: auto;">';
+      html += '<table style="width: 100%; border-collapse: collapse; font-size: 0.9em;">';
+      html += '<thead>';
+      html += '<tr style="background: #e74c3c; color: white;">'; // Red header for admin view
+      html += '<th style="padding: 8px; text-align: left; border: 1px solid #ddd;">Masa</th>';
+      html += '<th style="padding: 8px; text-align: left; border: 1px solid #ddd;">Pasukan</th>';
+      html += '<th style="padding: 8px; text-align: left; border: 1px solid #ddd;">Borang</th>';
+      html += '<th style="padding: 8px; text-align: center; border: 1px solid #ddd;">No. Hakim</th>';
+      html += '<th style="padding: 8px; text-align: left; border: 1px solid #ddd;">User ID</th>';
+      html += '</tr>';
+      html += '</thead>';
+      html += '<tbody>';
+      
+      submissions.forEach(function(s, index) {
+        const rowBg = index % 2 === 0 ? '#f8f9fa' : 'white';
+        const time = new Date(s.time).toLocaleTimeString('ms-MY', {
+          hour: '2-digit',
+          minute: '2-digit'
+        });
+        
+        // Format form type nicely
+        const formDisplay = s.form_type
+          .replace('PAKAIAN_KP', 'Pakaian KP')
+          .replace('PAKAIAN_PLATUN', 'Pakaian Platun')
+          .replace('KAWAD_KP', 'Kawad KP')
+          .replace('KAWAD_PLATUN', 'Kawad Platun')
+          .replace('FORMASI', 'Formasi');
+        
+        html += '<tr style="background: ' + rowBg + ';">';
+        html += '<td style="padding: 8px; border: 1px solid #ddd;">' + time + '</td>';
+        html += '<td style="padding: 8px; border: 1px solid #ddd; font-weight: bold;">' + s.team_code + '</td>';
+        html += '<td style="padding: 8px; border: 1px solid #ddd;">' + formDisplay + '</td>';
+        html += '<td style="padding: 8px; border: 1px solid #ddd; text-align: center;">' + s.judge_number + '</td>';
+        html += '<td style="padding: 8px; border: 1px solid #ddd; font-size: 0.85em; color: #7f8c8d;">' + s.user_id + '</td>';
+        html += '</tr>';
+      });
+      
+      html += '</tbody>';
+      html += '</table>';
+      html += '</div>';
+      
+      container.innerHTML = html;
+    }
+  </script>
+  
+
+  <!-- ============================================ -->
+  <!-- DAFTAR PASUKAN VIEW -->
+  <!-- ============================================ -->
+  <div id="daftarPasukanView" class="hidden">
+    <div class="navbar sticky-nav">
+      <div class="nav-left">
+        <h2>👥 DAFTAR PASUKAN</h2>
+      </div>
+      <div class="nav-right" style="display:flex; align-items:center; gap:12px;">
+        <button onclick="switchToAdmin()" class="btn-secondary">← Kembali</button>
+        <span id="daftarUserDisplay" style="font-weight:500; color:#667eea; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:200px;"></span>
+        <button onclick="logout()" class="btn-logout">Logout</button>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="card">
+        <!-- Search + Filter + Add button -->
+        <div style="display:flex; gap:10px; margin-bottom:20px; align-items:center;">
+          <input type="text" id="searchPasukan" placeholder="🔍 Cari kod / nama sekolah..." 
+            onkeyup="filterPasukanTable()"
+            style="flex:1; padding:10px 14px; border:1px solid #ddd; border-radius:6px; font-size:14px;">
+          
+          <select id="filterKategori" onchange="filterPasukanTable()"
+            style="padding:10px 14px; border:1px solid #ddd; border-radius:6px; font-size:14px;">
+            <option value="">Semua Kategori</option>
+            <option value="ELIT">ELIT</option>
+            <option value="AMATUR">AMATUR</option>
+          </select>
+          
+          <select id="filterGender" onchange="filterPasukanTable()"
+            style="padding:10px 14px; border:1px solid #ddd; border-radius:6px; font-size:14px;">
+            <option value="">Semua Jantina</option>
+            <option value="LELAKI">LELAKI</option>
+            <option value="PEREMPUAN">PEREMPUAN</option>
+          </select>
+          
+          <button onclick="showTeamModal('add', null)" class="btn-primary"
+            style="white-space:nowrap; background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);">
+            ➕ Tambah Pasukan
+          </button>
+        </div>
+
+        <!-- Teams Table -->
+        <div style="overflow-x:auto;">
+          <table id="pasukanTable" style="width:100%; border-collapse:collapse; font-size:13px;">
+            <thead>
+              <tr style="background:linear-gradient(135deg, #667eea 0%, #764ba2 100%); color:white; border-bottom:2px solid #667eea;">
+                <th style="padding:10px 12px; text-align:left; font-weight:600;">No</th>
+                <th style="padding:10px 12px; text-align:left; font-weight:600;">Kod</th>
+                <th style="padding:10px 12px; text-align:left; font-weight:600;">Nama Sekolah</th>
+                <th style="padding:10px 12px; text-align:left; font-weight:600;">Kategori</th>
+                <th style="padding:10px 12px; text-align:left; font-weight:600;">Jantina</th>
+                <th style="padding:10px 12px; text-align:left; font-weight:600;">Tahap</th>
+                <th style="padding:10px 12px; text-align:left; font-weight:600;">Ketua Platun</th>
+                <th style="padding:10px 12px; text-align:center; font-weight:600;">⚙️ Tindakan</th>
+              </tr>
+            </thead>
+            <tbody id="pasukanTableBody">
+              <tr>
+                <td colspan="8" style="padding:20px; text-align:center; color:#999;">
+                  ⏳ Loading...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- TEAM MODAL (Add/Edit) -->
+  <!-- ============================================ -->
+  <div id="teamModal" class="modal">
+    <div class="modal-content" style="max-width:500px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+        <h2 id="teamModalTitle">➕ TAMBAH PASUKAN</h2>
+        <button onclick="closeTeamModal()" style="background:none; border:none; font-size:24px; cursor:pointer; color:#999;">&times;</button>
+      </div>
+
+      <form id="teamForm" onsubmit="submitTeam(event)">
+        <input type="hidden" id="teamIdEdit" value="">
+        
+        <div style="margin-bottom:15px;">
+          <label style="display:block; margin-bottom:5px; font-weight:600;">Kod Pasukan <span style="color:red;">*</span></label>
+          <input type="text" id="teamCode" required maxlength="10" 
+            placeholder="Contoh: L1, P1, SR1"
+            style="width:100%; padding:10px; border:1px solid #ddd; border-radius:6px; font-size:14px;">
+          <small style="color:#666; font-size:12px;">Alphanumeric sahaja, maksimum 10 aksara</small>
+        </div>
+
+        <div style="margin-bottom:15px;">
+          <label style="display:block; margin-bottom:5px; font-weight:600;">Nama Sekolah <span style="color:red;">*</span></label>
+          <input type="text" id="teamSchool" required maxlength="100"
+            placeholder="Contoh: SK Taman Desa"
+            style="width:100%; padding:10px; border:1px solid #ddd; border-radius:6px; font-size:14px;">
+        </div>
+
+        <div style="margin-bottom:15px;">
+          <label style="display:block; margin-bottom:5px; font-weight:600;">Kategori <span style="color:red;">*</span></label>
+          <select id="teamKategori" required
+            style="width:100%; padding:10px; border:1px solid #ddd; border-radius:6px; font-size:14px;">
+            <option value="">-- Pilih Kategori --</option>
+            <option value="ELIT">ELIT</option>
+            <option value="AMATUR">AMATUR</option>
+          </select>
+        </div>
+
+        <div style="margin-bottom:15px;">
+          <label style="display:block; margin-bottom:5px; font-weight:600;">Jantina <span style="color:red;">*</span></label>
+          <select id="teamGender" required
+            style="width:100%; padding:10px; border:1px solid #ddd; border-radius:6px; font-size:14px;">
+            <option value="">-- Pilih Jantina --</option>
+            <option value="LELAKI">LELAKI</option>
+            <option value="PEREMPUAN">PEREMPUAN</option>
+          </select>
+        </div>
+
+
+        <div style="margin-bottom:15px;">
+          <label style="display:block; margin-bottom:5px; font-weight:600;">Tahap Sekolah <span style="color:red;">*</span></label>
+          <select id="teamLevel" required
+            style="width:100%; padding:10px; border:1px solid #ddd; border-radius:6px; font-size:14px;">
+            <option value="">-- Pilih Tahap --</option>
+            <option value="RENDAH">RENDAH</option>
+            <option value="MENENGAH">MENENGAH</option>
+          </select>
+        </div>
+
+        <div style="margin-bottom:20px;">
+          <label style="display:block; margin-bottom:5px; font-weight:600;">Nama Ketua Platun</label>
+          <input type="text" id="teamKetuaPlatun" maxlength="100"
+            placeholder="Nama ketua platun (opsional)"
+            style="width:100%; padding:10px; border:1px solid #ddd; border-radius:6px; font-size:14px;">
+        </div>
+
+        <div id="teamModalStatus" style="display:none; padding:12px; border-radius:6px; margin-bottom:15px; font-weight:600; text-align:center;"></div>
+
+        <div style="display:flex; gap:10px; justify-content:flex-end;">
+          <button type="button" onclick="closeTeamModal()" class="btn-secondary">
+            Batal
+          </button>
+          <button type="submit" class="btn-primary" style="background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);">
+            💾 Simpan
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- USER MODAL (Add only) -->
+  <!-- ============================================ -->
+  <div id="userModal" class="modal">
+    <div class="modal-content" style="max-width:450px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+        <h2>👤 TAMBAH USER</h2>
+        <button onclick="closeUserModal()" style="background:none; border:none; font-size:24px; cursor:pointer; color:#999;">&times;</button>
+      </div>
+
+      <form id="userForm" onsubmit="submitUser(event)">
+        <div style="margin-bottom:15px;">
+          <label style="display:block; margin-bottom:5px; font-weight:600;">Username <span style="color:red;">*</span></label>
+          <input type="text" id="userUsername" required minlength="3" maxlength="20"
+            placeholder="Alphanumeric + underscore, 3-20 aksara"
+            style="width:100%; padding:10px; border:1px solid #ddd; border-radius:6px; font-size:14px;">
+        </div>
+
+        <div style="margin-bottom:15px;">
+          <label style="display:block; margin-bottom:5px; font-weight:600;">Password <span style="color:red;">*</span></label>
+          <input type="password" id="userPassword" required minlength="4"
+            placeholder="Minimum 4 aksara"
+            style="width:100%; padding:10px; border:1px solid #ddd; border-radius:6px; font-size:14px;">
+        </div>
+
+        <div style="margin-bottom:15px;">
+          <label style="display:block; margin-bottom:5px; font-weight:600;">Role <span style="color:red;">*</span></label>
+          <select id="userRole" required
+            style="width:100%; padding:10px; border:1px solid #ddd; border-radius:6px; font-size:14px;">
+            <option value="">-- Pilih Role --</option>
+            <option value="ADMIN">ADMIN</option>
+            <option value="STATISTIK">STATISTIK</option>
+          </select>
+        </div>
+
+        <div style="margin-bottom:20px;">
+          <label style="display:block; margin-bottom:5px; font-weight:600;">Nama Penuh <span style="color:red;">*</span></label>
+          <input type="text" id="userFullName" required maxlength="100"
+            placeholder="Nama penuh user"
+            style="width:100%; padding:10px; border:1px solid #ddd; border-radius:6px; font-size:14px;">
+        </div>
+
+        <div id="userModalStatus" style="display:none; padding:12px; border-radius:6px; margin-bottom:15px; font-weight:600; text-align:center;"></div>
+
+        <div style="display:flex; gap:10px; justify-content:flex-end;">
+          <button type="button" onclick="closeUserModal()" class="btn-secondary">
+            Batal
+          </button>
+          <button type="submit" class="btn-primary" style="background:linear-gradient(135deg,#10b981 0%,#059669 100%);">
+            💾 Simpan
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</body>
+
+  <!-- ============================================ -->
+  <!-- DAFTAR HAKIM VIEW -->
+  <!-- ============================================ -->
+  <div id="daftarHakimView" class="hidden">
+    <div class="navbar sticky-nav">
+      <div class="nav-left">
+        <h2>👨‍⚖️ DAFTAR HAKIM</h2>
+      </div>
+      <div class="nav-right" style="display:flex; align-items:center; gap:12px;">
+        <button onclick="switchToAdmin()" class="btn-secondary">← Kembali</button>
+        <span id="hakimUserDisplay" style="font-weight:500; color:#667eea; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:200px;"></span>
+        <button onclick="logout()" class="btn-logout">Logout</button>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="card">
+        <!-- Add Hakim + Search -->
+        <div style="display:flex; gap:12px; margin-bottom:20px; align-items:center; flex-wrap:wrap;">
+          <button onclick="showJudgeModal('add')" class="btn-primary" 
+            style="width:auto; padding:10px 20px; background:linear-gradient(135deg,#10b981 0%,#059669 100%);">
+            ➕ Tambah Hakim
+          </button>
+          
+          <input type="text" id="searchHakim" placeholder="🔍 Cari nama / nombor hakim..." 
+            onkeyup="filterHakimTable()"
+            style="width:350px; padding:10px 14px; border:1px solid #ddd; border-radius:6px; font-size:14px;">
+        </div>
+
+        <!-- Hakim Table -->
+        <div style="overflow-x:auto;">
+          <table id="hakimTable" style="width:100%; border-collapse:collapse; font-size:13px; border:1px solid #e5e7eb; border-radius:8px; overflow:hidden;">
+            <thead>
+              <tr style="background:linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color:white;">
+                <th style="padding:10px 12px; text-align:left; font-weight:600;">No</th>
+                <th style="padding:10px 12px; text-align:left; font-weight:600;">ID</th>
+                <th style="padding:10px 12px; text-align:left; font-weight:600;">Nama Hakim</th>
+                <th style="padding:10px 12px; text-align:left; font-weight:600;">Nombor</th>
+                <th style="padding:10px 12px; text-align:left; font-weight:600;">Peranan</th>
+                <th style="padding:10px 12px; text-align:center; font-weight:600;">⚙️ Tindakan</th>
+              </tr>
+            </thead>
+            <tbody id="hakimTableBody">
+              <tr>
+                <td colspan="6" style="padding:20px; text-align:center; color:#999;">
+                  ⏳ Loading...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- JUDGE MODAL -->
+  <!-- ============================================ -->
+  <div id="judgeModal" class="modal">
+    <div class="modal-content" style="max-width: 520px;">
+      <span class="modal-close" onclick="closeJudgeModal()">&times;</span>
+      <h2 id="judgeModalTitle" style="margin-bottom:20px;">TAMBAH HAKIM</h2>
+      
+      <form id="judgeForm" onsubmit="submitJudge(event)">
+        <input type="hidden" id="judgeIdEdit" value="">
+        
+        <div class="form-group">
+          <label>👤 Nama Hakim *</label>
+          <input type="text" id="judgeName" required 
+            placeholder="Contoh: Encik Ahmad bin Ali"
+            oninput="this.value = this.value.toUpperCase()"
+            style="width:100%; padding:10px; border:1px solid #ddd; border-radius:6px;">
+        </div>
+        
+        <div class="form-group">
+          <label>🔢 Nombor Hakim *</label>
+          <input type="text" id="judgeNumber" required 
+            placeholder="Contoh: HKP01"
+            style="width:100%; padding:10px; border:1px solid #ddd; border-radius:6px; text-transform:uppercase;">
+          <small style="color:#666;">Format biasa: HKPxx</small>
+        </div>
+        
+        <div class="form-group">
+          <label>🎯 Peranan Hakim *</label>
+          <select id="judgeRole" required 
+            style="width:100%; padding:11px; border:2px solid #ddd; border-radius:6px; font-size:14px; cursor:pointer; background:white;">
+            <option value="">-- Pilih Peranan --</option>
+            <option value="PAKAIAN KETUA PLATUN">PAKAIAN KETUA PLATUN</option>
+            <option value="PAKAIAN PLATUN">PAKAIAN PLATUN</option>
+            <option value="KAWAD KETUA PLATUN">KAWAD KETUA PLATUN</option>
+            <option value="KAWAD PLATUN">KAWAD PLATUN</option>
+            <option value="FORMASI">FORMASI</option>
+          </select>
+        </div>
+        
+        <div id="judgeModalStatus" style="display:none; padding:12px; border-radius:6px; margin-bottom:15px; font-weight:600; text-align:center;"></div>
+        
+        <div style="display:flex; gap:10px; margin-top:25px;">
+          <button type="button" onclick="closeJudgeModal()" class="btn-secondary" style="flex:1;">
+            Batal
+          </button>
+          <button type="submit" class="btn-primary" style="flex:1; background:linear-gradient(135deg,#f59e0b 0%,#d97706 100%);">
+            💾 Simpan
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</html>
