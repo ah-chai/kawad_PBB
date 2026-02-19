@@ -559,7 +559,8 @@
         </div>
       </div>
 
-      <div class="card">
+      <!-- DISABLED - BROKEN FUNCTION
+            <div class="card">
         <h3>📊 HISTORY SUBMISSIONS</h3>
         
         <div class="form-group" style="margin-bottom: 15px;">
@@ -575,6 +576,51 @@
         
         <div id="adminHistoryTable">
           <p style="color: #999;">Tiada rekod lagi...</p>
+        </div>
+      -->
+
+      <!-- PRINT BORANG SECTION WITH FILTERS -->
+      <div class="card">
+        <h2>📋 PRINT BORANG MARKAH</h2>
+        <p>Pilih kriteria untuk cari borang</p>
+        
+        <!-- FILTER SECTION -->
+        <div class="filter-section" style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 15px 0 0 0;">
+          <div class="form-group" style="margin-bottom: 15px;">
+            <label style="display: block; margin-bottom: 5px; font-weight: 600;">Pasukan:</label>
+            <select id="admin_filterPasukan" class="form-select" style="width: 100%; padding: 8px;">
+              <option value="">-- Semua Pasukan --</option>
+            </select>
+          </div>
+          
+          <div class="form-group" style="margin-bottom: 15px;">
+            <label style="display: block; margin-bottom: 5px; font-weight: 600;">Jenis Borang:</label>
+            <select id="admin_filterBorang" class="form-select" style="width: 100%; padding: 8px;">
+              <option value="">-- Semua Borang --</option>
+              <option value="PAKAIAN_KP">Pakaian Ketua Platun</option>
+              <option value="PAKAIAN_PLATUN">Pakaian Platun</option>
+              <option value="KAWAD_KP">Kawad Ketua Platun</option>
+              <option value="KAWAD_PLATUN">Kawad Platun</option>
+              <option value="FORMASI">Formasi</option>
+            </select>
+          </div>
+          
+          <div class="form-group" style="margin-bottom: 15px;">
+            <label style="display: block; margin-bottom: 5px; font-weight: 600;">Hakim:</label>
+            <select id="admin_filterHakim" class="form-select" style="width: 100%; padding: 8px;">
+              <option value="">-- Semua Hakim --</option>
+            </select>
+          </div>
+          
+          <button onclick="loadPrintEntriesWithFilter()" class="btn btn-primary" style="width: 100%; padding: 12px; font-size: 16px;">
+            🔍 Cari Borang
+          </button>
+        </div>
+        
+        <!-- RESULTS SECTION -->
+        <div id="admin_printEntriesContainer" style="display: none; margin-top: 20px;">
+          <h3>Borang Yang Tersedia:</h3>
+          <div id="admin_printEntriesList" style="max-height: 400px; overflow-x: auto; overflow-y: auto; border: 1px solid #ddd; padding: 10px; margin: 10px 0; background: white;"></div>
         </div>
       </div>
     </div>
@@ -643,7 +689,8 @@
         </div>
       </div>
       
-      <div class="card">
+      <!-- DISABLED - BROKEN FUNCTION
+            <div class="card">
         <h3>📊 HISTORY KEYIN</h3>
         
         <div class="form-group" style="margin-bottom: 15px;">
@@ -657,6 +704,51 @@
         
         <div id="historyTable">
           <p style="color: #999;">Tiada rekod lagi...</p>
+        </div>
+      -->
+
+      <!-- PRINT BORANG SECTION WITH FILTERS -->
+      <div class="card">
+        <h2>📋 PRINT BORANG MARKAH</h2>
+        <p>Pilih kriteria untuk cari borang</p>
+        
+        <!-- FILTER SECTION -->
+        <div class="filter-section" style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 15px 0 0 0;">
+          <div class="form-group" style="margin-bottom: 15px;">
+            <label style="display: block; margin-bottom: 5px; font-weight: 600;">Pasukan:</label>
+            <select id="statistik_filterPasukan" class="form-select" style="width: 100%; padding: 8px;">
+              <option value="">-- Semua Pasukan --</option>
+            </select>
+          </div>
+          
+          <div class="form-group" style="margin-bottom: 15px;">
+            <label style="display: block; margin-bottom: 5px; font-weight: 600;">Jenis Borang:</label>
+            <select id="statistik_filterBorang" class="form-select" style="width: 100%; padding: 8px;">
+              <option value="">-- Semua Borang --</option>
+              <option value="PAKAIAN_KP">Pakaian Ketua Platun</option>
+              <option value="PAKAIAN_PLATUN">Pakaian Platun</option>
+              <option value="KAWAD_KP">Kawad Ketua Platun</option>
+              <option value="KAWAD_PLATUN">Kawad Platun</option>
+              <option value="FORMASI">Formasi</option>
+            </select>
+          </div>
+          
+          <div class="form-group" style="margin-bottom: 15px;">
+            <label style="display: block; margin-bottom: 5px; font-weight: 600;">Hakim:</label>
+            <select id="statistik_filterHakim" class="form-select" style="width: 100%; padding: 8px;">
+              <option value="">-- Semua Hakim --</option>
+            </select>
+          </div>
+          
+          <button onclick="loadPrintEntriesWithFilter()" class="btn btn-primary" style="width: 100%; padding: 12px; font-size: 16px;">
+            🔍 Cari Borang
+          </button>
+        </div>
+        
+        <!-- RESULTS SECTION -->
+        <div id="statistik_printEntriesContainer" style="display: none; margin-top: 20px;">
+          <h3>Borang Yang Tersedia:</h3>
+          <div id="statistik_printEntriesList" style="max-height: 400px; overflow-x: auto; overflow-y: auto; border: 1px solid #ddd; padding: 10px; margin: 10px 0; background: white;"></div>
         </div>
       </div>
     </div>
@@ -755,8 +847,11 @@
         'Full Name: ' + currentSession.full_name + '<br>' +
         'Session Time: ' + new Date(currentSession.timestamp).toLocaleString();
       
-      // Initialize admin history table
-      initializeAdminHistoryDate();
+      // DISABLED -       // Initialize admin history table
+      // DISABLED -       initializeAdminHistoryDate();
+      
+      // Populate print filters
+      populatePrintFilters();
     }
     
     function showStatistikView() {
@@ -773,6 +868,9 @@
       document.getElementById('formView').classList.add('hidden');
       
       // CRITICAL: Force remove inline styles that might be blocking
+      
+      // Populate print filters
+      populatePrintFilters();
       document.getElementById('formView').style.display = '';
       
       // Show statistik view
@@ -788,8 +886,8 @@
       loadJudges();
       updateFormButtons();
       
-      // Initialize history table with today's date
-      initializeHistoryDate();
+      // DISABLED -       // Initialize history table with today's date
+      // DISABLED -       initializeHistoryDate();
       
       console.log('✅ Statistik view should be visible now');
     }
@@ -3081,6 +3179,1103 @@
       html += '</div>';
       
       container.innerHTML = html;
+    }
+    
+    function generateKawadKPHTML(data) {
+      let html = `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Borang Kawad Ketua Platun - ${data.teamCode}</title>
+  <style>
+    @page { size: A4 portrait; margin: 1cm; }
+    @media print { .no-print { display: none; } body { margin: 0; } }
+    body { font-family: Arial, sans-serif; font-size: 9pt; line-height: 1.2; margin: 0; padding: 10px; }
+    .header { text-align: center; margin-bottom: 10px; border-bottom: 3px double #000; padding-bottom: 8px; }
+    .title { font-size: 13pt; font-weight: bold; margin: 2px 0; }
+    .subtitle { font-size: 8pt; margin: 2px 0; }
+    .info-section { margin: 8px 0; padding: 6px; background: #f9f9f9; border: 1px solid #ccc; font-size: 9pt; }
+    .info-line { margin: 2px 0; }
+    table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 8pt; }
+    th, td { border: 1px solid #000; padding: 3px 4px; text-align: left; }
+    th { background: #d0d0d0; font-weight: bold; text-align: center; font-size: 8pt; }
+    .subcategory-title { background: #e0e0e0; font-weight: bold; font-size: 8pt; padding-left: 12px !important; }
+    .item-row td:first-child { padding-left: 20px !important; font-size: 8pt; }
+    .checkbox-cell { text-align: center; padding: 2px !important; width: 18px; font-size: 7pt; }
+    .checkbox-marked { font-weight: bold; background: #d0d0d0; }
+    .score-cell-empty { background: #f5f5f5; text-align: center; }
+    .subsection-total { background: #fff8dc; font-weight: bold; border-top: 2px solid #000 !important; }
+    .grand-total { background: #ffd700; font-weight: bold; font-size: 10pt; border-top: 3px double #000 !important; }
+    .penalty-section { background: #ffcccb; }
+    .penalty-row { background: #fff5f5; }
+    .penalty-cell { text-align: center; width: 18px; font-size: 7pt; padding: 2px !important; }
+    .footer { margin-top: 15px; page-break-inside: avoid; }
+    .signature-box { border: 1px solid #000; padding: 8px; min-height: 50px; margin-top: 8px; }
+    .print-buttons { text-align: center; margin: 12px 0; }
+    .btn { padding: 8px 16px; font-size: 12px; margin: 0 6px; cursor: pointer; border: none; border-radius: 4px; }
+    .btn-print { background: #4CAF50; color: white; }
+    .btn-close { background: #f44336; color: white; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="title">BORANG MARKAH KAWAD KETUA PLATUN</div>
+    <div class="subtitle">PERTANDINGAN KAWAD KAKI</div>
+    <div class="subtitle">PASUKAN BADAN BERUNIFORM</div>
+    <div class="subtitle">SEKOLAH-SEKOLAH RENDAH</div>
+    <div class="subtitle">KEMENTERIAN PENDIDIKAN MALAYSIA</div>
+  </div>
+  <div class="info-section">
+    <div class="info-line"><strong>PASUKAN:</strong> ${data.teamCode} - ${data.teamName}</div>
+    <div class="info-line"><strong>HAKIM:</strong> ${data.judgeNumber} - ${data.judgeName}</div>
+    <div class="info-line"><strong>TARIKH:</strong> ${data.timestamp}</div>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th rowspan="2" style="width: 35%;">PERGERAKAN KAWAD</th>
+        <th colspan="12" style="background: #d0d0d0;">MARKAH</th>
+      </tr>
+      <tr>
+        <th colspan="6" style="background: #e8e8e8;">PERGERAKAN</th>
+        <th colspan="6" style="background: #e8e8e8;">BAHASA HUKUMAN</th>
+      </tr>
+    </thead>
+    <tbody>`;
+      
+      let currentSubcategory = '';
+      let subsectionTotalP = 0;
+      let subsectionTotalB = 0;
+      let grandTotalP = 0;
+      let grandTotalB = 0;
+      
+      const scoresMap = {};
+      data.items.forEach(function(item) {
+        scoresMap[item.code] = {
+          pergerakan: parseFloat(item.score_pergerakan) || 0,
+          bahasa: parseFloat(item.score_bahasa) || 0
+        };
+      });
+      
+      function createCheckboxes(score, hasColumn) {
+        if (!hasColumn) {
+          return '<td colspan="6" class="score-cell-empty">-</td>';
+        }
+        let html = '';
+        const roundedScore = Math.round(score);
+        for (let i = 0; i <= 5; i++) {
+          const isMarked = (roundedScore === i);
+          html += '<td class="checkbox-cell' + (isMarked ? ' checkbox-marked' : '') + '">' + 
+                  (isMarked ? '✓' : i) + '</td>';
+        }
+        return html;
+      }
+      
+      KAWAD_KP_ITEMS.forEach(function(item, index) {
+        if (item.subcategory !== currentSubcategory) {
+          if (currentSubcategory) {
+            html += `
+      <tr class="subsection-total">
+        <td style="text-align: right; padding-right: 10px;"><strong>Jumlah</strong></td>
+        <td colspan="6" style="text-align: center;"><strong>${subsectionTotalP.toFixed(1)}</strong></td>
+        <td colspan="6" style="text-align: center;"><strong>${subsectionTotalB.toFixed(1)}</strong></td>
+      </tr>`;
+            subsectionTotalP = 0;
+            subsectionTotalB = 0;
+          }
+          
+          html += `
+      <tr class="subcategory-title">
+        <td colspan="13">${item.subcategory}</td>
+      </tr>`;
+          currentSubcategory = item.subcategory;
+        }
+        
+        const scores = scoresMap[item.code] || {pergerakan: 0, bahasa: 0};
+        const hasP = item.cols.includes('pergerakan');
+        const hasB = item.cols.includes('bahasa');
+        const scoreP = hasP ? scores.pergerakan : 0;
+        const scoreB = hasB ? scores.bahasa : 0;
+        
+        if (hasP) {
+          subsectionTotalP += scoreP;
+          grandTotalP += scoreP;
+        }
+        if (hasB) {
+          subsectionTotalB += scoreB;
+          grandTotalB += scoreB;
+        }
+        
+        html += `
+      <tr class="item-row">
+        <td>${item.label}. ${item.desc}</td>
+        ${createCheckboxes(scoreP, hasP)}
+        ${createCheckboxes(scoreB, hasB)}
+      </tr>`;
+      });
+      
+      if (currentSubcategory) {
+        html += `
+      <tr class="subsection-total">
+        <td style="text-align: right; padding-right: 10px;"><strong>Jumlah</strong></td>
+        <td colspan="6" style="text-align: center;"><strong>${subsectionTotalP.toFixed(1)}</strong></td>
+        <td colspan="6" style="text-align: center;"><strong>${subsectionTotalB.toFixed(1)}</strong></td>
+      </tr>`;
+      }
+      
+      const totalBeforePenalty = grandTotalP + grandTotalB;
+      html += `
+      <tr class="penalty-section">
+        <th colspan="13" style="background: #ffcccb; text-align: left; padding: 5px;">Penalti</th>
+      </tr>`;
+      
+      let totalPenalty = 0;
+      const penalties = PENALTIES['kawad_kp'] || [];
+      penalties.forEach(function(penalty) {
+        const penaltyData = data.items.find(function(i) { return i.code === penalty.code; });
+        const penaltyScore = penaltyData ? (parseFloat(penaltyData.score) || 0) : 0;
+        totalPenalty += penaltyScore;
+        
+        let penaltyHtml = '';
+        for (let i = 0; i < penalty.count; i++) {
+          const isMarked = (penaltyScore === penalty.val * (i + 1));
+          penaltyHtml += '<td class="penalty-cell' + (isMarked ? ' checkbox-marked' : '') + '">' + penalty.val + '</td>';
+        }
+        
+        const emptyColspan = 12 - penalty.count;
+        html += `
+      <tr class="penalty-row">
+        <td>&nbsp;&nbsp;${penalty.label}. ${penalty.desc}</td>
+        <td colspan="${emptyColspan}"></td>
+        ${penaltyHtml}
+      </tr>`;
+      });
+      
+      html += `
+      <tr class="subsection-total">
+        <td style="text-align: right; padding-right: 10px;"><strong>Jumlah</strong></td>
+        <td colspan="12" style="text-align: center;"><strong>${totalPenalty.toFixed(1)}</strong></td>
+      </tr>`;
+      
+      const grandTotal = totalBeforePenalty - totalPenalty;
+      html += `
+      <tr class="grand-total">
+        <td style="text-align: right; padding-right: 10px;"><strong>JUMLAH MARKAH KESELURUHAN (300 markah):</strong></td>
+        <td colspan="12" style="text-align: center;"><strong>${grandTotal.toFixed(1)}</strong></td>
+      </tr>`;
+      
+      html += `
+    </tbody>
+  </table>
+  <div class="footer">
+    <div class="signature-box">
+      <strong>Tandatangan Hakim:</strong><br><br><br>
+      _________________________________<br>
+      ( ${data.judgeName} )<br>
+      Hakim ${data.judgeNumber}
+    </div>
+  </div>
+  <div class="print-buttons no-print">
+    <button class="btn btn-print" onclick="window.print()">🖨️ Print</button>
+    <button class="btn btn-close" onclick="window.close()">✖️ Tutup</button>
+  </div>
+</body>
+</html>`;
+      
+      return html;
+    }
+    
+    function generateKawadPlatunHTML(data) {
+      let html = `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Borang Kawad Platun - ${data.teamCode}</title>
+  <style>
+    @page { size: A4 portrait; margin: 1cm; }
+    @media print { .no-print { display: none; } body { margin: 0; } }
+    body { font-family: Arial, sans-serif; font-size: 9pt; line-height: 1.2; margin: 0; padding: 10px; }
+    .header { text-align: center; margin-bottom: 10px; border-bottom: 3px double #000; padding-bottom: 8px; }
+    .title { font-size: 13pt; font-weight: bold; margin: 2px 0; }
+    .subtitle { font-size: 8pt; margin: 2px 0; }
+    .info-section { margin: 8px 0; padding: 6px; background: #f9f9f9; border: 1px solid #ccc; font-size: 9pt; }
+    .info-line { margin: 2px 0; }
+    table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 8pt; }
+    th, td { border: 1px solid #000; padding: 3px 4px; text-align: left; }
+    th { background: #d0d0d0; font-weight: bold; text-align: center; font-size: 8pt; }
+    .subcategory-title { background: #e0e0e0; font-weight: bold; font-size: 8pt; padding-left: 12px !important; }
+    .item-row td:first-child { padding-left: 20px !important; font-size: 8pt; }
+    .checkbox-cell { text-align: center; padding: 2px !important; width: 18px; font-size: 7pt; }
+    .checkbox-marked { font-weight: bold; background: #d0d0d0; }
+    .subsection-total { background: #fff8dc; font-weight: bold; border-top: 2px solid #000 !important; }
+    .grand-total { background: #ffd700; font-weight: bold; font-size: 10pt; border-top: 3px double #000 !important; }
+    .penalty-section { background: #ffcccb; }
+    .penalty-row { background: #fff5f5; }
+    .penalty-cell { text-align: center; width: 18px; font-size: 7pt; padding: 2px !important; }
+    .footer { margin-top: 15px; page-break-inside: avoid; }
+    .signature-box { border: 1px solid #000; padding: 8px; min-height: 50px; margin-top: 8px; }
+    .print-buttons { text-align: center; margin: 12px 0; }
+    .btn { padding: 8px 16px; font-size: 12px; margin: 0 6px; cursor: pointer; border: none; border-radius: 4px; }
+    .btn-print { background: #4CAF50; color: white; }
+    .btn-close { background: #f44336; color: white; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="title">BORANG MARKAH KAWAD ASAS PLATUN</div>
+    <div class="subtitle">PERTANDINGAN KAWAD KAKI</div>
+    <div class="subtitle">PASUKAN BADAN BERUNIFORM</div>
+    <div class="subtitle">SEKOLAH-SEKOLAH RENDAH MALAYSIA</div>
+    <div class="subtitle">KEMENTERIAN PENDIDIKAN MALAYSIA</div>
+  </div>
+  <div class="info-section">
+    <div class="info-line"><strong>PASUKAN:</strong> ${data.teamCode} - ${data.teamName}</div>
+    <div class="info-line"><strong>HAKIM:</strong> ${data.judgeNumber} - ${data.judgeName}</div>
+    <div class="info-line"><strong>TARIKH:</strong> ${data.timestamp}</div>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 50%;">PERKARA / PERGERAKAN</th>
+        <th colspan="6" style="background: #d0d0d0;">MARKAH DIPEROLEHI</th>
+      </tr>
+    </thead>
+    <tbody>`;
+      
+      let currentSubcategory = '';
+      let subsectionTotal = 0;
+      let grandTotal = 0;
+      
+      const scoresMap = {};
+      data.items.forEach(function(item) {
+        scoresMap[item.code] = parseFloat(item.score) || 0;
+      });
+      
+      KAWAD_PLATUN_ITEMS.forEach(function(item, index) {
+        if (item.subcategory !== currentSubcategory) {
+          if (currentSubcategory) {
+            html += `
+      <tr class="subsection-total">
+        <td style="text-align: right; padding-right: 10px;"><strong>Jumlah</strong></td>
+        <td colspan="6" style="text-align: center;"><strong>${subsectionTotal.toFixed(1)}</strong></td>
+      </tr>`;
+            subsectionTotal = 0;
+          }
+          
+          html += `
+      <tr class="subcategory-title">
+        <td colspan="7">${item.subcategory}</td>
+      </tr>`;
+          currentSubcategory = item.subcategory;
+        }
+        
+        const score = scoresMap[item.code] || 0;
+        subsectionTotal += score;
+        grandTotal += score;
+        
+        const roundedScore = Math.round(score);
+        let checkboxes = '';
+        for (let i = 0; i <= 5; i++) {
+          const isMarked = (roundedScore === i);
+          checkboxes += '<td class="checkbox-cell' + (isMarked ? ' checkbox-marked' : '') + '">' + 
+                       (isMarked ? '✓' : i) + '</td>';
+        }
+        
+        html += `
+      <tr class="item-row">
+        <td>${item.label}. ${item.desc}</td>
+        ${checkboxes}
+      </tr>`;
+      });
+      
+      if (currentSubcategory) {
+        html += `
+      <tr class="subsection-total">
+        <td style="text-align: right; padding-right: 10px;"><strong>Jumlah</strong></td>
+        <td colspan="6" style="text-align: center;"><strong>${subsectionTotal.toFixed(1)}</strong></td>
+      </tr>`;
+      }
+      
+      const totalBeforePenalty = grandTotal;
+      html += `
+      <tr class="penalty-section">
+        <th colspan="7" style="background: #ffcccb; text-align: left; padding: 5px;">Penalti</th>
+      </tr>`;
+      
+      let totalPenalty = 0;
+      const penalties = PENALTIES['kawad_platun'] || [];
+      penalties.forEach(function(penalty) {
+        const penaltyData = data.items.find(function(i) { return i.code === penalty.code; });
+        const penaltyScore = penaltyData ? (parseFloat(penaltyData.score) || 0) : 0;
+        totalPenalty += penaltyScore;
+        
+        let penaltyHtml = '';
+        for (let i = 0; i < penalty.count; i++) {
+          const isMarked = (penaltyScore === penalty.val * (i + 1));
+          penaltyHtml += '<td class="penalty-cell' + (isMarked ? ' checkbox-marked' : '') + '">' + penalty.val + '</td>';
+        }
+        
+        const emptyColspan = 6 - penalty.count;
+        html += `
+      <tr class="penalty-row">
+        <td>&nbsp;&nbsp;${penalty.label}. ${penalty.desc}</td>
+        <td colspan="${emptyColspan}"></td>
+        ${penaltyHtml}
+      </tr>`;
+      });
+      
+      html += `
+      <tr class="subsection-total">
+        <td style="text-align: right; padding-right: 10px;"><strong>Jumlah</strong></td>
+        <td colspan="6" style="text-align: center;"><strong>${totalPenalty.toFixed(1)}</strong></td>
+      </tr>`;
+      
+      const finalTotal = totalBeforePenalty - totalPenalty;
+      html += `
+      <tr class="grand-total">
+        <td style="text-align: right; padding-right: 10px;"><strong>JUMLAH MARKAH KESELURUHAN (200 markah):</strong></td>
+        <td colspan="6" style="text-align: center;"><strong>${finalTotal.toFixed(1)}</strong></td>
+      </tr>`;
+      
+      html += `
+    </tbody>
+  </table>
+  <div class="footer">
+    <div class="signature-box">
+      <strong>Tandatangan Hakim:</strong><br><br><br>
+      _________________________________<br>
+      ( ${data.judgeName} )<br>
+      Hakim ${data.judgeNumber}
+    </div>
+  </div>
+  <div class="print-buttons no-print">
+    <button class="btn btn-print" onclick="window.print()">🖨️ Print</button>
+    <button class="btn btn-close" onclick="window.close()">✖️ Tutup</button>
+  </div>
+</body>
+</html>`;
+      
+      return html;
+    }
+    function generateFormasiHTML(data) {
+      const formTitle = 'FORMASI';
+      
+      let html = `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Borang Formasi - ${data.teamCode}</title>
+  <style>
+    @page { size: A4 portrait; margin: 1cm; }
+    @media print { .no-print { display: none; } body { margin: 0; } }
+    body { font-family: Arial, sans-serif; font-size: 9pt; line-height: 1.2; margin: 0; padding: 10px; }
+    .header { text-align: center; margin-bottom: 10px; border-bottom: 3px double #000; padding-bottom: 8px; }
+    .title { font-size: 13pt; font-weight: bold; margin: 2px 0; }
+    .subtitle { font-size: 8pt; margin: 2px 0; }
+    .info-section { margin: 8px 0; padding: 6px; background: #f9f9f9; border: 1px solid #ccc; font-size: 9pt; }
+    .info-line { margin: 2px 0; }
+    table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 8pt; }
+    th, td { border: 1px solid #000; padding: 3px 4px; text-align: left; }
+    th { background: #d0d0d0; font-weight: bold; text-align: center; font-size: 8pt; }
+    .category-sub { background: #e0e0e0; font-weight: bold; font-size: 8pt; padding-left: 12px !important; }
+    .subcategory-title { background: #f0f0f0; font-style: italic; font-size: 8pt; padding-left: 20px !important; }
+    .item-row td:first-child { padding-left: 25px !important; font-size: 8pt; }
+    .checkbox-cell { text-align: center; padding: 2px !important; width: 18px; font-size: 7pt; }
+    .checkbox-marked { font-weight: bold; background: #d0d0d0; }
+    .score-cell-empty { background: #f5f5f5; text-align: center; }
+    .subsection-total { background: #fff8dc; font-weight: bold; border-top: 2px solid #000 !important; }
+    .grand-total { background: #ffd700; font-weight: bold; font-size: 10pt; border-top: 3px double #000 !important; }
+    .penalty-section { background: #ffcccb; }
+    .penalty-row { background: #fff5f5; }
+    .penalty-cell { text-align: center; width: 18px; font-size: 7pt; padding: 2px !important; }
+    .footer { margin-top: 15px; page-break-inside: avoid; }
+    .signature-box { border: 1px solid #000; padding: 8px; min-height: 50px; margin-top: 8px; }
+    .print-buttons { text-align: center; margin: 12px 0; }
+    .btn { padding: 8px 16px; font-size: 12px; margin: 0 6px; cursor: pointer; border: none; border-radius: 4px; }
+    .btn-print { background: #4CAF50; color: white; }
+    .btn-close { background: #f44336; color: white; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="title">BORANG MARKAH KAWAD FORMASI</div>
+    <div class="subtitle">PERTANDINGAN KAWAD KAKI</div>
+    <div class="subtitle">PASUKAN BADAN BERUNIFORM</div>
+    <div class="subtitle">SEKOLAH-SEKOLAH RENDAH</div>
+    <div class="subtitle">KEMENTERIAN PENDIDIKAN MALAYSIA</div>
+  </div>
+  <div class="info-section">
+    <div class="info-line"><strong>PASUKAN:</strong> ${data.teamCode} - ${data.teamName}</div>
+    <div class="info-line"><strong>HAKIM:</strong> ${data.judgeNumber} - ${data.judgeName}</div>
+    <div class="info-line"><strong>TARIKH:</strong> ${data.timestamp}</div>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th rowspan="2" style="width: 35%;">C. PEMARKAHAN FORMASI</th>
+        <th colspan="12" style="background: #d0d0d0;">MARKAH</th>
+      </tr>
+      <tr>
+        <th colspan="6" style="background: #e8e8e8;">FORMASI 1</th>
+        <th colspan="6" style="background: #e8e8e8;">FORMASI 2</th>
+      </tr>
+    </thead>
+    <tbody>`;
+      
+      let currentMainCategory = '';
+      let currentSubcategory = '';
+      let subsectionTotalF1 = 0;
+      let subsectionTotalF2 = 0;
+      let grandTotalF1 = 0;
+      let grandTotalF2 = 0;
+      
+      const scoresMap = {};
+      data.items.forEach(function(item) {
+        scoresMap[item.code] = {
+          formasi1: parseFloat(item.score_f1) || 0,
+          formasi2: parseFloat(item.score_f2) || 0
+        };
+      });
+      
+      function createCheckboxes(score, hasColumn) {
+        if (!hasColumn) {
+          return '<td colspan="6" class="score-cell-empty">-</td>';
+        }
+        let html = '';
+        const roundedScore = Math.round(score);
+        for (let i = 0; i <= 5; i++) {
+          const isMarked = (roundedScore === i);
+          html += '<td class="checkbox-cell' + (isMarked ? ' checkbox-marked' : '') + '">' + 
+                  (isMarked ? '✓' : i) + '</td>';
+        }
+        return html;
+      }
+      
+      FORMASI_ITEMS.forEach(function(item, index) {
+        if (item.maincategory !== currentMainCategory) {
+          if (currentMainCategory && currentSubcategory) {
+            html += `
+      <tr class="subsection-total">
+        <td style="text-align: right; padding-right: 10px;"><strong>Jumlah</strong></td>
+        <td colspan="6" style="text-align: center;"><strong>${subsectionTotalF1.toFixed(1)}</strong></td>
+        <td colspan="6" style="text-align: center;"><strong>${subsectionTotalF2.toFixed(1)}</strong></td>
+      </tr>`;
+            subsectionTotalF1 = 0;
+            subsectionTotalF2 = 0;
+          }
+          
+          html += `
+      <tr class="category-sub">
+        <td colspan="13">${item.maincategory}</td>
+      </tr>`;
+          currentMainCategory = item.maincategory;
+          currentSubcategory = '';
+        }
+        
+        if (item.subcategory !== currentSubcategory) {
+          if (currentSubcategory) {
+            html += `
+      <tr class="subsection-total">
+        <td style="text-align: right; padding-right: 10px;"><strong>Jumlah</strong></td>
+        <td colspan="6" style="text-align: center;"><strong>${subsectionTotalF1.toFixed(1)}</strong></td>
+        <td colspan="6" style="text-align: center;"><strong>${subsectionTotalF2.toFixed(1)}</strong></td>
+      </tr>`;
+            subsectionTotalF1 = 0;
+            subsectionTotalF2 = 0;
+          }
+          
+          html += `
+      <tr class="subcategory-title">
+        <td colspan="13" style="padding-left: 20px;"><em>${item.subcategory}</em></td>
+      </tr>`;
+          currentSubcategory = item.subcategory;
+        }
+        
+        const scores = scoresMap[item.code] || {formasi1: 0, formasi2: 0};
+        const hasF1 = item.formasi_cols.includes(1);
+        const hasF2 = item.formasi_cols.includes(2);
+        const scoreF1 = hasF1 ? scores.formasi1 : 0;
+        const scoreF2 = hasF2 ? scores.formasi2 : 0;
+        
+        if (hasF1) {
+          subsectionTotalF1 += scoreF1;
+          grandTotalF1 += scoreF1;
+        }
+        if (hasF2) {
+          subsectionTotalF2 += scoreF2;
+          grandTotalF2 += scoreF2;
+        }
+        
+        html += `
+      <tr class="item-row">
+        <td>${item.label}. ${item.desc}</td>
+        ${createCheckboxes(scoreF1, hasF1)}
+        ${createCheckboxes(scoreF2, hasF2)}
+      </tr>`;
+      });
+      
+      if (currentSubcategory) {
+        html += `
+      <tr class="subsection-total">
+        <td style="text-align: right; padding-right: 10px;"><strong>Jumlah</strong></td>
+        <td colspan="6" style="text-align: center;"><strong>${subsectionTotalF1.toFixed(1)}</strong></td>
+        <td colspan="6" style="text-align: center;"><strong>${subsectionTotalF2.toFixed(1)}</strong></td>
+      </tr>`;
+      }
+      
+      const totalBeforePenalty = grandTotalF1 + grandTotalF2;
+      html += `
+      <tr class="penalty-section">
+        <th colspan="13" style="background: #ffcccb; text-align: left; padding: 5px;">4. Penalti</th>
+      </tr>`;
+      
+      let totalPenalty = 0;
+      const penalties = PENALTIES['formasi'] || [];
+      penalties.forEach(function(penalty) {
+        const penaltyData = data.items.find(function(i) { return i.code === penalty.code; });
+        const penaltyScore = penaltyData ? (parseFloat(penaltyData.score) || 0) : 0;
+        totalPenalty += penaltyScore;
+        
+        let penaltyHtml = '';
+        for (let i = 0; i < penalty.count; i++) {
+          const isMarked = (penaltyScore === penalty.val * (i + 1));
+          penaltyHtml += '<td class="penalty-cell' + (isMarked ? ' checkbox-marked' : '') + '">' + penalty.val + '</td>';
+        }
+        
+        const emptyColspan = 12 - penalty.count;
+        html += `
+      <tr class="penalty-row">
+        <td>&nbsp;&nbsp;${penalty.label}. ${penalty.desc}</td>
+        <td colspan="${emptyColspan}"></td>
+        ${penaltyHtml}
+      </tr>`;
+      });
+      
+      html += `
+      <tr class="subsection-total">
+        <td style="text-align: right; padding-right: 10px;"><strong>Jumlah</strong></td>
+        <td colspan="12" style="text-align: center;"><strong>${totalPenalty.toFixed(1)}</strong></td>
+      </tr>`;
+      
+      const grandTotal = totalBeforePenalty - totalPenalty;
+      html += `
+      <tr class="grand-total">
+        <td style="text-align: right; padding-right: 10px;"><strong>JUMLAH MARKAH KESELURUHAN (90 markah):</strong></td>
+        <td colspan="12" style="text-align: center;"><strong>${grandTotal.toFixed(1)}</strong></td>
+      </tr>`;
+      
+      html += `
+    </tbody>
+  </table>
+  <div class="footer">
+    <div class="signature-box">
+      <strong>Tandatangan Hakim:</strong><br><br><br>
+      _________________________________<br>
+      ( ${data.judgeName} )<br>
+      Hakim ${data.judgeNumber}
+    </div>
+  </div>
+  <div class="print-buttons no-print">
+    <button class="btn btn-print" onclick="window.print()">🖨️ Print</button>
+    <button class="btn btn-close" onclick="window.close()">✖️ Tutup</button>
+  </div>
+</body>
+</html>`;
+      
+      return html;
+    }
+    function generateBaseHTML(data, formTitle) {
+      // Generic template - use Pakaian structure for now
+      return generatePakaianHTML(data);
+    }
+    
+    function printBorang(entryId) {
+      console.log('Printing borang:', entryId);
+      
+      google.script.run
+        .withSuccessHandler(function(result) {
+          if (!result || !result.success) {
+            alert('❌ ' + (result ? result.message : 'Ralat tidak diketahui'));
+            return;
+          }
+          
+          generateAndPrintHTML(result.data);
+        })
+        .withFailureHandler(function(error) {
+          alert('❌ Ralat: ' + error.message);
+        })
+        .getBorangDataForPrint(entryId);
+    }
+    
+    function generateAndPrintHTML(data) {
+      console.log('Generating HTML for:', data);
+      
+      // Create HTML based on form type
+      let html = '';
+      
+      if (data.formType === 'PAKAIAN_KP' || data.formType === 'PAKAIAN_PLATUN') {
+        html = generatePakaianHTML(data);
+      } else if (data.formType === 'KAWAD_KP') {
+        html = generateKawadKPHTML(data);
+      } else if (data.formType === 'KAWAD_PLATUN') {
+        html = generateKawadPlatunHTML(data);
+      } else if (data.formType === 'FORMASI') {
+        html = generateFormasiHTML(data);
+      }
+      
+      // Open in new window and print
+      const printWindow = window.open('', '_blank', 'width=800,height=600');
+      printWindow.document.write(html);
+      printWindow.document.close();
+      
+      printWindow.onload = function() {
+        printWindow.focus();
+        printWindow.print();
+      };
+    }
+    
+    function generatePakaianHTML(data) {
+      const formTitle = data.formType === 'PAKAIAN_KP' ? 'PAKAIAN KETUA PLATUN' : 'PAKAIAN PLATUN';
+      const itemsArray = data.formType === 'PAKAIAN_KP' ? PAKAIAN_KP_ITEMS : PAKAIAN_PLATUN_ITEMS;
+      const notaArray = data.formType === 'PAKAIAN_KP' ? PAKAIAN_KP_NOTA : PAKAIAN_PLATUN_NOTA;
+      
+      let html = `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Borang ${formTitle} - ${data.teamCode}</title>
+  <style>
+    @page { size: A4 portrait; margin: 1.5cm 1cm; }
+    @media print { .no-print { display: none; } body { margin: 0; } }
+    
+    body {
+      font-family: Arial, sans-serif;
+      font-size: 10pt;
+      line-height: 1.3;
+      margin: 0;
+      padding: 15px;
+    }
+    
+    .header {
+      text-align: center;
+      margin-bottom: 15px;
+      border-bottom: 3px double #000;
+      padding-bottom: 10px;
+    }
+    
+    .title { font-size: 14pt; font-weight: bold; margin: 3px 0; }
+    .subtitle { font-size: 9pt; margin: 2px 0; }
+    
+    .info-section {
+      margin: 10px 0;
+      padding: 8px;
+      background: #f9f9f9;
+      border: 1px solid #ccc;
+      font-size: 10pt;
+    }
+    
+    .info-line { margin: 3px 0; }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0;
+      font-size: 10pt;
+    }
+    
+    th, td {
+      border: 1px solid #000;
+      padding: 6px 8px;
+      text-align: left;
+    }
+    
+    th {
+      background: #d0d0d0;
+      font-weight: bold;
+      text-align: center;
+      font-size: 11pt;
+    }
+    
+    .section-main {
+      background: #b8b8b8;
+      font-weight: bold;
+      font-size: 11pt;
+      padding: 8px !important;
+    }
+    
+    .section-sub {
+      background: #e0e0e0;
+      font-weight: bold;
+      font-size: 10pt;
+      padding-left: 20px !important;
+    }
+    
+    .item-row td:first-child {
+      padding-left: 40px !important;
+      font-size: 9pt;
+    }
+    
+    .item-row .score-cell {
+      text-align: center;
+      font-weight: bold;
+      font-size: 11pt;
+    }
+    
+    .subsection-total {
+      background: #fff8dc;
+      font-weight: bold;
+      border-top: 2px solid #000 !important;
+    }
+    
+    .grand-total {
+      background: #ffd700;
+      font-weight: bold;
+      font-size: 12pt;
+      border-top: 3px double #000 !important;
+    }
+    
+    .nota-section {
+      margin: 15px 0;
+      padding: 10px;
+      background: #fffacd;
+      border: 1px solid #daa520;
+      font-size: 9pt;
+    }
+    
+    .footer {
+      margin-top: 20px;
+      page-break-inside: avoid;
+    }
+    
+    .signature-box {
+      border: 1px solid #000;
+      padding: 10px;
+      min-height: 60px;
+      margin-top: 10px;
+    }
+    
+    .print-buttons {
+      text-align: center;
+      margin: 15px 0;
+    }
+    
+    .btn {
+      padding: 10px 20px;
+      font-size: 13px;
+      margin: 0 8px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+    }
+    
+    .btn-print { background: #4CAF50; color: white; }
+    .btn-close { background: #f44336; color: white; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="title">BORANG MARKAH ${formTitle}</div>
+    <div class="subtitle">PERTANDINGAN KAWAD KAKI</div>
+    <div class="subtitle">PASUKAN BADAN BERUNIFORM</div>
+    <div class="subtitle">SEKOLAH-SEKOLAH RENDAH</div>
+    <div class="subtitle">KEMENTERIAN PENDIDIKAN MALAYSIA</div>
+  </div>
+  
+  <div class="info-section">
+    <div class="info-line"><strong>PASUKAN:</strong> ${data.teamCode} - ${data.teamName}</div>
+    <div class="info-line"><strong>HAKIM:</strong> ${data.judgeNumber} - ${data.judgeName}</div>
+    <div class="info-line"><strong>TARIKH:</strong> ${data.timestamp}</div>
+  </div>
+  
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 70%;">ITEM / PERKARA</th>
+        <th style="width: 30%;">MARKAH</th>
+      </tr>
+    </thead>
+    <tbody>`;
+      
+      // Build hierarchical structure
+      let currentCategory = '';
+      let currentSubcategory = '';
+      let subsectionItems = [];
+      let subsectionTotal = 0;
+      
+      // Create scores map
+      const scoresMap = {};
+      data.items.forEach(function(item) {
+        scoresMap[item.code] = item.score || 0;
+      });
+      
+      itemsArray.forEach(function(item, index) {
+        // Check if category changed
+        if (item.category !== currentCategory) {
+          // Print previous subsection total if exists
+          if (subsectionItems.length > 0) {
+            html += `
+      <tr class="subsection-total">
+        <td style="text-align: right; padding-right: 20px;"><strong>Jumlah:</strong></td>
+        <td class="score-cell"><strong>${subsectionTotal.toFixed(1)}</strong></td>
+      </tr>`;
+            subsectionItems = [];
+            subsectionTotal = 0;
+          }
+          
+          // Print new category
+          html += `
+      <tr class="section-main">
+        <td colspan="2">${item.category}</td>
+      </tr>`;
+          currentCategory = item.category;
+          currentSubcategory = '';
+        }
+        
+        // Check if subcategory changed
+        if (item.subcategory !== currentSubcategory) {
+          // Print previous subsection total if exists
+          if (subsectionItems.length > 0) {
+            html += `
+      <tr class="subsection-total">
+        <td style="text-align: right; padding-right: 20px;"><strong>Jumlah:</strong></td>
+        <td class="score-cell"><strong>${subsectionTotal.toFixed(1)}</strong></td>
+      </tr>`;
+            subsectionItems = [];
+            subsectionTotal = 0;
+          }
+          
+          // Print new subcategory
+          html += `
+      <tr class="section-sub">
+        <td colspan="2">&nbsp;&nbsp;${item.subcategory}</td>
+      </tr>`;
+          currentSubcategory = item.subcategory;
+        }
+        
+        // Print item
+        const score = scoresMap[item.code] || 0;
+        subsectionTotal += score;
+        subsectionItems.push(item);
+        
+        html += `
+      <tr class="item-row">
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;${item.label}. ${item.desc}</td>
+        <td class="score-cell">${score.toFixed(1)}</td>
+      </tr>`;
+      });
+      
+      // Print final subsection total
+      if (subsectionItems.length > 0) {
+        html += `
+      <tr class="subsection-total">
+        <td style="text-align: right; padding-right: 20px;"><strong>Jumlah:</strong></td>
+        <td class="score-cell"><strong>${subsectionTotal.toFixed(1)}</strong></td>
+      </tr>`;
+      }
+      
+      // Grand total
+      html += `
+      <tr class="grand-total">
+        <td style="text-align: right; padding-right: 20px;"><strong>JUMLAH KESELURUHAN:</strong></td>
+        <td class="score-cell"><strong>${data.totalScore.toFixed(1)}</strong></td>
+      </tr>`;
+      
+      html += `
+    </tbody>
+  </table>`;
+      
+      // Add NOTA section
+      if (notaArray && notaArray.length > 0) {
+        html += `
+  <div class="nota-section">
+    <strong>NOTA:</strong><br>`;
+        notaArray.forEach(function(nota) {
+          html += `${nota}<br>`;
+        });
+        html += `
+  </div>`;
+      }
+      
+      html += `
+  <div class="footer">
+    <div class="signature-box">
+      <strong>Tandatangan Hakim:</strong><br><br><br>
+      _________________________________<br>
+      ( ${data.judgeName} )<br>
+      Hakim ${data.judgeNumber}
+    </div>
+  </div>
+  
+  <div class="print-buttons no-print">
+    <button class="btn btn-print" onclick="window.print()">🖨️ Print</button>
+    <button class="btn btn-close" onclick="window.close()">✖️ Tutup</button>
+  </div>
+</body>
+</html>`;
+      
+      return html;
+    }
+    function populatePrintFilters() {
+      console.log('Populating print filter dropdowns...');
+      
+      // Detect active view
+      const isAdmin = !document.getElementById('adminView').classList.contains('hidden');
+      const prefix = isAdmin ? 'admin' : 'statistik';
+      
+      // Populate Pasukan dropdown
+      google.script.run
+        .withSuccessHandler(function(teams) {
+          const select = document.getElementById(prefix + '_filterPasukan');
+          if (!select) return;
+          
+          select.innerHTML = '<option value="">-- Semua Pasukan --</option>';
+          teams.forEach(function(team) {
+            select.innerHTML += '<option value="' + team.team_code + '">' + team.team_code + ' - ' + team.team_name + '</option>';
+          });
+        })
+        .getAllTeams();
+      
+      // Populate Hakim dropdown
+      google.script.run
+        .withSuccessHandler(function(judges) {
+          const select = document.getElementById(prefix + '_filterHakim');
+          if (!select) return;
+          
+          select.innerHTML = '<option value="">-- Semua Hakim --</option>';
+          judges.forEach(function(judge) {
+            select.innerHTML += '<option value="' + judge.judge_id + '">' + judge.judge_number + ' - ' + judge.full_name + '</option>';
+          });
+        })
+        .getAllJudges();
+    }
+    
+    // ============================================
+    // PRINT BORANG - LOAD WITH FILTERS
+    // ============================================
+    function loadPrintEntriesWithFilter() {
+      console.log('Loading print entries with filters...');
+      
+      // Detect active view
+      const isAdmin = !document.getElementById('adminView').classList.contains('hidden');
+      const prefix = isAdmin ? 'admin' : 'statistik';
+      
+      // Get filter values
+      const teamFilter = document.getElementById(prefix + '_filterPasukan').value;
+      const formFilter = document.getElementById(prefix + '_filterBorang').value;
+      const judgeFilter = document.getElementById(prefix + '_filterHakim').value;
+      
+      console.log('Filters:', {team: teamFilter, form: formFilter, judge: judgeFilter});
+      
+      const container = document.getElementById(prefix + '_printEntriesContainer');
+      const listDiv = document.getElementById(prefix + '_printEntriesList');
+      
+      if (!container || !listDiv) {
+        console.error('Print containers not found');
+        return;
+      }
+      
+      listDiv.innerHTML = '<p style="color: #999;">⏳ Memuat senarai borang...</p>';
+      container.style.display = 'block';
+      
+      google.script.run
+        .withSuccessHandler(function(result) {
+          if (!result || !result.success) {
+            listDiv.innerHTML = '<p style="color: red;">❌ ' + (result ? result.message : 'Ralat tidak diketahui') + '</p>';
+            return;
+          }
+          
+          displayPrintEntries(result.entries, prefix);
+        })
+        .withFailureHandler(function(error) {
+          listDiv.innerHTML = '<p style="color: red;">❌ Ralat: ' + error.message + '</p>';
+        })
+        .listEntriesForPrintFiltered(currentSession.role, currentSession.user_id, teamFilter, formFilter, judgeFilter);
+    }
+    function loadPrintEntries() {
+      console.log('Loading print entries...');
+      
+      const container = document.getElementById('printEntriesContainer');
+      const listDiv = document.getElementById('printEntriesList');
+      
+      listDiv.innerHTML = '<p style="color: #999;">⏳ Memuat senarai borang...</p>';
+      container.style.display = 'block';
+      
+      google.script.run
+        .withSuccessHandler(function(result) {
+          if (!result || !result.success) {
+            listDiv.innerHTML = '<p style="color: red;">❌ ' + (result ? result.message : 'Ralat tidak diketahui') + '</p>';
+            return;
+          }
+          
+          displayPrintEntries(result.entries);
+        })
+        .withFailureHandler(function(error) {
+          listDiv.innerHTML = '<p style="color: red;">❌ Ralat: ' + error.message + '</p>';
+        })
+        .listEntriesForPrint(currentSession.role, currentSession.user_id);
+    }
+    
+    function displayPrintEntries(entries, prefix) {
+      // Default to 'print' if no prefix provided (for backward compatibility)
+      prefix = prefix || 'print';
+      
+      // Add underscore if prefix is admin or statistik
+      const idPrefix = (prefix === 'admin' || prefix === 'statistik') ? prefix + '_print' : prefix;
+      const listDiv = document.getElementById(idPrefix + 'EntriesList');
+      
+      if (!listDiv) {
+        console.error('List div not found:', idPrefix + 'EntriesList');
+        return;
+      }
+      
+      if (!entries || entries.length === 0) {
+        listDiv.innerHTML = '<p style="color: #999;">📭 Tiada borang untuk dicetak.</p>';
+        return;
+      }
+      
+      let html = '<table style="width: 100%; border-collapse: collapse; font-size: 13px;">';
+      html += '<thead>';
+      html += '<tr style="background: #f0f0f0; border-bottom: 2px solid #ddd;">';
+      html += '<th style="padding: 8px 10px; text-align: left; white-space: nowrap; width: 140px;">Masa</th>';
+      html += '<th style="padding: 8px 10px; text-align: left; white-space: nowrap; width: 80px;">Pasukan</th>';
+      html += '<th style="padding: 8px 10px; text-align: left; width: auto;">Borang</th>';
+      html += '<th style="padding: 8px 10px; text-align: left; white-space: nowrap; width: 80px;">Hakim</th>';
+      html += '<th style="padding: 8px 10px; text-align: left; font-size: 11px; width: 180px;">Keyed By</th>';
+      html += '<th style="padding: 8px 10px; text-align: center; white-space: nowrap; width: 100px;">Action</th>';
+      html += '</tr>';
+      html += '</thead>';
+      html += '<tbody>';
+      
+      entries.forEach(function(entry) {
+        const formName = getFormDisplayName(entry.formType);
+        
+        html += '<tr style="border-bottom: 1px solid #eee;">';
+        html += '<td style="padding: 8px 10px; white-space: nowrap;">' + entry.timestamp + '</td>';
+        html += '<td style="padding: 8px 10px;"><strong>' + entry.teamCode + '</strong></td>';
+        html += '<td style="padding: 8px 10px;">' + formName + '</td>';
+        html += '<td style="padding: 8px 10px; white-space: nowrap;">' + entry.judgeNumber + '</td>';
+        html += '<td style="padding: 8px 10px; font-size: 11px; color: #666;">' + entry.keyedBy + '</td>';
+        html += '<td style="padding: 8px 10px; text-align: center;">';
+        html += '<button onclick="printBorang(\'' + entry.entryId + '\')" class="btn-primary" style="padding: 6px 12px; font-size: 12px; white-space: nowrap;">🖨️ Print</button>';
+        html += '</td>';
+        html += '</tr>';
+      });
+      
+      html += '</tbody>';
+      html += '</table>';
+      
+      listDiv.innerHTML = html;
+    }
+    
+    function getFormDisplayName(formType) {
+      const names = {
+        'PAKAIAN_KP': 'Pakaian Ketua Platun',
+        'PAKAIAN_PLATUN': 'Pakaian Platun',
+        'KAWAD_KP': 'Kawad Ketua Platun',
+        'KAWAD_PLATUN': 'Kawad Platun',
+        'FORMASI': 'Formasi'
+      };
+      return names[formType] || formType;
     }
   </script>
   
