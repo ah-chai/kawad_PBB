@@ -1853,22 +1853,25 @@ function addUser(userData) {
 // ============================================
 // GET SUBMISSION HISTORY - SIMPLE VERSION (NO DATE FILTER)
 // ============================================
-function getSubmissionHistory(userId) {
+
+// ============================================
+// PRINT BORANG - GET ENTRY DATA FOR PRINTING
+// ============================================
+function getBorangDataForPrint(entryId) {
   try {
-    Logger.log('=== GET SUBMISSION HISTORY (SIMPLE) ===');
-    Logger.log('User ID: ' + userId);
+    Logger.log('=== GET BORANG DATA FOR PRINT ===');
+    Logger.log('Entry ID: ' + entryId);
     
-    if (!userId) {
+    if (!entryId) {
       return {
         success: false,
-        message: 'User ID diperlukan',
-        submissions: [],
-        total_count: 0
+        message: 'Entry ID diperlukan'
       };
     }
     
     const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
-    const submissions = [];
+    
+    // Search all SCORES sheets to find this entry
     const sheetNames = [
       'SCORES_PAKAIAN_KP',
       'SCORES_PAKAIAN_PLATUN', 
@@ -1877,103 +1880,235 @@ function getSubmissionHistory(userId) {
       'SCORES_FORMASI'
     ];
     
-    // Get JUDGES sheet for judge_number lookup
-    const judgesSheet = ss.getSheetByName('JUDGES');
-    if (!judgesSheet) {
-      return {
-        success: false,
-        message: 'JUDGES sheet not found',
-        submissions: [],
-        total_count: 0
-      };
-    }
+    let foundData = null;
+    let formType = '';
     
-    const judgesData = judgesSheet.getDataRange().getValues();
-    const judgeMap = {};
-    for (let j = 1; j < judgesData.length; j++) {
-      judgeMap[judgesData[j][0]] = judgesData[j][2];
-    }
-    
-    // Process each sheet
-    sheetNames.forEach(function(sheetName) {
-      try {
-        const sheet = ss.getSheetByName(sheetName);
-        if (!sheet) return;
-        
-        const data = sheet.getDataRange().getValues();
-        
-        // Determine keyed_by_user column position
-        let keyedByColumn = 7;
-        if (sheetName === 'SCORES_KAWAD_KP') keyedByColumn = 9;
-        else if (sheetName === 'SCORES_KAWAD_PLATUN') keyedByColumn = 8;
-        else if (sheetName === 'SCORES_FORMASI') keyedByColumn = 11;
-        
-        // Process rows
-        for (let i = 1; i < data.length; i++) {
-          try {
-            if (!data[i] || data[i].length < keyedByColumn + 1) continue;
-            
-            const keyedBy = data[i][keyedByColumn];
-            
-            // Only get this user's submissions
-            if (keyedBy === userId) {
-              const timestamp = new Date(data[i][1]);
-              if (isNaN(timestamp.getTime())) continue;
-              
-              const judgeId = data[i][3];
-              const judgeNumber = judgeMap[judgeId] || 'N/A';
-              
-              submissions.push({
-                time: timestamp,
-                team_code: data[i][2],
-                form_type: sheetName.replace('SCORES_', ''),
-                judge_number: judgeNumber,
-                user_id: keyedBy,
-                entry_id: data[i][0]
-              });
+    // Find the entry
+    for (let i = 0; i < sheetNames.length; i++) {
+      const sheetName = sheetNames[i];
+      const sheet = ss.getSheetByName(sheetName);
+      
+      if (!sheet) continue;
+      
+      const data = sheet.getDataRange().getValues();
+      
+      // Check if entry exists in this sheet
+      for (let row = 1; row < data.length; row++) {
+        if (data[row][0] === entryId) { // Column A = entry_id
+          // Found the entry! Now get all related data
+          formType = sheetName.replace('SCORES_', '');
+          
+          const teamCode = data[row][2]; // Column C
+          const judgeId = data[row][3];  // Column D
+          const timestamp = data[row][1]; // Column B
+          
+          // Determine keyed_by column based on form type
+          let keyedByColumn = 7;
+          if (sheetName === 'SCORES_KAWAD_KP') keyedByColumn = 9;
+          else if (sheetName === 'SCORES_KAWAD_PLATUN') keyedByColumn = 8;
+          else if (sheetName === 'SCORES_FORMASI') keyedByColumn = 11;
+          
+          const keyedBy = data[row][keyedByColumn];
+          
+          // Get judge info
+          const judgesSheet = ss.getSheetByName('JUDGES');
+          const judgesData = judgesSheet.getDataRange().getValues();
+          let judgeNumber = 'N/A';
+          let judgeName = 'N/A';
+          
+          for (let j = 1; j < judgesData.length; j++) {
+            if (judgesData[j][0] === judgeId) {
+              judgeNumber = judgesData[j][2]; // Column C = judge_number
+              judgeName = judgesData[j][1];   // Column B = full_name
+              break;
             }
-          } catch (rowError) {
-            Logger.log('Row error: ' + rowError.toString());
           }
+          
+          // Get team info
+          const teamsSheet = ss.getSheetByName('TEAMS');
+          const teamsData = teamsSheet.getDataRange().getValues();
+          let teamName = teamCode;
+          
+          for (let t = 1; t < teamsData.length; t++) {
+            if (teamsData[t][1] === teamCode) { // Column B = team_code
+              teamName = teamsData[t][2]; // Column C = team_name
+              break;
+            }
+          }
+          
+          // Now collect all rows with this entry_id
+          const items = [];
+          let totalScore = 0;
+          
+          for (let r = 1; r < data.length; r++) {
+            if (data[r][0] === entryId) {
+              
+              // Structure depends on form type
+              if (formType === 'PAKAIAN_KP' || formType === 'PAKAIAN_PLATUN') {
+                // Columns: A=entry_id, B=timestamp, C=team_code, D=judge_id, E=item_code, F=score_pergerakan, G=score_bahasa, H=penalty_code, I=penalty_value, J=keyed_by
+                const itemCode = data[r][4];
+                const penaltyCode = data[r][6];
+                
+                if (itemCode) {
+                  items.push({
+                    code: itemCode,
+                    score: data[r][5] || 0
+                  });
+                  totalScore += (data[r][5] || 0);
+                }
+                
+                if (penaltyCode) {
+                  items.push({
+                    code: penaltyCode,
+                    score: data[r][7] || 0,
+                    isPenalty: true
+                  });
+                  totalScore += (data[r][7] || 0);
+                }
+                
+              } else if (formType === 'KAWAD_KP') {
+                // Columns: E=item_code, F=score_pergerakan, G=score_bahasa, H=penalty_code, I=penalty_value
+                const itemCode = data[r][4];
+                const penaltyCode = data[r][7];
+                
+                if (itemCode) {
+                  items.push({
+                    code: itemCode,
+                    score_pergerakan: data[r][5] || 0,
+                    score_bahasa: data[r][6] || 0
+                  });
+                  totalScore += (data[r][5] || 0) + (data[r][6] || 0);
+                }
+                
+                if (penaltyCode) {
+                  items.push({
+                    code: penaltyCode,
+                    score: data[r][8] || 0,
+                    isPenalty: true
+                  });
+                  totalScore += (data[r][8] || 0);
+                }
+                
+              } else if (formType === 'KAWAD_PLATUN') {
+                // Columns: E=item_code, F=score, G=penalty_code, H=penalty_value
+                const itemCode = data[r][4];
+                const penaltyCode = data[r][6];
+                
+                if (itemCode) {
+                  items.push({
+                    code: itemCode,
+                    score: data[r][5] || 0
+                  });
+                  totalScore += (data[r][5] || 0);
+                }
+                
+                if (penaltyCode) {
+                  items.push({
+                    code: penaltyCode,
+                    score: data[r][7] || 0,
+                    isPenalty: true
+                  });
+                  totalScore += (data[r][7] || 0);
+                }
+                
+              } else if (formType === 'FORMASI') {
+                // Columns: E=item_code, F-I=scores for formasi 1-4, J=penalty_code, K=penalty_value
+                const itemCode = data[r][4];
+                const penaltyCode = data[r][9];
+                
+                if (itemCode) {
+                  items.push({
+                    code: itemCode,
+                    score_f1: data[r][5] || 0,
+                    score_f2: data[r][6] || 0,
+                    score_f3: data[r][7] || 0,
+                    score_f4: data[r][8] || 0
+                  });
+                  totalScore += (data[r][5] || 0) + (data[r][6] || 0) + (data[r][7] || 0) + (data[r][8] || 0);
+                }
+                
+                if (penaltyCode) {
+                  items.push({
+                    code: penaltyCode,
+                    score: data[r][10] || 0,
+                    isPenalty: true
+                  });
+                  totalScore += (data[r][10] || 0);
+                }
+              }
+            }
+          }
+          
+          // Get max markah from CONFIG_SETTINGS
+          const configSheet = ss.getSheetByName('CONFIG_SETTINGS');
+          let maxMarkah = 0;
+          if (configSheet) {
+            const configData = configSheet.getDataRange().getValues();
+            for (let c = 1; c < configData.length; c++) {
+              const key = configData[c][0];
+              const value = configData[c][1];
+              
+              if (formType === 'KAWAD_KP' && key === 'max_markah_kawad_kp') {
+                maxMarkah = value;
+              } else if (formType === 'KAWAD_PLATUN' && key === 'max_markah_kawad_platun') {
+                maxMarkah = value;
+              } else if (formType === 'FORMASI' && key === 'max_markah_formasi') {
+                maxMarkah = value;
+              }
+            }
+          }
+          
+          foundData = {
+            entryId: entryId,
+            formType: formType,
+            teamCode: teamCode,
+            teamName: teamName,
+            judgeId: judgeId,
+            judgeNumber: judgeNumber,
+            judgeName: judgeName,
+            timestamp: Utilities.formatDate(new Date(timestamp), Session.getScriptTimeZone(), 'dd/MM/yyyy HH:mm'),
+            keyedBy: keyedBy,
+            items: items,
+            totalScore: totalScore,
+            maxMarkah: maxMarkah
+          };
+          
+          Logger.log('Found entry data: ' + JSON.stringify(foundData));
+          
+          return {
+            success: true,
+            data: foundData
+          };
         }
-      } catch (sheetError) {
-        Logger.log('Sheet error: ' + sheetError.toString());
       }
-    });
+    }
     
-    // Sort by time (newest first)
-    submissions.sort(function(a, b) {
-      return b.time - a.time;
-    });
-    
-    Logger.log('Found ' + submissions.length + ' submissions');
-    
+    // Not found
     return {
-      success: true,
-      submissions: submissions,
-      total_count: submissions.length
+      success: false,
+      message: 'Entry tidak dijumpai'
     };
     
   } catch (error) {
-    Logger.log('ERROR: ' + error.toString());
+    Logger.log('ERROR in getBorangDataForPrint: ' + error.toString());
     return {
       success: false,
-      message: 'Ralat: ' + error.toString(),
-      submissions: [],
-      total_count: 0
+      message: 'Ralat: ' + error.toString()
     };
   }
 }
 
 // ============================================
-// GET ALL SUBMISSIONS - SIMPLE VERSION (NO DATE FILTER)
+// LIST ALL ENTRIES FOR PRINT SELECTION
 // ============================================
-function getAllSubmissions() {
+function listEntriesForPrint(filterRole, filterUserId) {
   try {
-    Logger.log('=== GET ALL SUBMISSIONS (SIMPLE) ===');
+    Logger.log('=== LIST ENTRIES FOR PRINT ===');
+    Logger.log('Role: ' + filterRole + ', User ID: ' + filterUserId);
     
     const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
-    const submissions = [];
+    const entries = [];
+    
     const sheetNames = [
       'SCORES_PAKAIAN_KP',
       'SCORES_PAKAIAN_PLATUN', 
@@ -1982,84 +2117,240 @@ function getAllSubmissions() {
       'SCORES_FORMASI'
     ];
     
-    // Get JUDGES sheet
+    // Get judges info for display
     const judgesSheet = ss.getSheetByName('JUDGES');
-    if (!judgesSheet) {
-      return {
-        success: false,
-        message: 'JUDGES sheet not found',
-        submissions: [],
-        total_count: 0
-      };
-    }
-    
     const judgesData = judgesSheet.getDataRange().getValues();
     const judgeMap = {};
     for (let j = 1; j < judgesData.length; j++) {
-      judgeMap[judgesData[j][0]] = judgesData[j][2];
+      judgeMap[judgesData[j][0]] = judgesData[j][2]; // judge_id → judge_number
     }
     
-    // Process each sheet
+    // Scan all sheets
     sheetNames.forEach(function(sheetName) {
-      try {
-        const sheet = ss.getSheetByName(sheetName);
-        if (!sheet) return;
+      const sheet = ss.getSheetByName(sheetName);
+      if (!sheet) return;
+      
+      const data = sheet.getDataRange().getValues();
+      const formType = sheetName.replace('SCORES_', '');
+      
+      // Determine keyed_by column
+      let keyedByColumn = 7;
+      if (sheetName === 'SCORES_KAWAD_KP') keyedByColumn = 9;
+      else if (sheetName === 'SCORES_KAWAD_PLATUN') keyedByColumn = 8;
+      else if (sheetName === 'SCORES_FORMASI') keyedByColumn = 11;
+      
+      const seenEntries = {}; // Track unique entries
+      
+      for (let i = 1; i < data.length; i++) {
+        const entryId = data[i][0];
+        const keyedBy = data[i][keyedByColumn];
         
-        const data = sheet.getDataRange().getValues();
+        // Skip if already seen (each entry has multiple rows)
+        if (seenEntries[entryId]) continue;
         
-        let keyedByColumn = 7;
-        if (sheetName === 'SCORES_KAWAD_KP') keyedByColumn = 9;
-        else if (sheetName === 'SCORES_KAWAD_PLATUN') keyedByColumn = 8;
-        else if (sheetName === 'SCORES_FORMASI') keyedByColumn = 11;
+        // Filter by user if not admin
+        if (filterRole !== 'ADMIN' && keyedBy !== filterUserId) continue;
         
-        for (let i = 1; i < data.length; i++) {
-          try {
-            if (!data[i] || data[i].length < keyedByColumn + 1) continue;
-            
-            const timestamp = new Date(data[i][1]);
-            if (isNaN(timestamp.getTime())) continue;
-            
-            const judgeId = data[i][3];
-            const judgeNumber = judgeMap[judgeId] || 'N/A';
-            const keyedBy = data[i][keyedByColumn];
-            
-            submissions.push({
-              time: timestamp,
-              team_code: data[i][2],
-              form_type: sheetName.replace('SCORES_', ''),
-              judge_number: judgeNumber,
-              user_id: keyedBy,
-              entry_id: data[i][0]
-            });
-          } catch (rowError) {
-            Logger.log('Row error: ' + rowError.toString());
-          }
-        }
-      } catch (sheetError) {
-        Logger.log('Sheet error: ' + sheetError.toString());
+        seenEntries[entryId] = true;
+        
+        const teamCode = data[i][2];
+        const judgeId = data[i][3];
+        const timestamp = data[i][1];
+        const judgeNumber = judgeMap[judgeId] || 'N/A';
+        
+        entries.push({
+          entryId: entryId,
+          teamCode: teamCode,
+          formType: formType,
+          judgeNumber: judgeNumber,
+          timestamp: Utilities.formatDate(new Date(timestamp), Session.getScriptTimeZone(), 'dd/MM/yyyy HH:mm'),
+          keyedBy: keyedBy
+        });
       }
     });
     
-    // Sort by time (newest first)
-    submissions.sort(function(a, b) {
-      return b.time - a.time;
+    // Sort by timestamp (newest first)
+    entries.sort(function(a, b) {
+      return b.timestamp.localeCompare(a.timestamp);
     });
     
-    Logger.log('Found ' + submissions.length + ' total submissions');
+    Logger.log('Found ' + entries.length + ' entries');
     
     return {
       success: true,
-      submissions: submissions,
-      total_count: submissions.length
+      entries: entries
     };
     
   } catch (error) {
-    Logger.log('ERROR: ' + error.toString());
+    Logger.log('ERROR in listEntriesForPrint: ' + error.toString());
     return {
       success: false,
-      message: 'Ralat: ' + error.toString(),
-      submissions: [],
-      total_count: 0
+      message: 'Ralat: ' + error.toString()
     };
+  }
+}
+
+// ============================================
+// LIST ENTRIES FOR PRINT - WITH FILTERS
+// ============================================
+function listEntriesForPrintFiltered(filterRole, filterUserId, teamFilter, formFilter, judgeFilter) {
+  try {
+    Logger.log('=== LIST ENTRIES FOR PRINT (FILTERED) ===');
+    Logger.log('Role: ' + filterRole + ', User ID: ' + filterUserId);
+    Logger.log('Filters - Team: ' + teamFilter + ', Form: ' + formFilter + ', Judge: ' + judgeFilter);
+    
+    const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+    const entries = [];
+    
+    // Determine which sheets to search based on form filter
+    let sheetNames = [
+      'SCORES_PAKAIAN_KP',
+      'SCORES_PAKAIAN_PLATUN', 
+      'SCORES_KAWAD_KP',
+      'SCORES_KAWAD_PLATUN',
+      'SCORES_FORMASI'
+    ];
+    
+    // If form filter specified, only search that sheet
+    if (formFilter) {
+      sheetNames = ['SCORES_' + formFilter];
+    }
+    
+    // Get judges info
+    const judgesSheet = ss.getSheetByName('JUDGES');
+    const judgesData = judgesSheet.getDataRange().getValues();
+    const judgeMap = {};
+    for (let j = 1; j < judgesData.length; j++) {
+      judgeMap[judgesData[j][0]] = judgesData[j][2]; // judge_id → judge_number
+    }
+    
+    // Scan sheets
+    sheetNames.forEach(function(sheetName) {
+      const sheet = ss.getSheetByName(sheetName);
+      if (!sheet) return;
+      
+      const data = sheet.getDataRange().getValues();
+      const formType = sheetName.replace('SCORES_', '');
+      
+      // Determine keyed_by column
+      let keyedByColumn = 7;
+      if (sheetName === 'SCORES_KAWAD_KP') keyedByColumn = 9;
+      else if (sheetName === 'SCORES_KAWAD_PLATUN') keyedByColumn = 8;
+      else if (sheetName === 'SCORES_FORMASI') keyedByColumn = 11;
+      
+      const seenEntries = {};
+      
+      for (let i = 1; i < data.length; i++) {
+        const entryId = data[i][0];
+        const keyedBy = data[i][keyedByColumn];
+        
+        if (seenEntries[entryId]) continue;
+        
+        // Filter by user role
+        if (filterRole !== 'ADMIN' && keyedBy !== filterUserId) continue;
+        
+        const teamCode = data[i][2];
+        const judgeId = data[i][3];
+        const timestamp = data[i][1];
+        const judgeNumber = judgeMap[judgeId] || 'N/A';
+        
+        // Apply filters
+        if (teamFilter && teamCode !== teamFilter) continue;
+        if (judgeFilter && judgeId !== judgeFilter) continue;
+        // formFilter already applied by limiting sheetNames
+        
+        seenEntries[entryId] = true;
+        
+        entries.push({
+          entryId: entryId,
+          teamCode: teamCode,
+          formType: formType,
+          judgeNumber: judgeNumber,
+          timestamp: Utilities.formatDate(new Date(timestamp), Session.getScriptTimeZone(), 'dd/MM/yyyy HH:mm'),
+          keyedBy: keyedBy
+        });
+      }
+    });
+    
+    // Sort by timestamp
+    entries.sort(function(a, b) {
+      return b.timestamp.localeCompare(a.timestamp);
+    });
+    
+    Logger.log('Found ' + entries.length + ' filtered entries');
+    
+    return {
+      success: true,
+      entries: entries
+    };
+    
+  } catch (error) {
+    Logger.log('ERROR in listEntriesForPrintFiltered: ' + error.toString());
+    return {
+      success: false,
+      message: 'Ralat: ' + error.toString()
+    };
+  }
+}
+
+// ============================================
+// GET ALL TEAMS (for filter dropdown)
+// ============================================
+function getAllTeams() {
+  try {
+    const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+    const teamsSheet = ss.getSheetByName('TEAMS');
+    
+    if (!teamsSheet) {
+      return [];
+    }
+    
+    const data = teamsSheet.getDataRange().getValues();
+    const teams = [];
+    
+    for (let i = 1; i < data.length; i++) {
+      teams.push({
+        team_id: data[i][0],
+        team_code: data[i][1],
+        team_name: data[i][2]
+      });
+    }
+    
+    return teams;
+    
+  } catch (error) {
+    Logger.log('ERROR in getAllTeams: ' + error.toString());
+    return [];
+  }
+}
+
+// ============================================
+// GET ALL JUDGES (for filter dropdown)
+// ============================================
+function getAllJudges() {
+  try {
+    const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+    const judgesSheet = ss.getSheetByName('JUDGES');
+    
+    if (!judgesSheet) {
+      return [];
+    }
+    
+    const data = judgesSheet.getDataRange().getValues();
+    const judges = [];
+    
+    for (let i = 1; i < data.length; i++) {
+      judges.push({
+        judge_id: data[i][0],
+        full_name: data[i][1],
+        judge_number: data[i][2]
+      });
+    }
+    
+    return judges;
+    
+  } catch (error) {
+    Logger.log('ERROR in getAllJudges: ' + error.toString());
+    return [];
   }
 }
